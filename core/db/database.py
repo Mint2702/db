@@ -1,7 +1,7 @@
 import psycopg2
 from loguru import logger
 
-from ..settings import settings
+from .settings import settings
 
 
 def db_connect():
