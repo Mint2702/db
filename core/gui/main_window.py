@@ -25,7 +25,4 @@ class MainWindow(Frame):
 
         self.parent.title("Военная кафедра")
 
-        quitButton = Button(self, text="Закрыть окно")
-        quitButton.place(x=50, y=50)
-
         self.pack(fill=BOTH, expand=1)
