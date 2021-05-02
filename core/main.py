@@ -5,3 +5,4 @@ from db import database
 
 if __name__ == "__main__":
     graphics.connect_to_db()
+    graphics.main_window()

@@ -1,7 +1,7 @@
 from tkinter import BOTH, Button, Frame, Label, Entry
 import sys
 
-from .utils import show_error
+from .utils import show_error, show_info
 
 
 class Connection_tk(Frame):
@@ -132,6 +132,12 @@ class Connection_tk(Frame):
             )
 
         if flag:
+            show_info(
+                "Соединение успешно",
+                "Подключение к базе данных прошло успешно. Нажмите ОК чтобы продолжить.",
+            )
+            self.destroy()
+            self.parent.destroy()
             self.quit()
         else:
             show_error(
