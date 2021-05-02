@@ -2,17 +2,18 @@ from tkinter import Tk
 
 from .connection_tk import Connection_tk
 from .main_window import MainWindow
+from .utils import create_new_window
 
 
-def connect_to_db() -> None:
+@create_new_window
+def connect_to_db(root: Tk) -> None:
     """ Окно подключения к бд """
-    root = Tk()
+
     Connection_tk(root)
-    root.mainloop()
 
 
-def main_window() -> None:
+@create_new_window
+def main_window(root: Tk) -> None:
     """ Главное окно """
-    root = Tk()
+
     MainWindow(root)
-    root.mainloop()

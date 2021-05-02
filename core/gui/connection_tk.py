@@ -136,11 +136,14 @@ class Connection_tk(Frame):
                 "Соединение успешно",
                 "Подключение к базе данных прошло успешно. Нажмите ОК чтобы продолжить.",
             )
-            self.destroy()
-            self.parent.destroy()
-            self.quit()
+            self.remove_window()
         else:
             show_error(
                 "Ошибка подключения",
                 "Не получилось подключиться к базе данных. Пожалуйста, попробуйте снова",
             )
+
+    def remove_window(self) -> None:
+        """ Удаляет все обьекты родительского окна """
+
+        self.parent.destroy()
