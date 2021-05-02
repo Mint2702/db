@@ -46,7 +46,6 @@ class Connection_tk(Frame):
             width=30,
             command=lambda: self.env_connect(env=True),
         )
-
         btn_env.place(x=650, y=1000)
 
         btn_input = Button(
@@ -56,7 +55,6 @@ class Connection_tk(Frame):
             width=30,
             command=lambda: self.env_connect(env=False),
         )
-
         btn_input.place(x=650, y=900)
 
         self.host = Entry(self, width=30, font=("Arial Bold", 10))

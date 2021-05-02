@@ -22,7 +22,35 @@ class MainWindow(Frame):
         y = (sh - h) / 2
 
         self.parent.geometry("%dx%d+%d+%d" % (w, h, x, y))
-
         self.parent.title("Военная кафедра")
 
+        self.place_buttons()
+
         self.pack(fill=BOTH, expand=1)
+
+    def place_buttons(self) -> None:
+        """ Создание и расположение кнопок выбора раздела """
+
+        btn_look = Button(
+            self,
+            text="Просмотреть таблицы",
+            font=("Arial Bold", 10),
+            width=30,
+        )
+        btn_look.place(x=750, y=500)
+
+        btn_add = Button(
+            self,
+            text="Добавить информацию",
+            font=("Arial Bold", 10),
+            width=30,
+        )
+        btn_add.place(x=750, y=700)
+
+        btn_filter = Button(
+            self,
+            text="Фильтры",
+            font=("Arial Bold", 10),
+            width=30,
+        )
+        btn_filter.place(x=750, y=900)
