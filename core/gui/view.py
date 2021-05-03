@@ -3,14 +3,14 @@ from tkinter import BOTH, Button, Frame, Label, Entry
 from .utils import show_error
 
 
-class MainWindow(Frame):
+class ViewWindow(Frame):
     def __init__(self, parent) -> None:
         Frame.__init__(self, parent)
         self.parent = parent
         self.initUI()
 
     def initUI(self) -> None:
-        """ Постоение главного окна """
+        """ Постоение окна просмотра """
 
         w = 2000
         h = 1200
@@ -29,7 +29,7 @@ class MainWindow(Frame):
         self.pack(fill=BOTH, expand=1)
 
     def place_buttons(self) -> None:
-        """ Создание и расположение кнопок выбора раздела """
+        """ Создание и расположение оснвных виджетов данного окна """
 
         choose_label = Label(
             self,

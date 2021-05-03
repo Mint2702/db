@@ -107,7 +107,7 @@ class Connection_tk(Frame):
 
         sys.path.append("..")
 
-        from db import database as db
+        from db import utils as db
         from db import settings as st
 
         # Три строчки сверху нужны для того, чтобы импортнуть модули из папки db

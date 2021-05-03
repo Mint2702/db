@@ -1,25 +1,15 @@
 import psycopg2
-from loguru import logger
 
 from .settings import settings
+from .utils import sql_command
 
 
-def db_connect(host: str, port: str, user: str, password: str, database: str) -> bool:
-    try:
-        conn = psycopg2.connect(
-            host=host,
-            port=int(port),
-            user=user,
-            password=password,
-            database=database,
-        )
-        cursor = conn.cursor()
-        logger.info("Connection succsessful")
+@sql_command
+def get_table(cursor, table: str) -> dict:
+    """ Достает все данные из указанной таблицы """
 
-        return True
-
-    except Exception as err:
-        logger.warning("Connection failed")
-        logger.info(err)
-
-        return False
+    command = f"SELECT * FROM {table}"
+    cursor.execute(command)
+    records = cursor.fetchall()
+    print(records)
+    return records
