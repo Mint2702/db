@@ -30,9 +30,27 @@ class AddDataWindow(Frame):
         """ Создание и расположение кнопки "назад" """
 
         btn_filter = Button(
-            self,
-            text="Назад",
-            font=("Arial Bold", 10),
-            width=10,
+            self, text="Назад", font=("Arial Bold", 10), width=10, command=self.back
         )
         btn_filter.place(x=900, y=1000)
+
+    def back(self) -> None:
+        """ Возвращает в меню выбора действия """
+
+        self.remove_window()
+
+        from tkinter import Tk
+
+        from .main_window import MainWindow
+        from .utils import create_new_window
+
+        @create_new_window
+        def back_to_main(root: Tk) -> None:
+            MainWindow(root)
+
+        back_to_main()
+
+    def remove_window(self) -> None:
+        """ Удаляет все обьекты родительского окна """
+
+        self.parent.destroy()
