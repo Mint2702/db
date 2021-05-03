@@ -10,8 +10,8 @@ class MainWindow(Frame):
     def initUI(self) -> None:
         """ Построение главного окна """
 
-        w = 2000
-        h = 1200
+        w = 1300
+        h = 700
 
         sw = self.parent.winfo_screenwidth()
         sh = self.parent.winfo_screenheight()
@@ -34,7 +34,7 @@ class MainWindow(Frame):
             text="Выберите желаемое действие",
             font=("Arial Bold", 15),
         )
-        choose_label.place(x=700, y=20)
+        choose_label.place(x=500, y=20)
 
         btn_view = Button(
             self,
@@ -43,7 +43,7 @@ class MainWindow(Frame):
             width=30,
             command=self.change_to_view,
         )
-        btn_view.place(x=750, y=500)
+        btn_view.place(x=750, y=100)
 
         btn_add = Button(
             self,
@@ -52,7 +52,7 @@ class MainWindow(Frame):
             width=30,
             command=self.change_to_add_data,
         )
-        btn_add.place(x=750, y=700)
+        btn_add.place(x=750, y=300)
 
         btn_filter = Button(
             self,
@@ -61,7 +61,7 @@ class MainWindow(Frame):
             width=30,
             command=self.remove_window,
         )
-        btn_filter.place(x=750, y=900)
+        btn_filter.place(x=750, y=500)
 
     def change_to_view(self) -> None:
         """ Переключает окно на окно просмотра таблиц """

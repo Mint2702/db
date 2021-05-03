@@ -13,8 +13,8 @@ class Connection_tk(Frame):
     def initUI(self) -> None:
         """ Постоение окна соединения с бд """
 
-        w = 2000
-        h = 1200
+        w = 1300
+        h = 700
 
         sw = self.parent.winfo_screenwidth()
         sh = self.parent.winfo_screenheight()
@@ -46,7 +46,7 @@ class Connection_tk(Frame):
             width=30,
             command=lambda: self.env_connect(env=True),
         )
-        btn_env.place(x=650, y=1000)
+        btn_env.place(x=650, y=600)
 
         btn_input = Button(
             self,
@@ -55,52 +55,52 @@ class Connection_tk(Frame):
             width=30,
             command=lambda: self.env_connect(env=False),
         )
-        btn_input.place(x=650, y=900)
+        btn_input.place(x=650, y=550)
 
         self.host = Entry(self, width=30, font=("Arial Bold", 10))
-        self.host.place(x=800, y=250)
+        self.host.place(x=800, y=100)
         host_label = Label(
             self,
             text="Host",
             font=("Arial Bold", 15),
         )
-        host_label.place(x=580, y=250)
+        host_label.place(x=580, y=100)
 
         self.port = Entry(self, width=30, font=("Arial Bold", 10))
-        self.port.place(x=800, y=350)
+        self.port.place(x=800, y=200)
         port_label = Label(
             self,
             text="Port",
             font=("Arial Bold", 15),
         )
-        port_label.place(x=580, y=350)
+        port_label.place(x=580, y=200)
 
         self.user = Entry(self, width=30, font=("Arial Bold", 10))
-        self.user.place(x=800, y=450)
+        self.user.place(x=800, y=300)
         user_label = Label(
             self,
             text="User",
             font=("Arial Bold", 15),
         )
-        user_label.place(x=580, y=450)
+        user_label.place(x=580, y=300)
 
         self.password = Entry(self, width=30, font=("Arial Bold", 10))
-        self.password.place(x=800, y=550)
+        self.password.place(x=800, y=400)
         password_label = Label(
             self,
             text="Password",
             font=("Arial Bold", 15),
         )
-        password_label.place(x=550, y=550)
+        password_label.place(x=550, y=400)
 
         self.db_name = Entry(self, width=30, font=("Arial Bold", 10))
-        self.db_name.place(x=800, y=650)
+        self.db_name.place(x=800, y=500)
         db_name_label = Label(
             self,
             text="Database name",
             font=("Arial Bold", 15),
         )
-        db_name_label.place(x=500, y=650)
+        db_name_label.place(x=500, y=500)
 
     def env_connect(self, env: bool) -> None:
         """ Вызывает функцию подключения к бд c """
@@ -143,5 +143,4 @@ class Connection_tk(Frame):
 
     def remove_window(self) -> None:
         """ Удаляет все обьекты родительского окна """
-
         self.parent.destroy()

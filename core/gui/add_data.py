@@ -10,8 +10,8 @@ class AddDataWindow(Frame):
     def initUI(self) -> None:
         """ Постоение окна добавления информации """
 
-        w = 2000
-        h = 1200
+        w = 1300
+        h = 700
 
         sw = self.parent.winfo_screenwidth()
         sh = self.parent.winfo_screenheight()
@@ -32,7 +32,7 @@ class AddDataWindow(Frame):
         btn_filter = Button(
             self, text="Назад", font=("Arial Bold", 10), width=10, command=self.back
         )
-        btn_filter.place(x=900, y=1000)
+        btn_filter.place(x=900, y=600)
 
     def back(self) -> None:
         """ Возвращает в меню выбора действия """
