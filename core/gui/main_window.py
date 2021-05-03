@@ -1,6 +1,4 @@
-from tkinter import BOTH, Button, Frame, Label, Entry
-
-from .utils import show_error
+from tkinter import BOTH, Button, Frame, Label
 
 
 class MainWindow(Frame):
@@ -52,7 +50,7 @@ class MainWindow(Frame):
             text="Добавление данных",
             font=("Arial Bold", 10),
             width=30,
-            command=self.remove_window,
+            command=self.change_to_add_data,
         )
         btn_add.place(x=750, y=700)
 
@@ -80,6 +78,22 @@ class MainWindow(Frame):
             ViewWindow(root)
 
         change_to_view_inner()
+
+    def change_to_add_data(self) -> None:
+        """ Переключает окно на окно добавления данных """
+
+        self.remove_window()
+
+        from tkinter import Tk
+
+        from .add_data import AddDataWindow
+        from .utils import create_new_window
+
+        @create_new_window
+        def change_to_add_data_inner(root: Tk) -> None:
+            AddDataWindow(root)
+
+        change_to_add_data_inner()
 
     def remove_window(self) -> None:
         """ Удаляет все обьекты родительского окна """

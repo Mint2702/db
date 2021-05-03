@@ -1,5 +1,0 @@
-host1.miem.vmnet.top
-20003
-nvr
-sup3r_Passw0rd
-danil

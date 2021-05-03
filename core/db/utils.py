@@ -32,17 +32,20 @@ def db_connect(host: str, port: str, user: str, password: str, database: str) ->
 
 
 def sql_command(func):
-    """ Для выполнения запроса производит подключение к бд по данным из db_data.txt файла, создает курсор, а после выполнения запроса закрывает курсор и подключение к бд """
+    """ Для выполнения запроса производит подключение к бд по данным из db_data.txt файла, 
+    создает курсор, а после выполнения запроса закрывает курсор и подключение к бд """
 
     @wraps(func)
     def wrapper(*args, **kwargs):
         db_data = get_db_data()
         db_connect(db_data[0], db_data[1], db_data[2], db_data[3], db_data[4])
 
-        func(cursor, *args, **kwargs)
+        result = func(cursor, *args, **kwargs)
 
         cursor.close()
         conn.close()
+
+        return result
 
     return wrapper
 

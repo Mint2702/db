@@ -1,15 +1,15 @@
-import psycopg2
-
-from .settings import settings
 from .utils import sql_command
 
 
 @sql_command
-def get_table(cursor, table: str) -> dict:
+def get_table_equipment(
+    cursor,
+) -> list:
     """ Достает все данные из указанной таблицы """
 
-    command = f"SELECT * FROM {table}"
+    command = "SELECT * FROM equipment"
     cursor.execute(command)
     records = cursor.fetchall()
-    print(records)
-    return records
+    result = [[int(record[0]), record[1]] for record in records]
+
+    return result
