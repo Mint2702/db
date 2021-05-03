@@ -10,7 +10,7 @@ class MainWindow(Frame):
         self.initUI()
 
     def initUI(self) -> None:
-        """ Постоение главного окна """
+        """ Построение главного окна """
 
         w = 2000
         h = 1200
@@ -38,19 +38,21 @@ class MainWindow(Frame):
         )
         choose_label.place(x=700, y=20)
 
-        btn_look = Button(
+        btn_view = Button(
             self,
             text="Просмотр",
             font=("Arial Bold", 10),
             width=30,
+            command=self.change_to_view,
         )
-        btn_look.place(x=750, y=500)
+        btn_view.place(x=750, y=500)
 
         btn_add = Button(
             self,
             text="Добавление данных",
             font=("Arial Bold", 10),
             width=30,
+            command=self.remove_window,
         )
         btn_add.place(x=750, y=700)
 
@@ -59,5 +61,27 @@ class MainWindow(Frame):
             text="Фильтрация",
             font=("Arial Bold", 10),
             width=30,
+            command=self.remove_window,
         )
         btn_filter.place(x=750, y=900)
+
+    def change_to_view(self) -> None:
+        """ Переключает окно на окно просмотра таблиц """
+
+        self.remove_window()
+
+        from tkinter import Tk
+
+        from .view import ViewWindow
+        from .utils import create_new_window
+
+        @create_new_window
+        def change_to_view_inner(root: Tk) -> None:
+            ViewWindow(root)
+
+        change_to_view_inner()
+
+    def remove_window(self) -> None:
+        """ Удаляет все обьекты родительского окна """
+
+        self.parent.destroy()
