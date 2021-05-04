@@ -1,7 +1,7 @@
 from tkinter import BOTH, Button, Frame, Label, Entry
 import sys
 
-from .utils import show_error, show_info
+from ..utils import show_error, show_info
 
 
 class Connection_tk(Frame):

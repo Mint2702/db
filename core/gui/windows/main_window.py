@@ -71,7 +71,7 @@ class MainWindow(Frame):
         from tkinter import Tk
 
         from .view import ViewWindow
-        from .utils import create_new_window
+        from ..utils import create_new_window
 
         @create_new_window
         def change_to_view_inner(root: Tk) -> None:
@@ -87,7 +87,7 @@ class MainWindow(Frame):
         from tkinter import Tk
 
         from .add_data import AddDataWindow
-        from .utils import create_new_window
+        from ..utils import create_new_window
 
         @create_new_window
         def change_to_add_data_inner(root: Tk) -> None:

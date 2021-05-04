@@ -1,7 +1,7 @@
 from tkinter import Tk
 
-from .connection_tk import Connection_tk
-from .main_window import MainWindow
+from .windows.connection_tk import Connection_tk
+from .windows.main_window import MainWindow
 from .utils import create_new_window
 
 

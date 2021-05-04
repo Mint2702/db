@@ -13,3 +13,31 @@ def get_table_equipment(
     result = [[int(record[0]), record[1]] for record in records]
 
     return result
+
+
+@sql_command
+def get_table_equipment_for_subject(
+    cursor,
+) -> list:
+    """ Достает все данные из указанной таблицы """
+
+    command = "SELECT * FROM equipment_for_subject"
+    cursor.execute(command)
+    records = cursor.fetchall()
+    result = [[int(record[0]), int(record[1])] for record in records]
+
+    return result
+
+
+@sql_command
+def get_table_platoon(
+    cursor,
+) -> list:
+    """ Достает все данные из указанной таблицы """
+
+    command = "SELECT * FROM platoon"
+    cursor.execute(command)
+    records = cursor.fetchall()
+    result = [[int(record[0]), record[1]] for record in records]
+
+    return result

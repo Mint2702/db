@@ -42,7 +42,7 @@ class AddDataWindow(Frame):
         from tkinter import Tk
 
         from .main_window import MainWindow
-        from .utils import create_new_window
+        from ..utils import create_new_window
 
         @create_new_window
         def back_to_main(root: Tk) -> None:
