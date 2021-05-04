@@ -32,18 +32,30 @@ class ViewWindow(Frame):
     def place_table_frames(self) -> None:
         """" Создание фреймов для размещения таблиц"""
 
-        note_tree = ttk.Notebook(self, style="style.TNotebook", height=200, width=400)
-        note_tree.place(x=300, y=200)
+        note_tree = ttk.Notebook(self, style="style.TNotebook")
+        note_tree.place(x=20, y=50)
 
-        self.f_equipment = Frame(note_tree, width=300, height=300)
-        self.f_equipment_for_subject = Frame(note_tree, width=300, height=300)
-        self.f_platoon = Frame(note_tree, width=300, height=300)
-        self.f_rank = Frame(note_tree, width=300, height=300)
+        self.f_equipment = Frame(note_tree, height=300)
+        self.f_equipment_for_subject = Frame(note_tree, height=300)
+        self.f_platoon = Frame(note_tree, height=300)
+        self.f_rank = Frame(note_tree, height=300)
+        self.f_student = Frame(note_tree, height=300)
+        self.f_subject = Frame(note_tree, height=300)
+        self.f_subject_of_platoon = Frame(note_tree, height=300)
+        self.f_teacher = Frame(note_tree, height=300)
+        self.f_teacher_subject_area = Frame(note_tree, height=300)
 
         note_tree.add(self.f_equipment, text="Оборудование")
         note_tree.add(self.f_equipment_for_subject, text="Оборудование для пар")
         note_tree.add(self.f_platoon, text="Войска")
         note_tree.add(self.f_rank, text="Звания")
+        note_tree.add(self.f_student, text="Студенты")
+        note_tree.add(self.f_subject, text="Предметы")
+        note_tree.add(self.f_subject_of_platoon, text="Предметы у войск")
+        note_tree.add(self.f_teacher, text="Преподаватели")
+        note_tree.add(
+            self.f_teacher_subject_area, text="Предметная область преподавателей"
+        )
 
     def place_back_button(self) -> None:
         """ Создание и расположение кнопки "назад" """
@@ -51,7 +63,7 @@ class ViewWindow(Frame):
         btn_filter = Button(
             self, text="Назад", font=("Arial Bold", 10), width=10, command=self.back
         )
-        btn_filter.place(x=400, y=500)
+        btn_filter.place(x=550, y=600)
 
     def place_tables(self) -> None:
         """Создание и расположение таблиц"""
@@ -60,6 +72,11 @@ class ViewWindow(Frame):
         self.place_table_equipment_for_subject()
         self.place_table_platoon()
         self.place_table_rank()
+        self.place_table_student()
+        self.place_table_subject()
+        self.place_table_subject_of_platoon()
+        self.place_table_teacher()
+        self.place_table_teacher_subject_area()
 
     def place_table_equipment(self) -> None:
         """ Создание и расположение таблицы "equipment" """
@@ -73,7 +90,7 @@ class ViewWindow(Frame):
 
         self.fill_table_equipment(tree)
 
-        tree.place(x=1, y=1)
+        tree.pack(fill=BOTH, expand=1)
 
     def place_table_equipment_for_subject(self) -> None:
         """ Создание и расположение таблицы "equipment_for_subject" """
@@ -89,7 +106,7 @@ class ViewWindow(Frame):
 
         self.fill_table_equipment_for_subject(tree)
 
-        tree.place(x=1, y=1)
+        tree.pack(fill=BOTH, expand=1)
 
     def place_table_platoon(self) -> None:
         """ Создание и расположение таблицы "platoon" """
@@ -103,7 +120,7 @@ class ViewWindow(Frame):
 
         self.fill_table_platoon(tree)
 
-        tree.place(x=1, y=1)
+        tree.pack(fill=BOTH, expand=1)
 
     def place_table_rank(self) -> None:
         """ Создание и расположение таблицы "rank" """
@@ -117,7 +134,105 @@ class ViewWindow(Frame):
 
         self.fill_table_rank(tree)
 
-        tree.place(x=1, y=1)
+        tree.pack(fill=BOTH, expand=1)
+
+    def place_table_student(self) -> None:
+        """ Создание и расположение таблицы "student" """
+
+        tree = ttk.Treeview(
+            self.f_student, column=("c1", "c2", "c3", "c4", "c5"), show="headings"
+        )
+        tree.pack(side="left", fill="y")
+        tree.column("#1", anchor=CENTER)
+        tree.heading("#1", text="ID")
+        tree.column("#2", anchor=CENTER)
+        tree.heading("#2", text="FULL_NAME")
+        tree.column("#3", anchor=CENTER)
+        tree.heading("#3", text="DATE_OF_BIRTH")
+        tree.column("#4", anchor=CENTER)
+        tree.heading("#4", text="ADDRESS")
+        tree.column("#5", anchor=CENTER)
+        tree.heading("#5", text="PHONE_NUMBER")
+
+        self.fill_table_student(tree)
+
+        tree.pack(fill=BOTH, expand=1)
+
+    def place_table_subject(self) -> None:
+        """ Создание и расположение таблицы "subject" """
+
+        tree = ttk.Treeview(
+            self.f_subject, column=("c1", "c2", "c3", "c4"), show="headings"
+        )
+        tree.pack(side="left", fill="y")
+        tree.column("#1", anchor=CENTER)
+        tree.heading("#1", text="ID")
+        tree.column("#2", anchor=CENTER)
+        tree.heading("#2", text="NAME")
+        tree.column("#3", anchor=CENTER)
+        tree.heading("#3", text="YEAR_OF_STUDY")
+        tree.column("#4", anchor=CENTER)
+        tree.heading("#4", text="SEMESTER_OF_STUDY")
+
+        self.fill_table_subject(tree)
+
+        tree.pack(fill=BOTH, expand=1)
+
+    def place_table_subject_of_platoon(self) -> None:
+        """ Создание и расположение таблицы "subject_of_platoon" """
+
+        tree = ttk.Treeview(
+            self.f_subject_of_platoon, column=("c1", "c2"), show="headings"
+        )
+        tree.pack(side="left", fill="y")
+        tree.column("#1", anchor=CENTER)
+        tree.heading("#1", text="ID_PLATOON")
+        tree.column("#2", anchor=CENTER)
+        tree.heading("#2", text="ID_SUBJECT")
+
+        self.fill_table_subject_of_platoon(tree)
+
+        tree.pack(fill=BOTH, expand=1)
+
+    def place_table_teacher(self) -> None:
+        """ Создание и расположение таблицы "teacher" """
+
+        tree = ttk.Treeview(
+            self.f_teacher, column=("c1", "c2", "c3", "c4", "c5", "c6"), show="headings"
+        )
+        tree.pack(side="left", fill="y")
+        tree.column("#1", anchor=CENTER)
+        tree.heading("#1", text="ID")
+        tree.column("#2", anchor=CENTER)
+        tree.heading("#2", text="FULL_NAME")
+        tree.column("#3", anchor=CENTER)
+        tree.heading("#3", text="DATE_OF_BIRTH")
+        tree.column("#4", anchor=CENTER)
+        tree.heading("#4", text="PHONE_NUMBER")
+        tree.column("#5", anchor=CENTER)
+        tree.heading("#5", text="TEACHING_EXPERIENCE")
+        tree.column("#6", anchor=CENTER)
+        tree.heading("#6", text="RANK")
+
+        self.fill_table_teacher(tree)
+
+        tree.pack(fill=BOTH, expand=1)
+
+    def place_table_teacher_subject_area(self) -> None:
+        """ Создание и расположение таблицы "teacher_subject_area" """
+
+        tree = ttk.Treeview(
+            self.f_teacher_subject_area, column=("c1", "c2"), show="headings"
+        )
+        tree.pack(side="left", fill="y")
+        tree.column("#1", anchor=CENTER)
+        tree.heading("#1", text="ID_SUBJECT")
+        tree.column("#2", anchor=CENTER)
+        tree.heading("#2", text="ID_TEACHER")
+
+        self.fill_table_teacher_subject_area(tree)
+
+        tree.pack(fill=BOTH, expand=1)
 
     def fill_table_equipment(self, tree: ttk.Treeview) -> None:
         """ Заполнение таблицы "equipment" """
@@ -171,6 +286,76 @@ class ViewWindow(Frame):
         from db.database import get_table_rank
 
         records = get_table_rank()
+
+        for record in records:
+            tree.insert("", END, values=record)
+
+    def fill_table_student(self, tree: ttk.Treeview) -> None:
+        """ Заполнение таблицы "student" """
+
+        import sys
+
+        sys.path.append("..")
+
+        from db.database import get_table_student
+
+        records = get_table_student()
+
+        for record in records:
+            tree.insert("", END, values=record)
+
+    def fill_table_subject(self, tree: ttk.Treeview) -> None:
+        """ Заполнение таблицы "subject" """
+
+        import sys
+
+        sys.path.append("..")
+
+        from db.database import get_table_subject
+
+        records = get_table_subject()
+
+        for record in records:
+            tree.insert("", END, values=record)
+
+    def fill_table_subject_of_platoon(self, tree: ttk.Treeview) -> None:
+        """ Заполнение таблицы "subject_of_platoon" """
+
+        import sys
+
+        sys.path.append("..")
+
+        from db.database import get_table_subject_of_platoon
+
+        records = get_table_subject_of_platoon()
+
+        for record in records:
+            tree.insert("", END, values=record)
+
+    def fill_table_teacher(self, tree: ttk.Treeview) -> None:
+        """ Заполнение таблицы "teacher" """
+
+        import sys
+
+        sys.path.append("..")
+
+        from db.database import get_table_teacher
+
+        records = get_table_teacher()
+
+        for record in records:
+            tree.insert("", END, values=record)
+
+    def fill_table_teacher_subject_area(self, tree: ttk.Treeview) -> None:
+        """ Заполнение таблицы "teacher_subject_area" """
+
+        import sys
+
+        sys.path.append("..")
+
+        from db.database import get_table_teacher_subject_area
+
+        records = get_table_teacher_subject_area()
 
         for record in records:
             tree.insert("", END, values=record)
