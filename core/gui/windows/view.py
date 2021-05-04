@@ -38,10 +38,12 @@ class ViewWindow(Frame):
         self.f_equipment = Frame(note_tree, width=300, height=300)
         self.f_equipment_for_subject = Frame(note_tree, width=300, height=300)
         self.f_platoon = Frame(note_tree, width=300, height=300)
+        self.f_rank = Frame(note_tree, width=300, height=300)
 
         note_tree.add(self.f_equipment, text="Оборудование")
         note_tree.add(self.f_equipment_for_subject, text="Оборудование для пар")
         note_tree.add(self.f_platoon, text="Войска")
+        note_tree.add(self.f_rank, text="Звания")
 
     def place_back_button(self) -> None:
         """ Создание и расположение кнопки "назад" """
@@ -57,6 +59,7 @@ class ViewWindow(Frame):
         self.place_table_equipment()
         self.place_table_equipment_for_subject()
         self.place_table_platoon()
+        self.place_table_rank()
 
     def place_table_equipment(self) -> None:
         """ Создание и расположение таблицы "equipment" """
@@ -102,6 +105,20 @@ class ViewWindow(Frame):
 
         tree.place(x=1, y=1)
 
+    def place_table_rank(self) -> None:
+        """ Создание и расположение таблицы "rank" """
+
+        tree = ttk.Treeview(self.f_rank, column=("c1", "c2"), show="headings")
+        tree.pack(side="left", fill="y")
+        tree.column("#1", anchor=CENTER)
+        tree.heading("#1", text="ID")
+        tree.column("#2", anchor=CENTER)
+        tree.heading("#2", text="TITLE")
+
+        self.fill_table_rank(tree)
+
+        tree.place(x=1, y=1)
+
     def fill_table_equipment(self, tree: ttk.Treeview) -> None:
         """ Заполнение таблицы "equipment" """
 
@@ -140,6 +157,20 @@ class ViewWindow(Frame):
         from db.database import get_table_platoon
 
         records = get_table_platoon()
+
+        for record in records:
+            tree.insert("", END, values=record)
+
+    def fill_table_rank(self, tree: ttk.Treeview) -> None:
+        """ Заполнение таблицы "rank" """
+
+        import sys
+
+        sys.path.append("..")
+
+        from db.database import get_table_rank
+
+        records = get_table_rank()
 
         for record in records:
             tree.insert("", END, values=record)

@@ -41,3 +41,17 @@ def get_table_platoon(
     result = [[int(record[0]), record[1]] for record in records]
 
     return result
+
+
+@sql_command
+def get_table_rank(
+    cursor,
+) -> list:
+    """ Достает все данные из указанной таблицы """
+
+    command = "SELECT * FROM rank"
+    cursor.execute(command)
+    records = cursor.fetchall()
+    result = [[int(record[0]), record[1]] for record in records]
+
+    return result
