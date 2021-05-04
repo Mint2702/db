@@ -114,23 +114,23 @@ class Connection_tk(Frame):
     Разбил на несколько функций из-за того что если делать одну с разными параметрами,
     они она просто запускается 4 раза. ХЗ почему"""
     def status_1(self) -> None:
-        self.status = 1
+        self.status = 'Студент'
 
     def status_2(self) -> None:
-        self.status = 2
+        self.status = 'Преподаватель'
 
     def status_3(self) -> None:
-        self.status = 3
+        self.status = 'Начальник цикла'
 
     def status_4(self) -> None:
-        self.status = 4
+        self.status = 'Начальник ВУЦ'
 
 
 
     def place_radiobuttons(self) -> None:
         """ Создание и размещение кнопочек выбора роли"""
         self.var = IntVar()
-        self.status = 1
+        self.status = 'Студент'
         rad0 = Radiobutton(self, text="Cтудент", variable=self.var, value=1, font=("Arial Bold", 15), command=self.status_1)
         rad1 = Radiobutton(self, text="Преподаватель", variable=self.var, value=2, font=("Arial Bold", 15), command=self.status_2)
         rad2 = Radiobutton(self, text="Начальник цикла", variable=self.var, value=3, font=("Arial Bold", 15), command=self.status_3)

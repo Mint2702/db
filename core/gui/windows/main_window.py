@@ -28,6 +28,16 @@ class MainWindow(Frame):
 
     def place_buttons(self) -> None:
         """ Создание и расположение кнопок выбора раздела """
+        with open("user_status.txt", "r") as file:
+            self.user = file.readline()
+
+        roll_label = Label(
+            self,
+            text="Вы зашли как: " + self.user,
+            font=("Arial Bold", 15),
+        )
+        roll_label.place(x=25, y=200)
+
 
         choose_label = Label(
             self,
