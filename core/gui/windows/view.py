@@ -241,7 +241,7 @@ class ViewWindow(Frame):
 
         sys.path.append("..")
 
-        from db.database import get_table_equipment
+        from db.get import get_table_equipment
 
         records = get_table_equipment()
 
@@ -255,7 +255,7 @@ class ViewWindow(Frame):
 
         sys.path.append("..")
 
-        from db.database import get_table_equipment_for_subject
+        from db.get import get_table_equipment_for_subject
 
         records = get_table_equipment_for_subject()
 
@@ -269,7 +269,7 @@ class ViewWindow(Frame):
 
         sys.path.append("..")
 
-        from db.database import get_table_platoon
+        from db.get import get_table_platoon
 
         records = get_table_platoon()
 
@@ -283,7 +283,7 @@ class ViewWindow(Frame):
 
         sys.path.append("..")
 
-        from db.database import get_table_rank
+        from db.get import get_table_rank
 
         records = get_table_rank()
 
@@ -297,7 +297,7 @@ class ViewWindow(Frame):
 
         sys.path.append("..")
 
-        from db.database import get_table_student
+        from db.get import get_table_student
 
         records = get_table_student()
 
@@ -311,7 +311,7 @@ class ViewWindow(Frame):
 
         sys.path.append("..")
 
-        from db.database import get_table_subject
+        from db.get import get_table_subject
 
         records = get_table_subject()
 
@@ -325,7 +325,7 @@ class ViewWindow(Frame):
 
         sys.path.append("..")
 
-        from db.database import get_table_subject_of_platoon
+        from db.get import get_table_subject_of_platoon
 
         records = get_table_subject_of_platoon()
 
@@ -339,7 +339,7 @@ class ViewWindow(Frame):
 
         sys.path.append("..")
 
-        from db.database import get_table_teacher
+        from db.get import get_table_teacher
 
         records = get_table_teacher()
 
@@ -353,7 +353,7 @@ class ViewWindow(Frame):
 
         sys.path.append("..")
 
-        from db.database import get_table_teacher_subject_area
+        from db.get import get_table_teacher_subject_area
 
         records = get_table_teacher_subject_area()
 
