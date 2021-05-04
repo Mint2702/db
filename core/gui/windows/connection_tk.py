@@ -139,8 +139,7 @@ class Connection_tk(Frame):
         rad1.place(x=20, y=240)
         rad2.place(x=20, y=270)
         rad3.place(x=20, y=300)
-        #labelValue = Label(self, textvariable=self.var)
-        #labelValue.place(x=10, y=10)
+
 
 
 
