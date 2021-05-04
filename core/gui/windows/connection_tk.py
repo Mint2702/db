@@ -134,12 +134,29 @@ class Connection_tk(Frame):
                 "Соединение успешно",
                 "Подключение к базе данных прошло успешно. Нажмите ОК чтобы продолжить.",
             )
-            self.remove_window()
+            self.main_window()
+
         else:
             show_error(
                 "Ошибка подключения",
                 "Не получилось подключиться к базе данных. Пожалуйста, попробуйте снова",
             )
+
+    def main_window(self) -> None:
+        """ Переходит в меню выбора действия """
+
+        self.remove_window()
+
+        from tkinter import Tk
+
+        from .main_window import MainWindow
+        from ..utils import create_new_window
+
+        @create_new_window
+        def to_main(root: Tk) -> None:
+            MainWindow(root)
+
+        to_main()
 
     def remove_window(self) -> None:
         """ Удаляет все обьекты родительского окна """
