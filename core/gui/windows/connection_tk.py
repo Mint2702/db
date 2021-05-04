@@ -25,11 +25,17 @@ class Connection_tk(Frame):
         self.parent.geometry("%dx%d+%d+%d" % (w, h, x, y))
 
         self.parent.title("Военная кафедра")
-
+        self.default_user()
         self.place_connection_labels()
         self.place_radiobuttons()
 
         self.pack(fill=BOTH, expand=1)
+
+
+    def default_user(self) -> None:
+       with open("user_status.txt", "w") as file:
+           file.write(str(1))
+
 
     def place_connection_labels(self) -> None:
         """ Создание и расположение виджетов окна подключения к бд"""
@@ -124,7 +130,7 @@ class Connection_tk(Frame):
     def place_radiobuttons(self) -> None:
         """ Создание и размещение кнопочек выбора роли"""
         self.var = IntVar()
-        self.status = 0
+        self.status = 1
         rad0 = Radiobutton(self, text="Cтудент", variable=self.var, value=1, font=("Arial Bold", 15), command=self.status_1)
         rad1 = Radiobutton(self, text="Преподаватель", variable=self.var, value=2, font=("Arial Bold", 15), command=self.status_2)
         rad2 = Radiobutton(self, text="Начальник цикла", variable=self.var, value=3, font=("Arial Bold", 15), command=self.status_3)
@@ -148,8 +154,9 @@ class Connection_tk(Frame):
 
         # Три строчки сверху нужны для того, чтобы импортнуть модули из папки db
 
-        print(self.status)
-
+        """ Запись в файл """
+        with open("user_status.txt", "w") as file:
+            file.write(str(self.status))
 
         if env:
             flag = db.db_connect(
