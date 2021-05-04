@@ -1,4 +1,5 @@
-from tkinter import BOTH, Button, Frame, Label, Entry
+from tkinter import BOTH, Button, Frame, Label, Entry, IntVar, Radiobutton
+
 import sys
 
 from ..utils import show_error, show_info
@@ -26,6 +27,7 @@ class Connection_tk(Frame):
         self.parent.title("Военная кафедра")
 
         self.place_connection_labels()
+        self.place_radiobuttons()
 
         self.pack(fill=BOTH, expand=1)
 
@@ -102,6 +104,40 @@ class Connection_tk(Frame):
         )
         db_name_label.place(x=500, y=500)
 
+    """Функции для изменения статуса, тк variable не робит с self
+    Разбил на несколько функций из-за того что если делать одну с разными параметрами,
+    они она просто запускается 4 раза. ХЗ почему"""
+    def status_1(self) -> None:
+        self.status = 1
+
+    def status_2(self) -> None:
+        self.status = 2
+
+    def status_3(self) -> None:
+        self.status = 3
+
+    def status_4(self) -> None:
+        self.status = 4
+
+
+
+    def place_radiobuttons(self) -> None:
+        """ Создание и размещение кнопочек выбора роли"""
+        self.var = IntVar()
+        self.status = 0
+        rad0 = Radiobutton(self, text="Cтудент", variable=self.var, value=1, font=("Arial Bold", 15), command=self.status_1)
+        rad1 = Radiobutton(self, text="Преподаватель", variable=self.var, value=2, font=("Arial Bold", 15), command=self.status_2)
+        rad2 = Radiobutton(self, text="Начальник цикла", variable=self.var, value=3, font=("Arial Bold", 15), command=self.status_3)
+        rad3 = Radiobutton(self, text="Начальник ВУЦ", variable=self.var, value=4, font=("Arial Bold", 15), command=self.status_4)
+        rad0.place(x=20, y=210)
+        rad1.place(x=20, y=240)
+        rad2.place(x=20, y=270)
+        rad3.place(x=20, y=300)
+        #labelValue = Label(self, textvariable=self.var)
+        #labelValue.place(x=10, y=10)
+
+
+
     def env_connect(self, env: bool) -> None:
         """ Вызывает функцию подключения к бд c """
 
@@ -111,6 +147,9 @@ class Connection_tk(Frame):
         from db import settings as st
 
         # Три строчки сверху нужны для того, чтобы импортнуть модули из папки db
+
+        print(self.status)
+
 
         if env:
             flag = db.db_connect(
