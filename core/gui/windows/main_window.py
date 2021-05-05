@@ -60,7 +60,7 @@ class MainWindow(Frame):
             text="Просмотр готовых отношений",
             font=("Arial Bold", 10),
             width=30,
-            command=self.change_to_view,
+            command=self.change_to_complex_view,
         )
         btn_view.place(x=750, y=250)
 
@@ -98,6 +98,22 @@ class MainWindow(Frame):
             ViewWindow(root)
 
         change_to_view_inner()
+
+    def change_to_complex_view(self) -> None:
+        """ Переключает окно на окно просмотра таблиц """
+
+        self.remove_window()
+
+        from tkinter import Tk
+
+        from .complex_view import ComplexViewWindow
+        from ..utils import create_new_window
+
+        @create_new_window
+        def change_to_complex_view_inner(root: Tk) -> None:
+            ComplexViewWindow(root)
+
+        change_to_complex_view_inner()
 
     def change_to_add_data(self) -> None:
         """ Переключает окно на окно добавления данных """
