@@ -44,6 +44,14 @@ class ComplexViewWindow(Frame):
         from tkinter import Tk
         from .main_window import MainWindow
 
+        import sys
+
+        sys.path.append("..")
+
+        from db.complex_get import get_teachers
+
+        get_teachers()
+
         self.remove_window()
         MainWindow(self.parent)
 
