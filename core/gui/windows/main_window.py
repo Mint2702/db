@@ -21,15 +21,28 @@ class MainWindow(Frame):
 
         self.parent.geometry("%dx%d+%d+%d" % (w, h, x, y))
         self.parent.title("Военная кафедра")
+        with open("user_status.txt", "r") as file:
+            self.user = file.readline()
+
+        if self.user != 'Студент':
+            self.place_add_buttons()
 
         self.place_buttons()
 
         self.pack(fill=BOTH, expand=1)
 
+    def place_add_buttons(self) -> None:
+        btn_add = Button(
+            self,
+            text="Добавление данных",
+            font=("Arial Bold", 10),
+            width=30,
+            command=self.change_to_add_data,
+        )
+        btn_add.place(x=750, y=300)
+
     def place_buttons(self) -> None:
         """ Создание и расположение кнопок выбора раздела """
-        with open("user_status.txt", "r") as file:
-            self.user = file.readline()
 
         roll_label = Label(
             self,
@@ -55,14 +68,7 @@ class MainWindow(Frame):
         )
         btn_view.place(x=750, y=100)
 
-        btn_add = Button(
-            self,
-            text="Добавление данных",
-            font=("Arial Bold", 10),
-            width=30,
-            command=self.change_to_add_data,
-        )
-        btn_add.place(x=750, y=300)
+
 
         btn_filter = Button(
             self,
