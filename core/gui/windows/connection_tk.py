@@ -1,5 +1,4 @@
 from tkinter import BOTH, Button, Frame, Label, Entry, IntVar, Radiobutton
-
 import sys
 
 from ..utils import show_error, show_info
@@ -212,19 +211,13 @@ class Connection_tk(Frame):
     def main_window(self) -> None:
         """ Переходит в меню выбора действия """
 
-        self.remove_window()
-
         from tkinter import Tk
-
         from .main_window import MainWindow
-        from ..utils import create_new_window
 
-        @create_new_window
-        def to_main(root: Tk) -> None:
-            MainWindow(root)
-
-        to_main()
+        self.remove_window()
+        MainWindow(self.parent)
 
     def remove_window(self) -> None:
         """ Удаляет все обьекты родительского окна """
-        self.parent.destroy()
+
+        self.destroy()

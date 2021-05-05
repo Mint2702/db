@@ -2,11 +2,11 @@ from tkinter import Tk
 
 from .windows.connection_tk import Connection_tk
 from .windows.main_window import MainWindow
-from .utils import create_new_window
 
 
-@create_new_window
-def start_graphics(root: Tk) -> None:
+def start_graphics() -> None:
     """ Стартовая точка в графике """
 
+    root = Tk()
     Connection_tk(root)
+    root.mainloop()

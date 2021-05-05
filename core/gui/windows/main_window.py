@@ -86,52 +86,31 @@ class MainWindow(Frame):
     def change_to_view(self) -> None:
         """ Переключает окно на окно просмотра таблиц """
 
-        self.remove_window()
-
         from tkinter import Tk
-
         from .view import ViewWindow
-        from ..utils import create_new_window
 
-        @create_new_window
-        def change_to_view_inner(root: Tk) -> None:
-            ViewWindow(root)
-
-        change_to_view_inner()
+        self.remove_window()
+        ViewWindow(self.parent)
 
     def change_to_complex_view(self) -> None:
         """ Переключает окно на окно просмотра таблиц """
 
-        self.remove_window()
-
         from tkinter import Tk
-
         from .complex_view import ComplexViewWindow
-        from ..utils import create_new_window
 
-        @create_new_window
-        def change_to_complex_view_inner(root: Tk) -> None:
-            ComplexViewWindow(root)
-
-        change_to_complex_view_inner()
+        self.remove_window()
+        ComplexViewWindow(self.parent)
 
     def change_to_add_data(self) -> None:
         """ Переключает окно на окно добавления данных """
 
-        self.remove_window()
-
         from tkinter import Tk
-
         from .add_data import AddDataWindow
-        from ..utils import create_new_window
 
-        @create_new_window
-        def change_to_add_data_inner(root: Tk) -> None:
-            AddDataWindow(root)
-
-        change_to_add_data_inner()
+        self.remove_window()
+        AddDataWindow(self.parent)
 
     def remove_window(self) -> None:
         """ Удаляет все обьекты родительского окна """
 
-        self.parent.destroy()
+        self.destroy()

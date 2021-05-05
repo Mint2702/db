@@ -435,20 +435,13 @@ class ViewWindow(Frame):
     def back(self) -> None:
         """ Возвращает в меню выбора действия """
 
-        self.remove_window()
-
         from tkinter import Tk
-
         from .main_window import MainWindow
-        from ..utils import create_new_window
 
-        @create_new_window
-        def back_to_main(root: Tk) -> None:
-            MainWindow(root)
-
-        back_to_main()
+        self.remove_window()
+        MainWindow(self.parent)
 
     def remove_window(self) -> None:
         """ Удаляет все обьекты родительского окна """
 
-        self.parent.destroy()
+        self.destroy()

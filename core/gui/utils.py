@@ -14,16 +14,6 @@ def show_error(header: str, text: str) -> None:
     messagebox.showerror(header, text)
 
 
-def create_new_window(func):
-    @wraps(func)
-    def wrapper(*args, **kwargs):
-        root = Tk()
-        func(root, *args, **kwargs)
-        root.mainloop()
-
-    return wrapper
-
-
 def get_role() -> str:
     with open("user_status.txt", "r") as file:
         return file.readline()
