@@ -1,4 +1,5 @@
 from tkinter import BOTH, Button, Frame, Label
+from ..utils import get_role
 
 
 class MainWindow(Frame):
@@ -21,8 +22,8 @@ class MainWindow(Frame):
 
         self.parent.geometry("%dx%d+%d+%d" % (w, h, x, y))
         self.parent.title("Военная кафедра")
-        with open("user_status.txt", "r") as file:
-            self.user = file.readline()
+        
+        self.user = get_role()
 
         if self.user != 'Студент':
             self.place_add_buttons()
