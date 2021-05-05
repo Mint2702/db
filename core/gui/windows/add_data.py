@@ -1,4 +1,4 @@
-from tkinter import BOTH, Button, Frame, Listbox, SINGLE, END, StringVar
+from tkinter import BOTH, Button, Frame, Listbox, SINGLE, END, Label
 
 
 class AddDataWindow(Frame):
@@ -21,16 +21,73 @@ class AddDataWindow(Frame):
 
         self.parent.geometry("%dx%d+%d+%d" % (w, h, x, y))
         self.parent.title("Военная кафедра - добавление информации")
+        self.place_add_frame()
 
         self.place_listbox()
         self.place_back_button()
 
         self.pack(fill=BOTH, expand=1)
 
+
+    def place_add_frame(self) -> None:
+        """Создание фрейма для добавления"""
+        self.add_frame = Frame(self, width=600, height=500, bg="red")
+        self.add_frame.place(x=500, y=50)
+
+
+    def place_add_subjects_forms(self) -> None:
+        """Создание форм для добавления предметов"""
+        self.add_frame.destroy()
+        self.place_add_frame()
+        roll_label = Label(
+            self.add_frame,
+            text="Добавление предмета",
+            font=("Arial Bold", 15),
+        )
+        roll_label.place(x=25, y=200)
+
+
+    def place_add_teachers_forms(self) -> None:
+        """Создание форм для добавления преподавателя"""
+        self.add_frame.destroy()
+        self.place_add_frame()
+        roll_label = Label(
+            self.add_frame,
+            text="Добавление преподавателя",
+            font=("Arial Bold", 15),
+        )
+        roll_label.place(x=25, y=200)
+
+
+    def place_add_students_forms(self) -> None:
+        """Создание форм для добавления студентов"""
+        self.add_frame.destroy()
+        self.place_add_frame()
+        roll_label = Label(
+            self.add_frame,
+            text="Добавление студента",
+            font=("Arial Bold", 15),
+        )
+        roll_label.place(x=25, y=200)
+
+
+    def place_add_equipment_forms(self) -> None:
+        """Создание форм для добавления оборудования"""
+        self.add_frame.destroy()
+        self.place_add_frame()
+        roll_label = Label(
+            self.add_frame,
+            text="Добавление оборудования",
+            font=("Arial Bold", 15),
+        )
+        roll_label.place(x=25, y=200)
+
+
+
     def place_listbox(self) -> None:
         """ Создание листбокса добавления"""
-        variants = ["Оборудование", "Предметы"]
-        lis = Listbox(self, selectmode=SINGLE, height=4)
+        variants = ["Предметы", "Преподаватели", "Студенты", "Оборудование"]
+        lis = Listbox(self, selectmode=SINGLE, height=4, font=("Arial Bold", 15))
         for i in variants:
             lis.insert(END, i)
         lis.bind("<<ListboxSelect>>", self.onSelect)
@@ -42,9 +99,14 @@ class AddDataWindow(Frame):
         value = sender.get(idx)
 
         if value == "Предметы":
-            print("Предметы")
+            self.place_add_subjects_forms()
+        elif value == "Преподаватели":
+            self.place_add_teachers_forms()
+        elif value == "Студенты":
+            self.place_add_students_forms()
         elif value == "Оборудование":
-            print("Оборудование")
+            self.place_add_equipment_forms()
+
 
     def place_back_button(self) -> None:
         """ Создание и расположение кнопки "назад" """
