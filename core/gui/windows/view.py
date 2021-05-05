@@ -1,4 +1,5 @@
 from tkinter import BOTH, Button, Frame, ttk, END, CENTER
+from ..utils import get_role
 
 
 class ViewWindow(Frame):
@@ -35,27 +36,75 @@ class ViewWindow(Frame):
         note_tree = ttk.Notebook(self, style="style.TNotebook")
         note_tree.place(x=20, y=50)
 
-        self.f_equipment = Frame(note_tree, height=300)
-        self.f_equipment_for_subject = Frame(note_tree, height=300)
-        self.f_platoon = Frame(note_tree, height=300)
-        self.f_rank = Frame(note_tree, height=300)
-        self.f_student = Frame(note_tree, height=300)
-        self.f_subject = Frame(note_tree, height=300)
-        self.f_subject_of_platoon = Frame(note_tree, height=300)
-        self.f_teacher = Frame(note_tree, height=300)
-        self.f_teacher_subject_area = Frame(note_tree, height=300)
+        self.role = get_role()
 
-        note_tree.add(self.f_equipment, text="Оборудование")
-        note_tree.add(self.f_equipment_for_subject, text="Оборудование для пар")
-        note_tree.add(self.f_platoon, text="Войска")
-        note_tree.add(self.f_rank, text="Звания")
-        note_tree.add(self.f_student, text="Студенты")
-        note_tree.add(self.f_subject, text="Предметы")
-        note_tree.add(self.f_subject_of_platoon, text="Предметы у войск")
-        note_tree.add(self.f_teacher, text="Преподаватели")
-        note_tree.add(
-            self.f_teacher_subject_area, text="Предметная область преподавателей"
-        )
+        if self.role == "Студент":
+            self.f_subject = Frame(note_tree, height=300)
+            self.f_subject_of_platoon = Frame(note_tree, height=300)
+            self.f_teacher = Frame(note_tree, height=300)
+            self.f_teacher_subject_area = Frame(note_tree, height=300)
+
+            note_tree.add(self.f_subject, text="Предметы")
+            note_tree.add(self.f_subject_of_platoon, text="Предметы у войск")
+            note_tree.add(self.f_teacher, text="Преподаватели")
+            note_tree.add(
+                self.f_teacher_subject_area, text="Предметная область преподавателей"
+            )
+        elif self.role == "Преподаватель":
+            self.f_equipment = Frame(note_tree, height=300)
+            self.f_equipment_for_subject = Frame(note_tree, height=300)
+            self.f_platoon = Frame(note_tree, height=300)
+            self.f_student = Frame(note_tree, height=300)
+            self.f_subject = Frame(note_tree, height=300)
+            self.f_subject_of_platoon = Frame(note_tree, height=300)
+            self.f_teacher = Frame(note_tree, height=300)
+            self.f_teacher_subject_area = Frame(note_tree, height=300)
+
+            note_tree.add(self.f_equipment, text="Оборудование")
+            note_tree.add(self.f_equipment_for_subject, text="Оборудование для пар")
+            note_tree.add(self.f_platoon, text="Войска")
+            note_tree.add(self.f_student, text="Студенты")
+            note_tree.add(self.f_subject, text="Предметы")
+            note_tree.add(self.f_subject_of_platoon, text="Предметы у войск")
+            note_tree.add(self.f_teacher, text="Преподаватели")
+            note_tree.add(
+                self.f_teacher_subject_area, text="Предметная область преподавателей"
+            )
+        elif self.role == "Начальник цикла":
+            self.f_platoon = Frame(note_tree, height=300)
+            self.f_student = Frame(note_tree, height=300)
+            self.f_subject = Frame(note_tree, height=300)
+            self.f_subject_of_platoon = Frame(note_tree, height=300)
+            self.f_teacher = Frame(note_tree, height=300)
+            self.f_teacher_subject_area = Frame(note_tree, height=300)
+
+            note_tree.add(self.f_platoon, text="Войска")
+            note_tree.add(self.f_student, text="Студенты")
+            note_tree.add(self.f_subject, text="Предметы")
+            note_tree.add(self.f_subject_of_platoon, text="Предметы у войск")
+            note_tree.add(self.f_teacher, text="Преподаватели")
+            note_tree.add(
+                self.f_teacher_subject_area, text="Предметная область преподавателей"
+            )
+
+        else:
+            self.f_platoon = Frame(note_tree, height=300)
+            self.f_rank = Frame(note_tree, height=300)
+            self.f_student = Frame(note_tree, height=300)
+            self.f_subject = Frame(note_tree, height=300)
+            self.f_subject_of_platoon = Frame(note_tree, height=300)
+            self.f_teacher = Frame(note_tree, height=300)
+            self.f_teacher_subject_area = Frame(note_tree, height=300)
+
+            note_tree.add(self.f_platoon, text="Войска")
+            note_tree.add(self.f_rank, text="Звания")
+            note_tree.add(self.f_student, text="Студенты")
+            note_tree.add(self.f_subject, text="Предметы")
+            note_tree.add(self.f_subject_of_platoon, text="Предметы у войск")
+            note_tree.add(self.f_teacher, text="Преподаватели")
+            note_tree.add(
+                self.f_teacher_subject_area, text="Предметная область преподавателей"
+            )
 
     def place_back_button(self) -> None:
         """ Создание и расположение кнопки "назад" """
@@ -68,15 +117,38 @@ class ViewWindow(Frame):
     def place_tables(self) -> None:
         """Создание и расположение таблиц"""
 
-        self.place_table_equipment()
-        self.place_table_equipment_for_subject()
-        self.place_table_platoon()
-        self.place_table_rank()
-        self.place_table_student()
-        self.place_table_subject()
-        self.place_table_subject_of_platoon()
-        self.place_table_teacher()
-        self.place_table_teacher_subject_area()
+        if self.role == "Студент":
+            self.place_table_subject()
+            self.place_table_subject_of_platoon()
+            self.place_table_teacher()
+            self.place_table_teacher_subject_area()
+
+        elif self.role == "Преподаватель":
+            self.place_table_equipment()
+            self.place_table_equipment_for_subject()
+            self.place_table_platoon()
+            self.place_table_student()
+            self.place_table_subject()
+            self.place_table_subject_of_platoon()
+            self.place_table_teacher()
+            self.place_table_teacher_subject_area()
+
+        elif self.role == "Начальник цикла":
+            self.place_table_platoon()
+            self.place_table_student()
+            self.place_table_subject()
+            self.place_table_subject_of_platoon()
+            self.place_table_teacher()
+            self.place_table_teacher_subject_area()
+
+        else:
+            self.place_table_platoon()
+            self.place_table_rank()
+            self.place_table_student()
+            self.place_table_subject()
+            self.place_table_subject_of_platoon()
+            self.place_table_teacher()
+            self.place_table_teacher_subject_area()
 
     def place_table_equipment(self) -> None:
         """ Создание и расположение таблицы "equipment" """

@@ -23,6 +23,7 @@ def create_new_window(func):
 
     return wrapper
 
+
 def get_role() -> str:
     with open("user_status.txt", "r") as file:
         return file.readline()

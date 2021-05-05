@@ -31,11 +31,9 @@ class Connection_tk(Frame):
 
         self.pack(fill=BOTH, expand=1)
 
-
     def default_user(self) -> None:
-       with open("user_status.txt", "w") as file:
-           file.write(str(1))
-
+        with open("user_status.txt", "w") as file:
+            file.write(str(1))
 
     def place_connection_labels(self) -> None:
         """ Создание и расположение виджетов окна подключения к бд"""
@@ -113,35 +111,59 @@ class Connection_tk(Frame):
     """Функции для изменения статуса, тк variable не робит с self
     Разбил на несколько функций из-за того что если делать одну с разными параметрами,
     они она просто запускается 4 раза. ХЗ почему"""
+
     def status_1(self) -> None:
-        self.status = 'Студент'
+        self.status = "Студент"
 
     def status_2(self) -> None:
-        self.status = 'Преподаватель'
+        self.status = "Преподаватель"
 
     def status_3(self) -> None:
-        self.status = 'Начальник цикла'
+        self.status = "Начальник цикла"
 
     def status_4(self) -> None:
-        self.status = 'Начальник ВУЦ'
-
-
+        self.status = "Начальник ВУЦ"
 
     def place_radiobuttons(self) -> None:
         """ Создание и размещение кнопочек выбора роли"""
         self.var = IntVar()
-        self.status = 'Студент'
-        rad0 = Radiobutton(self, text="Cтудент", variable=self.var, value=1, font=("Arial Bold", 15), command=self.status_1)
-        rad1 = Radiobutton(self, text="Преподаватель", variable=self.var, value=2, font=("Arial Bold", 15), command=self.status_2)
-        rad2 = Radiobutton(self, text="Начальник цикла", variable=self.var, value=3, font=("Arial Bold", 15), command=self.status_3)
-        rad3 = Radiobutton(self, text="Начальник ВУЦ", variable=self.var, value=4, font=("Arial Bold", 15), command=self.status_4)
+        self.status = "Студент"
+        rad0 = Radiobutton(
+            self,
+            text="Cтудент",
+            variable=self.var,
+            value=1,
+            font=("Arial Bold", 15),
+            command=self.status_1,
+        )
+        rad1 = Radiobutton(
+            self,
+            text="Преподаватель",
+            variable=self.var,
+            value=2,
+            font=("Arial Bold", 15),
+            command=self.status_2,
+        )
+        rad2 = Radiobutton(
+            self,
+            text="Начальник цикла",
+            variable=self.var,
+            value=3,
+            font=("Arial Bold", 15),
+            command=self.status_3,
+        )
+        rad3 = Radiobutton(
+            self,
+            text="Начальник ВУЦ",
+            variable=self.var,
+            value=4,
+            font=("Arial Bold", 15),
+            command=self.status_4,
+        )
         rad0.place(x=20, y=210)
         rad1.place(x=20, y=240)
         rad2.place(x=20, y=270)
         rad3.place(x=20, y=300)
-
-
-
 
     def env_connect(self, env: bool) -> None:
         """ Вызывает функцию подключения к бд c """

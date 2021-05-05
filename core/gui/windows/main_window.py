@@ -22,10 +22,10 @@ class MainWindow(Frame):
 
         self.parent.geometry("%dx%d+%d+%d" % (w, h, x, y))
         self.parent.title("Военная кафедра")
-        
+
         self.user = get_role()
 
-        if self.user != 'Студент':
+        if self.user != "Студент":
             self.place_add_buttons()
 
         self.place_buttons()
@@ -40,7 +40,7 @@ class MainWindow(Frame):
             width=30,
             command=self.change_to_add_data,
         )
-        btn_add.place(x=750, y=300)
+        btn_add.place(x=750, y=550)
 
     def place_buttons(self) -> None:
         """ Создание и расположение кнопок выбора раздела """
@@ -52,7 +52,6 @@ class MainWindow(Frame):
         )
         roll_label.place(x=25, y=200)
 
-
         choose_label = Label(
             self,
             text="Выберите желаемое действие",
@@ -60,16 +59,23 @@ class MainWindow(Frame):
         )
         choose_label.place(x=500, y=20)
 
-        btn_view = Button(
+        btn_view_raw = Button(
             self,
-            text="Просмотр",
+            text="Просмотр исходных таблиц",
             font=("Arial Bold", 10),
             width=30,
             command=self.change_to_view,
         )
-        btn_view.place(x=750, y=100)
+        btn_view_raw.place(x=750, y=100)
 
-
+        btn_view = Button(
+            self,
+            text="Просмотр готовых отношений",
+            font=("Arial Bold", 10),
+            width=30,
+            command=self.change_to_view,
+        )
+        btn_view.place(x=750, y=250)
 
         btn_filter = Button(
             self,
@@ -78,7 +84,7 @@ class MainWindow(Frame):
             width=30,
             command=self.remove_window,
         )
-        btn_filter.place(x=750, y=500)
+        btn_filter.place(x=750, y=400)
 
     def change_to_view(self) -> None:
         """ Переключает окно на окно просмотра таблиц """
