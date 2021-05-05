@@ -25,22 +25,9 @@ class MainWindow(Frame):
 
         self.user = get_role()
 
-        if self.user != "Студент":
-            self.place_add_buttons()
-
         self.place_buttons()
 
         self.pack(fill=BOTH, expand=1)
-
-    def place_add_buttons(self) -> None:
-        btn_add = Button(
-            self,
-            text="Добавление данных",
-            font=("Arial Bold", 10),
-            width=30,
-            command=self.change_to_add_data,
-        )
-        btn_add.place(x=750, y=550)
 
     def place_buttons(self) -> None:
         """ Создание и расположение кнопок выбора раздела """
@@ -85,6 +72,16 @@ class MainWindow(Frame):
             command=self.remove_window,
         )
         btn_filter.place(x=750, y=400)
+
+        if self.user != "Студент":
+            btn_add = Button(
+                self,
+                text="Добавление данных",
+                font=("Arial Bold", 10),
+                width=30,
+                command=self.change_to_add_data,
+            )
+            btn_add.place(x=750, y=550)
 
     def change_to_view(self) -> None:
         """ Переключает окно на окно просмотра таблиц """
