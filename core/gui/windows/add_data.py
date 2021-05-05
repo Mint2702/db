@@ -1,4 +1,4 @@
-from tkinter import BOTH, Button, Frame, Listbox, SINGLE, END, Label
+from tkinter import BOTH, Button, Frame, Listbox, SINGLE, END, Label, Entry, StringVar
 
 
 class AddDataWindow(Frame):
@@ -39,48 +39,67 @@ class AddDataWindow(Frame):
         """Создание форм для добавления предметов"""
         self.add_frame.destroy()
         self.place_add_frame()
-        roll_label = Label(
+        add_label = Label(
             self.add_frame,
             text="Добавление предмета",
             font=("Arial Bold", 15),
         )
-        roll_label.place(x=25, y=200)
+        add_label.place(x=25, y=100)
 
 
     def place_add_teachers_forms(self) -> None:
         """Создание форм для добавления преподавателя"""
         self.add_frame.destroy()
         self.place_add_frame()
-        roll_label = Label(
+        add_label = Label(
             self.add_frame,
             text="Добавление преподавателя",
             font=("Arial Bold", 15),
         )
-        roll_label.place(x=25, y=200)
+        add_label.place(x=25, y=100)
+
+
+
 
 
     def place_add_students_forms(self) -> None:
         """Создание форм для добавления студентов"""
         self.add_frame.destroy()
         self.place_add_frame()
-        roll_label = Label(
+        add_label = Label(
             self.add_frame,
             text="Добавление студента",
             font=("Arial Bold", 15),
         )
-        roll_label.place(x=25, y=200)
+        add_label.place(x=25, y=100)
+
+        self.student_full_name = StringVar()
+
+        message_entry = Entry(self.add_frame, textvariable=self.student_full_name)
+        message_entry.place(x=500, y=100)
+        '''
+        add_student_button = Button(
+            self.add_frame, text="Добавить", font=("Arial Bold", 10), width=10, command=self.test_add()
+        )
+        add_student_button.place(x=500, y=300)
+        '''
+
+
+    def test_add(self) -> None:
+        """Добавление студента в бд при нажатии кнопки"""
+        print('fefeff')
 
 
     def place_add_equipment_forms(self) -> None:
         """Создание форм для добавления оборудования"""
         self.add_frame.destroy()
         self.place_add_frame()
-        roll_label = Label(
+        add_label = Label(
             self.add_frame,
             text="Добавление оборудования",
             font=("Arial Bold", 15),
         )
-        roll_label.place(x=25, y=200)
+        add_label.place(x=25, y=100)
 
 
 
