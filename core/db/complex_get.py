@@ -12,7 +12,6 @@ def get_equipment(
     cursor.execute(command)
     records = cursor.fetchall()
     result = [[record[0], record[1]] for record in records]
-    print(result)
 
     return result
 
