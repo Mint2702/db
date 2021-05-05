@@ -71,12 +71,23 @@ class AddDataWindow(Frame):
             text="Добавление студента",
             font=("Arial Bold", 15),
         )
-        add_label.place(x=25, y=100)
+        add_label.place(x=25, y=30)
 
         self.student_full_name = StringVar()
+        self.student_date_of_birth = StringVar()
+        self.student_adres = StringVar()
+        self.student_phone = StringVar()
+        student_name_entry = Entry(self.add_frame, textvariable=self.student_full_name)
+        student_name_entry.place(x=20, y=100)
+        student_date_entry = Entry(self.add_frame, textvariable=self.student_date_of_birth)
+        student_date_entry.place(x=20, y=130)
 
-        message_entry = Entry(self.add_frame, textvariable=self.student_full_name)
-        message_entry.place(x=500, y=20)
+        student_adres_entry = Entry(self.add_frame, textvariable=self.student_adres)
+        student_adres_entry.place(x=20, y=160)
+        student_phone_entry = Entry(self.add_frame, textvariable=self.student_phone)
+        student_phone_entry.place(x=20, y=190)
+
+
 
 
 
@@ -168,7 +179,10 @@ class AddDataWindow(Frame):
         elif self.add_status == 'Добавление преподавателя':
             print('Преподаватель добавлен')
         elif self.add_status == 'Добавление студента':
-            print('Студент добавлен')
+            print(self.student_full_name.get())
+            print(self.student_date_of_birth.get())
+            print(self.student_adres.get())
+            print(self.student_phone.get())
         elif self.add_status == 'Добавление оборудования':
             print('Оборудование добавлено')
 
