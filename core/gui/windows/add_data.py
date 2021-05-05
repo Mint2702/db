@@ -1,4 +1,4 @@
-from tkinter import BOTH, Button, Frame, Listbox, SINGLE, END, Label, Entry, StringVar
+from tkinter import BOTH, Button, Frame, Listbox, SINGLE, END, Label, Entry, StringVar, Radiobutton, IntVar
 
 
 class AddDataWindow(Frame):
@@ -22,8 +22,8 @@ class AddDataWindow(Frame):
         self.parent.geometry("%dx%d+%d+%d" % (w, h, x, y))
         self.parent.title("Военная кафедра - добавление информации")
         self.place_add_frame()
-
-        self.place_listbox()
+        self.place_radiobuttons()
+        #self.place_listbox()
         self.place_back_button()
 
         self.pack(fill=BOTH, expand=1)
@@ -77,6 +77,7 @@ class AddDataWindow(Frame):
 
         message_entry = Entry(self.add_frame, textvariable=self.student_full_name)
         message_entry.place(x=500, y=100)
+
         '''
         add_student_button = Button(
             self.add_frame, text="Добавить", font=("Arial Bold", 10), width=10, command=self.test_add()
@@ -103,28 +104,48 @@ class AddDataWindow(Frame):
 
 
 
-    def place_listbox(self) -> None:
-        """ Создание листбокса добавления"""
-        variants = ["Предметы", "Преподаватели", "Студенты", "Оборудование"]
-        lis = Listbox(self, selectmode=SINGLE, height=4, font=("Arial Bold", 15))
-        for i in variants:
-            lis.insert(END, i)
-        lis.bind("<<ListboxSelect>>", self.onSelect)
-        lis.place(x=30, y=40)
+    def place_radiobuttons(self) -> None:
+        """ Создание и размещение кнопочек выбора роли"""
+        self.var = IntVar()
+        self.status = "Студент"
+        rad0 = Radiobutton(
+            self,
+            text="Предметы",
+            variable=self.var,
+            value=1,
+            font=("Arial Bold", 15),
+            command=self.place_add_subjects_forms,
+        )
+        rad1 = Radiobutton(
+            self,
+            text="Преподаватели",
+            variable=self.var,
+            value=2,
+            font=("Arial Bold", 15),
+            command=self.place_add_teachers_forms,
+        )
+        rad2 = Radiobutton(
+            self,
+            text="Студенты",
+            variable=self.var,
+            value=3,
+            font=("Arial Bold", 15),
+            command=self.place_add_students_forms,
+        )
+        rad3 = Radiobutton(
+            self,
+            text="Оборудование",
+            variable=self.var,
+            value=4,
+            font=("Arial Bold", 15),
+            command=self.place_add_equipment_forms,
+        )
+        rad0.place(x=30, y=40)
+        rad1.place(x=30, y=70)
+        rad2.place(x=30, y=100)
+        rad3.place(x=30, y=130)
 
-    def onSelect(self, val):
-        sender = val.widget
-        idx = sender.curselection()
-        value = sender.get(idx)
 
-        if value == "Предметы":
-            self.place_add_subjects_forms()
-        elif value == "Преподаватели":
-            self.place_add_teachers_forms()
-        elif value == "Студенты":
-            self.place_add_students_forms()
-        elif value == "Оборудование":
-            self.place_add_equipment_forms()
 
 
     def place_back_button(self) -> None:
