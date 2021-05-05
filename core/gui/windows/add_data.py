@@ -18,12 +18,12 @@ class AddDataWindow(Frame):
 
         x = (sw - w) / 2
         y = (sh - h) / 2
-
+        self.add_status = '0'
         self.parent.geometry("%dx%d+%d+%d" % (w, h, x, y))
         self.parent.title("Военная кафедра - добавление информации")
         self.place_add_frame()
         self.place_radiobuttons()
-        #self.place_listbox()
+        self.place_add_button()
         self.place_back_button()
 
         self.pack(fill=BOTH, expand=1)
@@ -39,33 +39,33 @@ class AddDataWindow(Frame):
         """Создание форм для добавления предметов"""
         self.add_frame.destroy()
         self.place_add_frame()
+        self.add_status = 'Добавление предмета'
         add_label = Label(
             self.add_frame,
             text="Добавление предмета",
             font=("Arial Bold", 15),
         )
-        add_label.place(x=25, y=100)
+        add_label.place(x=25, y=20)
 
 
     def place_add_teachers_forms(self) -> None:
         """Создание форм для добавления преподавателя"""
         self.add_frame.destroy()
         self.place_add_frame()
+        self.add_status = 'Добавление преподавателя'
         add_label = Label(
             self.add_frame,
             text="Добавление преподавателя",
             font=("Arial Bold", 15),
         )
-        add_label.place(x=25, y=100)
-
-
-
+        add_label.place(x=25, y=20)
 
 
     def place_add_students_forms(self) -> None:
-        """Создание форм для добавления студентов"""
+        """Создание форм для добавления студента"""
         self.add_frame.destroy()
         self.place_add_frame()
+        self.add_status = 'Добавление студента'
         add_label = Label(
             self.add_frame,
             text="Добавление студента",
@@ -76,31 +76,21 @@ class AddDataWindow(Frame):
         self.student_full_name = StringVar()
 
         message_entry = Entry(self.add_frame, textvariable=self.student_full_name)
-        message_entry.place(x=500, y=100)
+        message_entry.place(x=500, y=20)
 
-        '''
-        add_student_button = Button(
-            self.add_frame, text="Добавить", font=("Arial Bold", 10), width=10, command=self.test_add()
-        )
-        add_student_button.place(x=500, y=300)
-        '''
-
-
-    def test_add(self) -> None:
-        """Добавление студента в бд при нажатии кнопки"""
-        print('fefeff')
 
 
     def place_add_equipment_forms(self) -> None:
         """Создание форм для добавления оборудования"""
         self.add_frame.destroy()
         self.place_add_frame()
+        self.add_status = 'Добавление оборудования'
         add_label = Label(
             self.add_frame,
             text="Добавление оборудования",
             font=("Arial Bold", 15),
         )
-        add_label.place(x=25, y=100)
+        add_label.place(x=25, y=20)
 
 
 
@@ -154,18 +144,42 @@ class AddDataWindow(Frame):
         btn_filter = Button(
             self, text="Назад", font=("Arial Bold", 10), width=10, command=self.back
         )
-        btn_filter.place(x=900, y=600)
+        btn_filter.place(x=100, y=600)
+
 
     def back(self) -> None:
         """ Возвращает в меню выбора действия """
-
-        from tkinter import Tk
         from .main_window import MainWindow
-
         self.remove_window()
         MainWindow(self.parent)
 
+
+    def place_add_button(self) -> None:
+        add_student_button = Button(
+            self, text="Добавить", font=("Arial Bold", 12), width=12, command=self.test_add
+        )
+        add_student_button.place(x=750, y=570)
+
+
+    def test_add(self) -> None:
+        """Добавление студента в бд при нажатии кнопки"""
+        if self.add_status == 'Добавление предмета':
+            print('Предмет добавлен')
+        elif self.add_status == 'Добавление преподавателя':
+            print('Преподаватель добавлен')
+        elif self.add_status == 'Добавление студента':
+            print('Студент добавлен')
+        elif self.add_status == 'Добавление оборудования':
+            print('Оборудование добавлено')
+
+
+
+
+
+
+
+
+
     def remove_window(self) -> None:
         """ Удаляет все обьекты родительского окна """
-
         self.destroy()
