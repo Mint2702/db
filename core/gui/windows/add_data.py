@@ -284,14 +284,19 @@ class AddDataWindow(Frame):
         MainWindow(self.parent)
 
 
+    def remove_window(self) -> None:
+        """ Удаляет все обьекты родительского окна """
+        self.destroy()
+
+
     def place_add_button(self) -> None:
         add_student_button = Button(
-            self, text="Добавить", font=("Arial Bold", 12), width=12, command=self.test_add
+            self, text="Добавить", font=("Arial Bold", 12), width=12, command=self.add
         )
         add_student_button.place(x=750, y=570)
 
 
-    def test_add(self) -> None:
+    def add(self) -> None:
         """Добавление студента в бд при нажатии кнопки"""
         if self.add_status == 'Добавление предмета':
             print(self.subject_name.get())
@@ -300,11 +305,13 @@ class AddDataWindow(Frame):
 
         elif self.add_status == 'Добавление преподавателя':
             print('Преподаватель добавлен')
+
         elif self.add_status == 'Добавление студента':
             print(self.student_full_name.get())
             print(self.student_date_of_birth.get())
             print(self.student_adres.get())
             print(self.student_phone.get())
+
         elif self.add_status == 'Добавление оборудования':
             print('Оборудование добавлено')
 
@@ -316,6 +323,4 @@ class AddDataWindow(Frame):
 
 
 
-    def remove_window(self) -> None:
-        """ Удаляет все обьекты родительского окна """
-        self.destroy()
+
