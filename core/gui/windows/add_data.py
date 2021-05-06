@@ -73,19 +73,46 @@ class AddDataWindow(Frame):
         )
         add_label.place(x=25, y=30)
 
+        stident_label_1 = Label(
+            self.add_frame,
+            text="Имя: ",
+            font=("Arial Bold", 14),
+        )
+        stident_label_1.place(x=5, y=100)
+
+        stident_label_2 = Label(
+            self.add_frame,
+            text="Дата рождения: ",
+            font=("Arial Bold", 14),
+        )
+        stident_label_2.place(x=5, y=130)
+
+        stident_label_3 = Label(
+            self.add_frame,
+            text="Адрес: ",
+            font=("Arial Bold", 14),
+        )
+        stident_label_3.place(x=5, y=160)
+
+        stident_label_4 = Label(
+            self.add_frame,
+            text="Номер телефона: ",
+            font=("Arial Bold", 14),
+        )
+        stident_label_4.place(x=5, y=190)
+
         self.student_full_name = StringVar()
         self.student_date_of_birth = StringVar()
         self.student_adres = StringVar()
         self.student_phone = StringVar()
         student_name_entry = Entry(self.add_frame, textvariable=self.student_full_name)
-        student_name_entry.place(x=20, y=100)
+        student_name_entry.place(x=190, y=100)
         student_date_entry = Entry(self.add_frame, textvariable=self.student_date_of_birth)
-        student_date_entry.place(x=20, y=130)
-
+        student_date_entry.place(x=190, y=130)
         student_adres_entry = Entry(self.add_frame, textvariable=self.student_adres)
-        student_adres_entry.place(x=20, y=160)
+        student_adres_entry.place(x=190, y=160)
         student_phone_entry = Entry(self.add_frame, textvariable=self.student_phone)
-        student_phone_entry.place(x=20, y=190)
+        student_phone_entry.place(x=190, y=190)
 
 
 
@@ -145,8 +172,6 @@ class AddDataWindow(Frame):
         rad1.place(x=30, y=70)
         rad2.place(x=30, y=100)
         rad3.place(x=30, y=130)
-
-
 
 
     def place_back_button(self) -> None:
