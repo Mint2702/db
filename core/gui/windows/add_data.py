@@ -199,6 +199,7 @@ class AddDataWindow(Frame):
         self.student_date_of_birth = StringVar()
         self.student_adres = StringVar()
         self.student_phone = StringVar()
+        self.student_vzvod = StringVar()
         student_name_entry = Entry(self.add_frame, textvariable=self.student_full_name)
         student_name_entry.place(x=190, y=100)
         student_date_entry = Entry(self.add_frame, textvariable=self.student_date_of_birth)
@@ -207,6 +208,8 @@ class AddDataWindow(Frame):
         student_adres_entry.place(x=190, y=160)
         student_phone_entry = Entry(self.add_frame, textvariable=self.student_phone)
         student_phone_entry.place(x=190, y=190)
+        student_vzvod_entry = Entry(self.add_frame, textvariable=self.student_vzvod)
+        student_vzvod_entry.place(x=190, y=220)
 
 
 
@@ -223,6 +226,20 @@ class AddDataWindow(Frame):
             font=("Arial Bold", 15),
         )
         add_label.place(x=25, y=20)
+
+        equipment_label_1 = Label(
+            self.add_frame,
+            text="Название: ",
+            font=("Arial Bold", 14),
+        )
+        equipment_label_1.place(x=5, y=100)
+
+        self.equipment_name = StringVar()
+        equipment_name_entry = Entry(self.add_frame, textvariable=self.equipment_name)
+        equipment_name_entry.place(x=190, y=100)
+
+
+
 
 
 
