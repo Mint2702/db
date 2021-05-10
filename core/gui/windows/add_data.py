@@ -100,52 +100,89 @@ class AddDataWindow(Frame):
 
         teacher_label_2 = Label(
             self.add_frame,
-            text="Дата рождения: ",
+            text="Фамилия: ",
             font=("Arial Bold", 14),
         )
         teacher_label_2.place(x=5, y=130)
 
         teacher_label_3 = Label(
             self.add_frame,
-            text="Номер телефона: ",
+            text="Дата рождения: ",
             font=("Arial Bold", 14),
         )
         teacher_label_3.place(x=5, y=160)
 
         teacher_label_4 = Label(
             self.add_frame,
-            text="Опыт преподавания: ",
+            text="Начало преподавания: ",
             font=("Arial Bold", 14),
         )
         teacher_label_4.place(x=5, y=190)
 
         teacher_label_5 = Label(
             self.add_frame,
-            text="Звание: ",
+            text="Номер паспорта: ",
             font=("Arial Bold", 14),
         )
         teacher_label_5.place(x=5, y=220)
 
         teacher_label_6 = Label(
             self.add_frame,
-            text="Предметная область:  ?",
+            text="Дата выдачи паспорта: ",
             font=("Arial Bold", 14),
         )
         teacher_label_6.place(x=5, y=250)
 
-        self.teacher_full_name = StringVar()
-        self.teacher_date_of_birth = StringVar()
-        self.teacher_phone = StringVar()
-        self.teacher_exp = StringVar()
+        teacher_label_7 = Label(
+            self.add_frame,
+            text="Паспорт выдан: ",
+            font=("Arial Bold", 14),
+        )
+        teacher_label_7.place(x=5, y=280)
 
-        teacher_name_entry = Entry(self.add_frame, textvariable=self.teacher_full_name)
-        teacher_name_entry.place(x=220, y=100)
+        teacher_label_8 = Label(
+            self.add_frame,
+            text="ИНН: ",
+            font=("Arial Bold", 14),
+        )
+        teacher_label_8.place(x=5, y=310)
+
+        teacher_label_9 = Label(
+            self.add_frame,
+            text="Звание: ",
+            font=("Arial Bold", 14),
+        )
+        teacher_label_9.place(x=5, y=340)
+
+        self.teacher_name = StringVar()
+        self.teacher_surname = StringVar()
+        self.teacher_date_of_birth = StringVar()
+        self.teacher_begin = StringVar()
+        self.teacher_passport_num = StringVar()
+        self.teacher_passport_date = StringVar()
+        self.teacher_passport_given = StringVar()
+        self.teacher_passport_inn = StringVar()
+        self.teacher_rank = StringVar()
+
+
+        teacher_name_entry = Entry(self.add_frame, textvariable=self.teacher_name)
+        teacher_name_entry.place(x=230, y=100)
+        teacher_surname_entry = Entry(self.add_frame, textvariable=self.teacher_surname)
+        teacher_surname_entry.place(x=230, y=130)
         teacher_date_entry = Entry(self.add_frame, textvariable=self.teacher_date_of_birth)
-        teacher_date_entry.place(x=220, y=130)
-        teacher_phone_entry = Entry(self.add_frame, textvariable=self.teacher_phone)
-        teacher_phone_entry.place(x=220, y=160)
-        teacher_exp_entry = Entry(self.add_frame, textvariable=self.teacher_exp)
-        teacher_exp_entry.place(x=220, y=190)
+        teacher_date_entry.place(x=230, y=160)
+        teacher_begin_entry = Entry(self.add_frame, textvariable=self.teacher_begin)
+        teacher_begin_entry.place(x=230, y=190)
+        teacher_passport_num_entry = Entry(self.add_frame, textvariable=self.teacher_passport_num)
+        teacher_passport_num_entry.place(x=230, y=220)
+        teacher_passport_date_entry = Entry(self.add_frame, textvariable=self.teacher_passport_date)
+        teacher_passport_date_entry.place(x=230, y=250)
+        teacher_passport_given_entry = Entry(self.add_frame, textvariable=self.teacher_passport_given)
+        teacher_passport_given_entry.place(x=230, y=280)
+        teacher_passport_inn_entry = Entry(self.add_frame, textvariable=self.teacher_passport_inn)
+        teacher_passport_inn_entry.place(x=230, y=310)
+        teacher_platoon_entry = Entry(self.add_frame, textvariable=self.teacher_rank)
+        teacher_platoon_entry.place(x=230, y=340)
 
 
     def place_add_students_forms(self) -> None:
@@ -169,49 +206,78 @@ class AddDataWindow(Frame):
 
         student_label_2 = Label(
             self.add_frame,
-            text="Дата рождения: ",
+            text="Фамилия: ",
             font=("Arial Bold", 14),
         )
         student_label_2.place(x=5, y=130)
 
         student_label_3 = Label(
             self.add_frame,
-            text="Адрес: ",
+            text="Дата рождения: ",
             font=("Arial Bold", 14),
         )
         student_label_3.place(x=5, y=160)
 
         student_label_4 = Label(
             self.add_frame,
-            text="Номер телефона: ",
+            text="Номер паспорта: ",
             font=("Arial Bold", 14),
         )
         student_label_4.place(x=5, y=190)
 
         student_label_5 = Label(
             self.add_frame,
-            text="Взвод: ",
+            text="Дата выдачи паспорта: ",
             font=("Arial Bold", 14),
         )
         student_label_5.place(x=5, y=220)
 
-        self.student_full_name = StringVar()
+        student_label_6 = Label(
+            self.add_frame,
+            text="Паспорт выдан: ",
+            font=("Arial Bold", 14),
+        )
+        student_label_6.place(x=5, y=250)
+
+        student_label_7 = Label(
+            self.add_frame,
+            text="ИНН: ",
+            font=("Arial Bold", 14),
+        )
+        student_label_7.place(x=5, y=280)
+
+        student_label_8 = Label(
+            self.add_frame,
+            text="Номер взвода: ",
+            font=("Arial Bold", 14),
+        )
+        student_label_8.place(x=5, y=310)
+
+        self.student_name = StringVar()
+        self.student_surname = StringVar()
         self.student_date_of_birth = StringVar()
-        self.student_adres = StringVar()
-        self.student_phone = StringVar()
-        self.student_vzvod = StringVar()
-        student_name_entry = Entry(self.add_frame, textvariable=self.student_full_name)
-        student_name_entry.place(x=190, y=100)
+        self.student_passport_num = StringVar()
+        self.student_passport_date = StringVar()
+        self.student_passport_given = StringVar()
+        self.student_passport_inn = StringVar()
+        self.student_platoon = StringVar()
+
+        student_name_entry = Entry(self.add_frame, textvariable=self.student_name)
+        student_name_entry.place(x=230, y=100)
+        student_surname_entry = Entry(self.add_frame, textvariable=self.student_surname)
+        student_surname_entry.place(x=230, y=130)
         student_date_entry = Entry(self.add_frame, textvariable=self.student_date_of_birth)
-        student_date_entry.place(x=190, y=130)
-        student_adres_entry = Entry(self.add_frame, textvariable=self.student_adres)
-        student_adres_entry.place(x=190, y=160)
-        student_phone_entry = Entry(self.add_frame, textvariable=self.student_phone)
-        student_phone_entry.place(x=190, y=190)
-        student_vzvod_entry = Entry(self.add_frame, textvariable=self.student_vzvod)
-        student_vzvod_entry.place(x=190, y=220)
-
-
+        student_date_entry.place(x=230, y=160)
+        student_passport_num_entry = Entry(self.add_frame, textvariable=self.student_passport_num)
+        student_passport_num_entry.place(x=230, y=190)
+        student_passport_date_entry = Entry(self.add_frame, textvariable=self.student_passport_date)
+        student_passport_date_entry.place(x=230, y=220)
+        student_passport_given_entry = Entry(self.add_frame, textvariable=self.student_passport_given)
+        student_passport_given_entry.place(x=230, y=250)
+        student_passport_inn_entry = Entry(self.add_frame, textvariable=self.student_passport_inn)
+        student_passport_inn_entry.place(x=230, y=280)
+        student_platoon_entry = Entry(self.add_frame, textvariable=self.student_platoon)
+        student_platoon_entry.place(x=230, y=310)
 
 
 
