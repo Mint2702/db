@@ -66,10 +66,10 @@ class MainWindow(Frame):
 
         btn_filter = Button(
             self,
-            text="Фильтрация",
+            text="Поиск",
             font=("Arial Bold", 10),
             width=30,
-            command=self.remove_window,
+            command=self.change_to_search,
         )
         btn_filter.place(x=750, y=400)
 
@@ -109,6 +109,15 @@ class MainWindow(Frame):
 
         self.remove_window()
         AddDataWindow(self.parent)
+
+    def change_to_search(self) -> None:
+        """ Переключает окно на окно поиска данных """
+
+        from tkinter import Tk
+        from .search import SearchWindow
+
+        self.remove_window()
+        SearchWindow(self.parent)
 
     def remove_window(self) -> None:
         """ Удаляет все обьекты родительского окна """

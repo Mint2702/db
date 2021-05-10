@@ -40,7 +40,7 @@ class AddDataWindow(Frame):
 
     def place_add_frame(self) -> None:
         """Создание фрейма для добавления"""
-        self.add_frame = Frame(self, width=600, height=500, bg="red")
+        self.add_frame = Frame(self, width=600, height=500)
         self.add_frame.place(x=500, y=50)
 
     def place_add_subjects_forms(self) -> None:
