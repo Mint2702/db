@@ -57,7 +57,7 @@ class MainWindow(Frame):
 
         btn_view = Button(
             self,
-            text="Просмотр готовых отношений",
+            text="Просмотр готовых представлений",
             font=("Arial Bold", 10),
             width=30,
             command=self.change_to_complex_view,

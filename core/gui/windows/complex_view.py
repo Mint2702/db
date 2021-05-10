@@ -12,7 +12,7 @@ class ComplexViewWindow(Frame):
     def initUI(self) -> None:
         """ Постоение окна просмотра """
 
-        w = 1300
+        w = 2050
         h = 700
 
         sw = self.parent.winfo_screenwidth()
@@ -115,17 +115,27 @@ class ComplexViewWindow(Frame):
         """ Создание и расположение представления студентов """
 
         tree = ttk.Treeview(
-            self.f_student, column=("c1", "c2", "c3", "c4"), show="headings"
+            self.f_student,
+            column=("c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8"),
+            show="headings",
         )
         tree.pack(side="left", fill="y")
         tree.column("#1", anchor=CENTER)
-        tree.heading("#1", text="ФИО")
+        tree.heading("#1", text="ИМЯ")
         tree.column("#2", anchor=CENTER)
-        tree.heading("#2", text="ДАТА РОЖДЕНИЯ")
+        tree.heading("#2", text="ФАМИЛИЯ")
         tree.column("#3", anchor=CENTER)
-        tree.heading("#3", text="АДРЕСС")
+        tree.heading("#3", text="ДАТА РОЖДЕНИЯ")
         tree.column("#4", anchor=CENTER)
-        tree.heading("#4", text="НОМЕР")
+        tree.heading("#4", text="НОМЕР ПАССПОРТА")
+        tree.column("#5", anchor=CENTER)
+        tree.heading("#5", text="ДАТА ВЫДАЧИ")
+        tree.column("#6", anchor=CENTER)
+        tree.heading("#6", text="КЕМ ВЫДАН")
+        tree.column("#7", anchor=CENTER)
+        tree.heading("#7", text="ИНН")
+        tree.column("#8", anchor=CENTER)
+        tree.heading("#8", text="ВЗВОД")
 
         self.fill_students(tree)
 
@@ -135,21 +145,31 @@ class ComplexViewWindow(Frame):
         """ Создание и расположение представления преподавателей """
 
         tree = ttk.Treeview(
-            self.f_teacher, column=("c1", "c2", "c3", "c4", "c5", "c6"), show="headings"
+            self.f_teacher,
+            column=("c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "c9", "c10"),
+            show="headings",
         )
         tree.pack(side="left", fill="y")
         tree.column("#1", anchor=CENTER)
-        tree.heading("#1", text="ФИО")
+        tree.heading("#1", text="ИМЯ")
         tree.column("#2", anchor=CENTER)
-        tree.heading("#2", text="ДАТА РОЖДЕНИЯ")
+        tree.heading("#2", text="ФАМИЛИЯ")
         tree.column("#3", anchor=CENTER)
-        tree.heading("#3", text="НОМЕР")
+        tree.heading("#3", text="ДАТА РОЖДЕНИЯ")
         tree.column("#4", anchor=CENTER)
-        tree.heading("#4", text="ОПЫТ ОБУЧЕНИЯ")
+        tree.heading("#4", text="НАЧАЛО ОБУЧЕНИЯ")
         tree.column("#5", anchor=CENTER)
-        tree.heading("#5", text="ЗВАНИЕ")
+        tree.heading("#5", text="НОМЕР ПАССПОРТА")
         tree.column("#6", anchor=CENTER)
-        tree.heading("#6", text="ОСНОВНОЙ ПРЕДМЕТ")
+        tree.heading("#6", text="ДАТА ВЫДАЧИ")
+        tree.column("#7", anchor=CENTER)
+        tree.heading("#7", text="КЕМ ВЫДАН")
+        tree.column("#8", anchor=CENTER)
+        tree.heading("#8", text="ИНН")
+        tree.column("#9", anchor=CENTER)
+        tree.heading("#9", text="ЗВАНИЕ")
+        tree.column("#10", anchor=CENTER)
+        tree.heading("#10", text="ОСНОВНОЙ ПРЕДМЕТ")
 
         self.fill_teachers(tree)
 

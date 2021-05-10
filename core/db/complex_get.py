@@ -22,10 +22,22 @@ def get_students(
 ) -> list:
     """ Достает данные о студентах """
 
-    command = "SELECT full_name, date_of_birth, address, phone_number FROM student"
+    command = "SELECT first_name, last_name, date_of_birth, passport_num, passport_date, passport_given, inn, direction FROM student, platoon WHERE student.platoon_id = platoon.id"
     cursor.execute(command)
     records = cursor.fetchall()
-    result = [[record[0], record[1], record[2], record[3]] for record in records]
+    result = [
+        [
+            record[0],
+            record[1],
+            record[2],
+            record[3],
+            record[4],
+            record[5],
+            record[6],
+            record[7],
+        ]
+        for record in records
+    ]
 
     return result
 
@@ -53,17 +65,21 @@ def get_teachers(
 ) -> list:
     """ Достает данные о преподавателях """
 
-    command = "SELECT t.full_name, t.date_of_birth, t.phone_number, t.teaching_experience, r.title, s.name FROM teacher as t, rank as r, teacher_subject_area as ts, subject as s WHERE ts.id_subject = s.id AND ts.id_teacher = t.id AND r.id = t.rank"
+    command = "SELECT t.first_name, t.last_name, t.date_of_birth, t.teaching_begin, t.passport_num, t.passport_date, t.passport_given, t.inn, r.title, s.name FROM teacher as t, rank as r, teacher_subject_area as ts, subject as s WHERE ts.id_subject = s.id AND ts.id_teacher = t.id AND r.id = t.rank"
     cursor.execute(command)
     records = cursor.fetchall()
     result = [
         [
             record[0],
-            str(record[1]),
+            record[1],
             record[2],
-            int(record[3].days / 365.25) + 1,
+            record[3],
             record[4],
             record[5],
+            record[6],
+            record[7],
+            record[8],
+            record[9],
         ]
         for record in records
     ]

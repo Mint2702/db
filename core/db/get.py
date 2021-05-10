@@ -67,9 +67,33 @@ def get_table_student(
     cursor.execute(command)
     records = cursor.fetchall()
     result = [
-        [int(record[0]), record[1], record[2], record[3], record[4]]
+        [
+            int(record[0]),
+            record[1],
+            record[2],
+            record[3],
+            record[4],
+            record[5],
+            record[6],
+            record[7],
+            int(record[8]),
+        ]
         for record in records
     ]
+
+    return result
+
+
+@sql_command
+def get_table_student_contacts(
+    cursor,
+) -> list:
+    """ Достает все данные из указанной таблицы """
+
+    command = "SELECT * FROM student_contacts"
+    cursor.execute(command)
+    records = cursor.fetchall()
+    result = [[int(record[0]), record[1], record[2]] for record in records]
 
     return result
 
@@ -114,9 +138,34 @@ def get_table_teacher(
     cursor.execute(command)
     records = cursor.fetchall()
     result = [
-        [int(record[0]), record[1], record[2], record[3], record[4], int(record[5])]
+        [
+            int(record[0]),
+            record[1],
+            record[2],
+            record[3],
+            record[4],
+            record[5],
+            record[6],
+            record[7],
+            record[8],
+            int(record[9]),
+        ]
         for record in records
     ]
+
+    return result
+
+
+@sql_command
+def get_table_teacher_contacts(
+    cursor,
+) -> list:
+    """ Достает все данные из указанной таблицы """
+
+    command = "SELECT * FROM teacher_contacts"
+    cursor.execute(command)
+    records = cursor.fetchall()
+    result = [[int(record[0]), record[1], record[2]] for record in records]
 
     return result
 
