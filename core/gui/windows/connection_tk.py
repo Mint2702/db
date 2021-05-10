@@ -170,7 +170,6 @@ class Connection_tk(Frame):
         sys.path.append("..")
 
         from db import utils as db
-        from db import settings as st
 
         # Три строчки сверху нужны для того, чтобы импортнуть модули из папки db
 
@@ -178,22 +177,13 @@ class Connection_tk(Frame):
         with open("user_status.txt", "w") as file:
             file.write(str(self.status))
 
-        if env:
-            flag = db.db_connect(
-                host=st.settings.host,
-                port=st.settings.port,
-                user=st.settings.user,
-                password=st.settings.password,
-                database=st.settings.db_name,
-            )
-        else:
-            flag = db.db_connect(
+        flag = db.db_connect(
                 host=self.host.get(),
                 port=self.port.get(),
                 user=self.user.get(),
                 password=self.password.get(),
                 database=self.db_name.get(),
-            )
+        )
 
         if flag:
             show_info(
