@@ -2,14 +2,12 @@ from tkinter import (
     BOTH,
     Button,
     Frame,
-    Listbox,
-    SINGLE,
-    END,
     Label,
     Entry,
     StringVar,
     Radiobutton,
     IntVar,
+    ttk,
 )
 
 
@@ -57,6 +55,37 @@ class AddDataWindow(Frame):
         )
         add_label.place(x=25, y=20)
 
+        subject_label_1 = Label(
+            self.add_frame,
+            text="Название: ",
+            font=("Arial Bold", 14),
+        )
+        subject_label_1.place(x=5, y=100)
+
+        subject_label_2 = Label(
+            self.add_frame,
+            text="Год обучения: ",
+            font=("Arial Bold", 14),
+        )
+        subject_label_2.place(x=5, y=130)
+
+        subject_label_3 = Label(
+            self.add_frame,
+            text="Семестр обучения: ",
+            font=("Arial Bold", 14),
+        )
+        subject_label_3.place(x=5, y=160)
+
+        self.subject_name = StringVar()
+        subject_name_entry = Entry(self.add_frame, textvariable=self.subject_name)
+        subject_name_entry.place(x=220, y=100)
+
+        self.subject_year = ttk.Combobox(self.add_frame, values=[1, 2, 3], width=2)
+        self.subject_year.place(x=220, y=130)
+
+        self.subject_semestr = ttk.Combobox(self.add_frame, values=[1, 2], width=2)
+        self.subject_semestr.place(x=220, y=160)
+
     def place_add_teachers_forms(self) -> None:
         """Создание форм для добавления преподавателя"""
         self.add_frame.destroy()
@@ -68,6 +97,108 @@ class AddDataWindow(Frame):
             font=("Arial Bold", 15),
         )
         add_label.place(x=25, y=20)
+
+        teacher_label_1 = Label(
+            self.add_frame,
+            text="Имя: ",
+            font=("Arial Bold", 14),
+        )
+        teacher_label_1.place(x=5, y=100)
+
+        teacher_label_2 = Label(
+            self.add_frame,
+            text="Фамилия: ",
+            font=("Arial Bold", 14),
+        )
+        teacher_label_2.place(x=5, y=130)
+
+        teacher_label_3 = Label(
+            self.add_frame,
+            text="Дата рождения: ",
+            font=("Arial Bold", 14),
+        )
+        teacher_label_3.place(x=5, y=160)
+
+        teacher_label_4 = Label(
+            self.add_frame,
+            text="Начало преподавания: ",
+            font=("Arial Bold", 14),
+        )
+        teacher_label_4.place(x=5, y=190)
+
+        teacher_label_5 = Label(
+            self.add_frame,
+            text="Номер паспорта: ",
+            font=("Arial Bold", 14),
+        )
+        teacher_label_5.place(x=5, y=220)
+
+        teacher_label_6 = Label(
+            self.add_frame,
+            text="Дата выдачи паспорта: ",
+            font=("Arial Bold", 14),
+        )
+        teacher_label_6.place(x=5, y=250)
+
+        teacher_label_7 = Label(
+            self.add_frame,
+            text="Паспорт выдан: ",
+            font=("Arial Bold", 14),
+        )
+        teacher_label_7.place(x=5, y=280)
+
+        teacher_label_8 = Label(
+            self.add_frame,
+            text="ИНН: ",
+            font=("Arial Bold", 14),
+        )
+        teacher_label_8.place(x=5, y=310)
+
+        teacher_label_9 = Label(
+            self.add_frame,
+            text="Звание: ",
+            font=("Arial Bold", 14),
+        )
+        teacher_label_9.place(x=5, y=340)
+
+        self.teacher_name = StringVar()
+        self.teacher_surname = StringVar()
+        self.teacher_date_of_birth = StringVar()
+        self.teacher_begin = StringVar()
+        self.teacher_passport_num = StringVar()
+        self.teacher_passport_date = StringVar()
+        self.teacher_passport_given = StringVar()
+        self.teacher_passport_inn = StringVar()
+        self.teacher_rank = StringVar()
+
+        teacher_name_entry = Entry(self.add_frame, textvariable=self.teacher_name)
+        teacher_name_entry.place(x=230, y=100)
+        teacher_surname_entry = Entry(self.add_frame, textvariable=self.teacher_surname)
+        teacher_surname_entry.place(x=230, y=130)
+        teacher_date_entry = Entry(
+            self.add_frame, textvariable=self.teacher_date_of_birth
+        )
+        teacher_date_entry.place(x=230, y=160)
+        teacher_begin_entry = Entry(self.add_frame, textvariable=self.teacher_begin)
+        teacher_begin_entry.place(x=230, y=190)
+        teacher_passport_num_entry = Entry(
+            self.add_frame, textvariable=self.teacher_passport_num
+        )
+        teacher_passport_num_entry.place(x=230, y=220)
+        teacher_passport_date_entry = Entry(
+            self.add_frame, textvariable=self.teacher_passport_date
+        )
+        teacher_passport_date_entry.place(x=230, y=250)
+        teacher_passport_given_entry = Entry(
+            self.add_frame, textvariable=self.teacher_passport_given
+        )
+        teacher_passport_given_entry.place(x=230, y=280)
+        teacher_passport_inn_entry = Entry(
+            self.add_frame, textvariable=self.teacher_passport_inn
+        )
+        teacher_passport_inn_entry.place(x=230, y=310)
+        teacher_platoon_entry = Entry(self.add_frame, textvariable=self.teacher_rank)
+        teacher_platoon_entry.place(x=230, y=340)
 
     def place_add_students_forms(self) -> None:
         """Создание форм для добавления студента"""
@@ -81,21 +212,97 @@ class AddDataWindow(Frame):
         )
         add_label.place(x=25, y=30)
 
-        self.student_full_name = StringVar()
+        student_label_1 = Label(
+            self.add_frame,
+            text="Имя: ",
+            font=("Arial Bold", 14),
+        )
+        student_label_1.place(x=5, y=100)
+
+        student_label_2 = Label(
+            self.add_frame,
+            text="Фамилия: ",
+            font=("Arial Bold", 14),
+        )
+        student_label_2.place(x=5, y=130)
+
+        student_label_3 = Label(
+            self.add_frame,
+            text="Дата рождения: ",
+            font=("Arial Bold", 14),
+        )
+        student_label_3.place(x=5, y=160)
+
+        student_label_4 = Label(
+            self.add_frame,
+            text="Номер паспорта: ",
+            font=("Arial Bold", 14),
+        )
+        student_label_4.place(x=5, y=190)
+
+        student_label_5 = Label(
+            self.add_frame,
+            text="Дата выдачи паспорта: ",
+            font=("Arial Bold", 14),
+        )
+        student_label_5.place(x=5, y=220)
+
+        student_label_6 = Label(
+            self.add_frame,
+            text="Паспорт выдан: ",
+            font=("Arial Bold", 14),
+        )
+        student_label_6.place(x=5, y=250)
+
+        student_label_7 = Label(
+            self.add_frame,
+            text="ИНН: ",
+            font=("Arial Bold", 14),
+        )
+        student_label_7.place(x=5, y=280)
+
+        student_label_8 = Label(
+            self.add_frame,
+            text="Номер взвода: ",
+            font=("Arial Bold", 14),
+        )
+        student_label_8.place(x=5, y=310)
+
+        self.student_name = StringVar()
+        self.student_surname = StringVar()
         self.student_date_of_birth = StringVar()
-        self.student_adres = StringVar()
-        self.student_phone = StringVar()
-        student_name_entry = Entry(self.add_frame, textvariable=self.student_full_name)
-        student_name_entry.place(x=20, y=100)
+        self.student_passport_num = StringVar()
+        self.student_passport_date = StringVar()
+        self.student_passport_given = StringVar()
+        self.student_passport_inn = StringVar()
+        self.student_platoon = StringVar()
+
+        student_name_entry = Entry(self.add_frame, textvariable=self.student_name)
+        student_name_entry.place(x=230, y=100)
+        student_surname_entry = Entry(self.add_frame, textvariable=self.student_surname)
+        student_surname_entry.place(x=230, y=130)
         student_date_entry = Entry(
             self.add_frame, textvariable=self.student_date_of_birth
         )
-        student_date_entry.place(x=20, y=130)
-
-        student_adres_entry = Entry(self.add_frame, textvariable=self.student_adres)
-        student_adres_entry.place(x=20, y=160)
-        student_phone_entry = Entry(self.add_frame, textvariable=self.student_phone)
-        student_phone_entry.place(x=20, y=190)
+        student_date_entry.place(x=230, y=160)
+        student_passport_num_entry = Entry(
+            self.add_frame, textvariable=self.student_passport_num
+        )
+        student_passport_num_entry.place(x=230, y=190)
+        student_passport_date_entry = Entry(
+            self.add_frame, textvariable=self.student_passport_date
+        )
+        student_passport_date_entry.place(x=230, y=220)
+        student_passport_given_entry = Entry(
+            self.add_frame, textvariable=self.student_passport_given
+        )
+        student_passport_given_entry.place(x=230, y=250)
+        student_passport_inn_entry = Entry(
+            self.add_frame, textvariable=self.student_passport_inn
+        )
+        student_passport_inn_entry.place(x=230, y=280)
+        student_platoon_entry = Entry(self.add_frame, textvariable=self.student_platoon)
+        student_platoon_entry.place(x=230, y=310)
 
     def place_add_equipment_forms(self) -> None:
         """Создание форм для добавления оборудования"""
@@ -108,6 +315,17 @@ class AddDataWindow(Frame):
             font=("Arial Bold", 15),
         )
         add_label.place(x=25, y=20)
+
+        equipment_label_1 = Label(
+            self.add_frame,
+            text="Название: ",
+            font=("Arial Bold", 14),
+        )
+        equipment_label_1.place(x=5, y=100)
+
+        self.equipment_name = StringVar()
+        equipment_name_entry = Entry(self.add_frame, textvariable=self.equipment_name)
+        equipment_name_entry.place(x=190, y=100)
 
     def place_radiobuttons(self) -> None:
         """ Создание и размещение кнопочек выбора роли"""
@@ -165,30 +383,31 @@ class AddDataWindow(Frame):
         self.remove_window()
         MainWindow(self.parent)
 
+    def remove_window(self) -> None:
+        """ Удаляет все обьекты родительского окна """
+        self.destroy()
+
     def place_add_button(self) -> None:
         add_student_button = Button(
-            self,
-            text="Добавить",
-            font=("Arial Bold", 12),
-            width=12,
-            command=self.test_add,
+            self, text="Добавить", font=("Arial Bold", 12), width=12, command=self.add
         )
         add_student_button.place(x=750, y=570)
 
-    def test_add(self) -> None:
+    def add(self) -> None:
         """Добавление студента в бд при нажатии кнопки"""
         if self.add_status == "Добавление предмета":
-            print("Предмет добавлен")
+            print(self.subject_name.get())
+            print(self.subject_year.get())
+            print(self.subject_semestr.get())
+
         elif self.add_status == "Добавление преподавателя":
             print("Преподаватель добавлен")
+
         elif self.add_status == "Добавление студента":
             print(self.student_full_name.get())
             print(self.student_date_of_birth.get())
             print(self.student_adres.get())
             print(self.student_phone.get())
+
         elif self.add_status == "Добавление оборудования":
             print("Оборудование добавлено")
-
-    def remove_window(self) -> None:
-        """ Удаляет все обьекты родительского окна """
-        self.destroy()
