@@ -12,8 +12,8 @@ class ViewWindow(Frame):
     def initUI(self) -> None:
         """ Постоение окна просмотра """
 
-        w = 2050
-        h = 700
+        w = 1200
+        h = 600
 
         sw = self.parent.winfo_screenwidth()
         sh = self.parent.winfo_screenheight()
@@ -124,7 +124,7 @@ class ViewWindow(Frame):
         btn_filter = Button(
             self, text="Назад", font=("Arial Bold", 10), width=10, command=self.back
         )
-        btn_filter.place(x=550, y=600)
+        btn_filter.place(x=550, y=500)
 
     def place_tables(self) -> None:
         """Создание и расположение таблиц"""

@@ -12,8 +12,8 @@ class ComplexViewWindow(Frame):
     def initUI(self) -> None:
         """ Постоение окна просмотра """
 
-        w = 2050
-        h = 700
+        w = 1200
+        h = 600
 
         sw = self.parent.winfo_screenwidth()
         sh = self.parent.winfo_screenheight()
@@ -36,7 +36,7 @@ class ComplexViewWindow(Frame):
         btn_filter = Button(
             self, text="Назад", font=("Arial Bold", 10), width=10, command=self.back
         )
-        btn_filter.place(x=550, y=600)
+        btn_filter.place(x=550, y=500)
 
     def place_table_frames(self) -> None:
         """" Создание фреймов для размещения таблиц"""
@@ -47,14 +47,14 @@ class ComplexViewWindow(Frame):
         self.role = get_role()
 
         if self.role == "Студент":
-            self.f_subject = Frame(note_tree, height=300)
+            self.f_subject = Frame(note_tree, height=300, width=10)
             self.f_teacher = Frame(note_tree, height=300)
 
             note_tree.add(self.f_subject, text="Предметы")
             note_tree.add(self.f_teacher, text="Преподаватели")
 
         elif self.role == "Преподаватель":
-            self.f_subject = Frame(note_tree, height=300)
+            self.f_subject = Frame(note_tree, height=300, width=10)
             self.f_teacher = Frame(note_tree, height=300)
             self.f_student = Frame(note_tree, height=300)
             self.f_equipment = Frame(note_tree, height=300)
@@ -65,7 +65,7 @@ class ComplexViewWindow(Frame):
             note_tree.add(self.f_equipment, text="Оборудование")
 
         else:
-            self.f_subject = Frame(note_tree, height=300)
+            self.f_subject = Frame(note_tree, height=300, width=10)
             self.f_teacher = Frame(note_tree, height=300)
             self.f_student = Frame(note_tree, height=300)
 
@@ -97,15 +97,22 @@ class ComplexViewWindow(Frame):
         tree = ttk.Treeview(
             self.f_subject, column=("c1", "c2", "c3", "c4"), show="headings"
         )
+
+        subject_scroll = ttk.Scrollbar(self.f_subject,
+                                       orient="horizontal",
+                                       command=tree.xview)
+        subject_scroll.pack(side='bottom', fill='x')
+
         tree.pack(side="left", fill="y")
-        tree.column("#1", anchor=CENTER)
+        tree.column("#1", anchor=CENTER, minwidth=0, width=140, stretch=False)
         tree.heading("#1", text="ПРЕДМЕТ")
-        tree.column("#2", anchor=CENTER)
+        tree.column("#2", anchor=CENTER, minwidth=0, width=150, stretch=False)
         tree.heading("#2", text="ГОД ОБУЧЕНИЯ")
-        tree.column("#3", anchor=CENTER)
+        tree.column("#3", anchor=CENTER, minwidth=0, width=150, stretch=False)
         tree.heading("#3", text="СЕМЕСТР ОБУЧЕНИЯ")
-        tree.column("#4", anchor=CENTER)
+        tree.column("#4", anchor=CENTER, minwidth=0, width=270, stretch=False)
         tree.heading("#4", text="РОД ВОЙСК")
+
 
         self.fill_subjects(tree)
 
@@ -119,6 +126,7 @@ class ComplexViewWindow(Frame):
             column=("c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8"),
             show="headings",
         )
+
         tree.pack(side="left", fill="y")
         tree.column("#1", anchor=CENTER)
         tree.heading("#1", text="ИМЯ")
