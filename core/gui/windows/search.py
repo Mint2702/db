@@ -27,7 +27,6 @@ class SearchWindow(Frame):
         self.place_search_label("оборудование")
 
         self.place_back_button()
-        self.place_search_button()
         self.place_main_frame()
         self.place_choose_buttons()
         self.place_search_entry()
@@ -42,14 +41,6 @@ class SearchWindow(Frame):
         )
         btn_filter.place(x=850, y=600)
 
-    def place_search_button(self) -> None:
-        """ Создание и расположение кнопки "поиск" """
-
-        btn_filter = Button(
-            self, text="Найти", font=("Arial Bold", 10), width=10, command=self.search
-        )
-        btn_filter.place(x=850, y=400)
-
     def place_main_frame(self) -> None:
         """" Создание фреймов для размещения таблиц"""
 
@@ -57,6 +48,10 @@ class SearchWindow(Frame):
 
         self.main_frame = Frame(self, height=300)
         self.main_frame.place(x=20, y=50)
+
+        self.tree = ttk.Treeview(
+            self.main_frame, column=("c1", "c2", "c3", "c4"), show="headings"
+        )
 
     def place_choose_buttons(self) -> None:
 
@@ -150,20 +145,24 @@ class SearchWindow(Frame):
         self.main_label.destroy()
         self.place_search_label("предметы")
 
-        tree = ttk.Treeview(
+        self.tree.destroy()
+
+        self.tree = ttk.Treeview(
             self.main_frame, column=("c1", "c2", "c3", "c4"), show="headings"
         )
-        tree.pack(side="left", fill="y")
-        tree.column("#1", anchor=CENTER)
-        tree.heading("#1", text="ПРЕДМЕТ")
-        tree.column("#2", anchor=CENTER)
-        tree.heading("#2", text="ГОД ОБУЧЕНИЯ")
-        tree.column("#3", anchor=CENTER)
-        tree.heading("#3", text="СЕМЕСТР ОБУЧЕНИЯ")
-        tree.column("#4", anchor=CENTER)
-        tree.heading("#4", text="РОД ВОЙСК")
+        self.tree.pack(side="left", fill="y")
+        self.tree.column("#1", anchor=CENTER)
+        self.tree.heading("#1", text="ПРЕДМЕТ")
+        self.tree.column("#2", anchor=CENTER)
+        self.tree.heading("#2", text="ГОД ОБУЧЕНИЯ")
+        self.tree.column("#3", anchor=CENTER)
+        self.tree.heading("#3", text="СЕМЕСТР ОБУЧЕНИЯ")
+        self.tree.column("#4", anchor=CENTER)
+        self.tree.heading("#4", text="РОД ВОЙСК")
 
-        tree.pack(fill=BOTH, expand=1)
+        self.tree.pack(fill=BOTH, expand=1)
+
+        self.fill_table_subject()
 
     def place_students(self) -> None:
         """ Создание и расположение представления студентов """
@@ -171,30 +170,34 @@ class SearchWindow(Frame):
         self.main_label.destroy()
         self.place_search_label("студент")
 
-        tree = ttk.Treeview(
+        self.tree.destroy()
+
+        self.tree = ttk.Treeview(
             self.main_frame,
             column=("c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8"),
             show="headings",
         )
-        tree.pack(side="left", fill="y")
-        tree.column("#1", anchor=CENTER)
-        tree.heading("#1", text="ИМЯ")
-        tree.column("#2", anchor=CENTER)
-        tree.heading("#2", text="ФАМИЛИЯ")
-        tree.column("#3", anchor=CENTER)
-        tree.heading("#3", text="ДАТА РОЖДЕНИЯ")
-        tree.column("#4", anchor=CENTER)
-        tree.heading("#4", text="НОМЕР ПАССПОРТА")
-        tree.column("#5", anchor=CENTER)
-        tree.heading("#5", text="ДАТА ВЫДАЧИ")
-        tree.column("#6", anchor=CENTER)
-        tree.heading("#6", text="КЕМ ВЫДАН")
-        tree.column("#7", anchor=CENTER)
-        tree.heading("#7", text="ИНН")
-        tree.column("#8", anchor=CENTER)
-        tree.heading("#8", text="ВЗВОД")
+        self.tree.pack(side="left", fill="y")
+        self.tree.column("#1", anchor=CENTER)
+        self.tree.heading("#1", text="ИМЯ")
+        self.tree.column("#2", anchor=CENTER)
+        self.tree.heading("#2", text="ФАМИЛИЯ")
+        self.tree.column("#3", anchor=CENTER)
+        self.tree.heading("#3", text="ДАТА РОЖДЕНИЯ")
+        self.tree.column("#4", anchor=CENTER)
+        self.tree.heading("#4", text="НОМЕР ПАССПОРТА")
+        self.tree.column("#5", anchor=CENTER)
+        self.tree.heading("#5", text="ДАТА ВЫДАЧИ")
+        self.tree.column("#6", anchor=CENTER)
+        self.tree.heading("#6", text="КЕМ ВЫДАН")
+        self.tree.column("#7", anchor=CENTER)
+        self.tree.heading("#7", text="ИНН")
+        self.tree.column("#8", anchor=CENTER)
+        self.tree.heading("#8", text="ВЗВОД")
 
-        tree.pack(fill=BOTH, expand=1)
+        self.tree.pack(fill=BOTH, expand=1)
+
+        self.fill_table_student()
 
     def place_teachers(self) -> None:
         """ Создание и расположение представления преподавателей """
@@ -202,34 +205,38 @@ class SearchWindow(Frame):
         self.main_label.destroy()
         self.place_search_label("преподаватель")
 
-        tree = ttk.Treeview(
+        self.tree.destroy()
+
+        self.tree = ttk.Treeview(
             self.main_frame,
             column=("c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "c9", "c10"),
             show="headings",
         )
-        tree.pack(side="left", fill="y")
-        tree.column("#1", anchor=CENTER)
-        tree.heading("#1", text="ИМЯ")
-        tree.column("#2", anchor=CENTER)
-        tree.heading("#2", text="ФАМИЛИЯ")
-        tree.column("#3", anchor=CENTER)
-        tree.heading("#3", text="ДАТА РОЖДЕНИЯ")
-        tree.column("#4", anchor=CENTER)
-        tree.heading("#4", text="НАЧАЛО ОБУЧЕНИЯ")
-        tree.column("#5", anchor=CENTER)
-        tree.heading("#5", text="НОМЕР ПАССПОРТА")
-        tree.column("#6", anchor=CENTER)
-        tree.heading("#6", text="ДАТА ВЫДАЧИ")
-        tree.column("#7", anchor=CENTER)
-        tree.heading("#7", text="КЕМ ВЫДАН")
-        tree.column("#8", anchor=CENTER)
-        tree.heading("#8", text="ИНН")
-        tree.column("#9", anchor=CENTER)
-        tree.heading("#9", text="ЗВАНИЕ")
-        tree.column("#10", anchor=CENTER)
-        tree.heading("#10", text="ОСНОВНОЙ ПРЕДМЕТ")
+        self.tree.pack(side="left", fill="y")
+        self.tree.column("#1", anchor=CENTER)
+        self.tree.heading("#1", text="ИМЯ")
+        self.tree.column("#2", anchor=CENTER)
+        self.tree.heading("#2", text="ФАМИЛИЯ")
+        self.tree.column("#3", anchor=CENTER)
+        self.tree.heading("#3", text="ДАТА РОЖДЕНИЯ")
+        self.tree.column("#4", anchor=CENTER)
+        self.tree.heading("#4", text="НАЧАЛО ОБУЧЕНИЯ")
+        self.tree.column("#5", anchor=CENTER)
+        self.tree.heading("#5", text="НОМЕР ПАССПОРТА")
+        self.tree.column("#6", anchor=CENTER)
+        self.tree.heading("#6", text="ДАТА ВЫДАЧИ")
+        self.tree.column("#7", anchor=CENTER)
+        self.tree.heading("#7", text="КЕМ ВЫДАН")
+        self.tree.column("#8", anchor=CENTER)
+        self.tree.heading("#8", text="ИНН")
+        self.tree.column("#9", anchor=CENTER)
+        self.tree.heading("#9", text="ЗВАНИЕ")
+        self.tree.column("#10", anchor=CENTER)
+        self.tree.heading("#10", text="ОСНОВНОЙ ПРЕДМЕТ")
 
-        tree.pack(fill=BOTH, expand=1)
+        self.tree.pack(fill=BOTH, expand=1)
+
+        self.fill_table_teacher()
 
     def place_equipment(self) -> None:
         """ Создание и расположение представления оборудования """
@@ -237,19 +244,23 @@ class SearchWindow(Frame):
         self.main_label.destroy()
         self.place_search_label("оборудование")
 
-        tree = ttk.Treeview(self.main_frame, column=("c1", "c2"), show="headings")
-        tree.pack(side="left", fill="y")
-        tree.column("#1", anchor=CENTER)
-        tree.heading("#1", text="ОБОРУДОВАНИЕ")
-        tree.column("#2", anchor=CENTER)
-        tree.heading("#2", text="ПРЕДМЕТ")
+        self.tree.destroy()
 
-        tree.pack(fill=BOTH, expand=1)
+        self.tree = ttk.Treeview(self.main_frame, column=("c1", "c2"), show="headings")
+        self.tree.pack(side="left", fill="y")
+        self.tree.column("#1", anchor=CENTER)
+        self.tree.heading("#1", text="ОБОРУДОВАНИЕ")
+        self.tree.column("#2", anchor=CENTER)
+        self.tree.heading("#2", text="ПРЕДМЕТ")
+
+        self.tree.pack(fill=BOTH, expand=1)
+
+        self.fill_table_equipment()
 
     def place_search_entry(self) -> None:
 
-        main_entry = Entry(self, width=30, font=("Arial Bold", 10))
-        main_entry.place(x=800, y=300)
+        self.main_entry = Entry(self, width=30, font=("Arial Bold", 10))
+        self.main_entry.place(x=800, y=300)
 
     def place_search_label(self, table: str) -> None:
 
@@ -259,7 +270,79 @@ class SearchWindow(Frame):
             textt = "Название предмета"
 
         self.main_label = Label(self, text=textt, font=("Arial Bold", 10))
-        self.main_label.place(x=600, y=300)
+        self.main_label.place(x=550, y=300)
+
+    def fill_table_student(self) -> None:
+        """ Заполнение таблицы "student" """
+
+        import sys
+
+        sys.path.append("..")
+
+        from db.search import search_student
+
+        text = self.main_entry.get()
+        if text == "":
+            text = "none"
+
+        records = search_student(text)
+
+        for record in records:
+            self.tree.insert("", END, values=record)
+
+    def fill_table_subject(self) -> None:
+        """ Заполнение таблицы "subject" """
+
+        import sys
+
+        sys.path.append("..")
+
+        from db.search import search_subject
+
+        text = self.main_entry.get()
+        if text == "":
+            text = "none"
+
+        records = search_subject(text)
+
+        for record in records:
+            self.tree.insert("", END, values=record)
+
+    def fill_table_equipment(self) -> None:
+        """ Заполнение таблицы "equipment" """
+
+        import sys
+
+        sys.path.append("..")
+
+        from db.search import search_equipment
+
+        text = self.main_entry.get()
+        if text == "":
+            text = "none"
+
+        records = search_equipment(text)
+
+        for record in records:
+            self.tree.insert("", END, values=record)
+
+    def fill_table_teacher(self) -> None:
+        """ Заполнение таблицы "teacher" """
+
+        import sys
+
+        sys.path.append("..")
+
+        from db.search import search_teacher
+
+        text = self.main_entry.get()
+        if text == "":
+            text = "none"
+
+        records = search_teacher(text)
+
+        for record in records:
+            self.tree.insert("", END, values=record)
 
     def back(self) -> None:
         """ Возвращает в меню выбора действия """
@@ -282,12 +365,3 @@ class SearchWindow(Frame):
         """ Удаляет все обьекты родительского окна """
 
         self.destroy()
-
-    def search(self) -> None:
-        """ Искать """
-
-        import sys
-
-        sys.path.append("..")
-
-        from db.search import search_student
