@@ -75,4 +75,5 @@ def search_teacher(cursor, last_name: str) -> list:
         for record in records
     ]
 
+
     return result
