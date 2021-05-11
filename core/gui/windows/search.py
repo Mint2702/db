@@ -1,4 +1,4 @@
-from tkinter import BOTH, Button, Frame, ttk, END, CENTER, Entry
+from tkinter import BOTH, Button, Frame, ttk, END, CENTER, Entry, Label
 from ..utils import get_role
 
 
@@ -24,10 +24,12 @@ class SearchWindow(Frame):
         self.parent.geometry("%dx%d+%d+%d" % (w, h, x, y))
         self.parent.title("Военная кафедра - поиск по представлениям")
 
+        self.place_search_label("оборудование")
+
         self.place_back_button()
         self.place_search_button()
-        self.place_table_frames()
-        self.place_tables()
+        self.place_main_frame()
+        self.place_choose_buttons()
         self.place_search_entry()
 
         self.pack(fill=BOTH, expand=1)
@@ -38,7 +40,7 @@ class SearchWindow(Frame):
         btn_filter = Button(
             self, text="Назад", font=("Arial Bold", 10), width=10, command=self.back
         )
-        btn_filter.place(x=550, y=600)
+        btn_filter.place(x=850, y=600)
 
     def place_search_button(self) -> None:
         """ Создание и расположение кнопки "поиск" """
@@ -48,64 +50,108 @@ class SearchWindow(Frame):
         )
         btn_filter.place(x=850, y=400)
 
-    def place_table_frames(self) -> None:
+    def place_main_frame(self) -> None:
         """" Создание фреймов для размещения таблиц"""
-
-        note_tree = ttk.Notebook(self, style="style.TNotebook")
-        note_tree.place(x=20, y=50)
 
         self.role = get_role()
 
-        if self.role == "Студент":
-            self.f_subject = Frame(note_tree, height=300)
-            self.f_teacher = Frame(note_tree, height=300)
+        self.main_frame = Frame(self, height=300)
+        self.main_frame.place(x=20, y=50)
 
-            note_tree.add(self.f_subject, text="Предметы")
-            note_tree.add(self.f_teacher, text="Преподаватели")
-
-        elif self.role == "Преподаватель":
-            self.f_subject = Frame(note_tree, height=300)
-            self.f_teacher = Frame(note_tree, height=300)
-            self.f_student = Frame(note_tree, height=300)
-            self.f_equipment = Frame(note_tree, height=300)
-
-            note_tree.add(self.f_subject, text="Предметы")
-            note_tree.add(self.f_teacher, text="Преподаватели")
-            note_tree.add(self.f_student, text="Студенты")
-            note_tree.add(self.f_equipment, text="Оборудование")
-
-        else:
-            self.f_subject = Frame(note_tree, height=300)
-            self.f_teacher = Frame(note_tree, height=300)
-            self.f_student = Frame(note_tree, height=300)
-
-            note_tree.add(self.f_subject, text="Предметы")
-            note_tree.add(self.f_teacher, text="Преподаватели")
-            note_tree.add(self.f_student, text="Студенты")
-
-    def place_tables(self) -> None:
-        """Создание и расположение таблиц"""
+    def place_choose_buttons(self) -> None:
 
         if self.role == "Студент":
-            self.place_subjects()
-            self.place_teachers()
+            btn_teacher = Button(
+                self,
+                text="Преподаватели",
+                font=("Arial Bold", 10),
+                width=10,
+                command=self.place_teachers,
+            )
+            btn_teacher.place(x=100, y=300)
+
+            btn_subjects = Button(
+                self,
+                text="Предметы",
+                font=("Arial Bold", 10),
+                width=10,
+                command=self.place_subjects,
+            )
+            btn_subjects.place(x=100, y=400)
 
         elif self.role == "Преподаватель":
-            self.place_equipment()
-            self.place_subjects()
-            self.place_teachers()
-            self.place_students()
+            btn_student = Button(
+                self,
+                text="Студенты",
+                font=("Arial Bold", 10),
+                width=10,
+                command=self.place_students,
+            )
+            btn_student.place(x=100, y=300)
+
+            btn_teacher = Button(
+                self,
+                text="Преподаватели",
+                font=("Arial Bold", 10),
+                width=10,
+                command=self.place_teachers,
+            )
+            btn_teacher.place(x=100, y=400)
+
+            btn_subjects = Button(
+                self,
+                text="Предметы",
+                font=("Arial Bold", 10),
+                width=10,
+                command=self.place_subjects,
+            )
+            btn_subjects.place(x=100, y=500)
+
+            btn_equipment = Button(
+                self,
+                text="Оборудование",
+                font=("Arial Bold", 10),
+                width=10,
+                command=self.place_equipment,
+            )
+            btn_equipment.place(x=100, y=600)
 
         else:
-            self.place_subjects()
-            self.place_teachers()
-            self.place_students()
+            btn_student = Button(
+                self,
+                text="Студенты",
+                font=("Arial Bold", 10),
+                width=10,
+                command=self.place_students,
+            )
+            btn_student.place(x=100, y=300)
+
+            btn_teacher = Button(
+                self,
+                text="Преподаватели",
+                font=("Arial Bold", 10),
+                width=10,
+                command=self.place_teachers,
+            )
+            btn_teacher.place(x=100, y=400)
+
+            btn_subjects = Button(
+                self,
+                text="Предметы",
+                font=("Arial Bold", 10),
+                width=10,
+                command=self.place_subjects,
+            )
+            btn_subjects.place(x=100, y=500)
 
     def place_subjects(self) -> None:
         """ Создание и расположение представления предметов """
 
+        self.main_label.destroy()
+        self.place_search_label("предметы")
+
         tree = ttk.Treeview(
-            self.f_subject, column=("c1", "c2", "c3", "c4"), show="headings"
+            self.main_frame, column=("c1", "c2", "c3", "c4"), show="headings"
         )
         tree.pack(side="left", fill="y")
         tree.column("#1", anchor=CENTER)
@@ -122,8 +168,11 @@ class SearchWindow(Frame):
     def place_students(self) -> None:
         """ Создание и расположение представления студентов """
 
+        self.main_label.destroy()
+        self.place_search_label("студент")
+
         tree = ttk.Treeview(
-            self.f_student,
+            self.main_frame,
             column=("c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8"),
             show="headings",
         )
@@ -150,8 +199,11 @@ class SearchWindow(Frame):
     def place_teachers(self) -> None:
         """ Создание и расположение представления преподавателей """
 
+        self.main_label.destroy()
+        self.place_search_label("преподаватель")
+
         tree = ttk.Treeview(
-            self.f_teacher,
+            self.main_frame,
             column=("c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "c9", "c10"),
             show="headings",
         )
@@ -182,7 +234,10 @@ class SearchWindow(Frame):
     def place_equipment(self) -> None:
         """ Создание и расположение представления оборудования """
 
-        tree = ttk.Treeview(self.f_equipment, column=("c1", "c2"), show="headings")
+        self.main_label.destroy()
+        self.place_search_label("оборудование")
+
+        tree = ttk.Treeview(self.main_frame, column=("c1", "c2"), show="headings")
         tree.pack(side="left", fill="y")
         tree.column("#1", anchor=CENTER)
         tree.heading("#1", text="ОБОРУДОВАНИЕ")
@@ -195,6 +250,16 @@ class SearchWindow(Frame):
 
         main_entry = Entry(self, width=30, font=("Arial Bold", 10))
         main_entry.place(x=800, y=300)
+
+    def place_search_label(self, table: str) -> None:
+
+        if table == "студент" or table == "преподаватель":
+            textt = "Фамилия"
+        else:
+            textt = "Название предмета"
+
+        self.main_label = Label(self, text=textt, font=("Arial Bold", 10))
+        self.main_label.place(x=600, y=300)
 
     def back(self) -> None:
         """ Возвращает в меню выбора действия """

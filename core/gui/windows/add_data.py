@@ -22,8 +22,8 @@ class AddDataWindow(Frame):
     def initUI(self) -> None:
         """ Постоение окна добавления информации """
 
-        w = 1300
-        h = 700
+        w = 1200
+        h = 600
 
         sw = self.parent.winfo_screenwidth()
         sh = self.parent.winfo_screenheight()
@@ -42,7 +42,7 @@ class AddDataWindow(Frame):
 
     def place_add_frame(self) -> None:
         """Создание фрейма для добавления"""
-        self.add_frame = Frame(self, width=600, height=500)
+        self.add_frame = Frame(self, width=600, height=400)
         self.add_frame.place(x=500, y=50)
 
     def place_add_subjects_forms(self) -> None:
@@ -376,7 +376,7 @@ class AddDataWindow(Frame):
         btn_filter = Button(
             self, text="Назад", font=("Arial Bold", 10), width=10, command=self.back
         )
-        btn_filter.place(x=100, y=600)
+        btn_filter.place(x=100, y=500)
 
     def back(self) -> None:
         """ Возвращает в меню выбора действия """
@@ -393,7 +393,7 @@ class AddDataWindow(Frame):
         add_student_button = Button(
             self, text="Добавить", font=("Arial Bold", 12), width=12, command=self.add
         )
-        add_student_button.place(x=750, y=570)
+        add_student_button.place(x=750, y=500)
 
     def add(self) -> None:
         """Добавление студента в бд при нажатии кнопки"""
