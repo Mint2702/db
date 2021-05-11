@@ -30,7 +30,6 @@ class SearchWindow(Frame):
         self.place_search_button()
         self.place_main_frame()
         self.place_choose_buttons()
-        #self.place_tables()
         self.place_search_entry()
 
         self.pack(fill=BOTH, expand=1)
@@ -57,51 +56,93 @@ class SearchWindow(Frame):
         self.role = get_role()
 
         self.main_frame = Frame(self, height=300)
+        self.main_frame.place(x=20, y=50)
 
     def place_choose_buttons(self) -> None:
 
-        
-
-        btn_student = Button(
-            self, text="Студенты", font=("Arial Bold", 10), width=10, command=self.search
-        )
-        btn_student.place(x=100, y=300)
-
-        btn_teacher = Button(
-            self, text="Преподаватели", font=("Arial Bold", 10), width=10, command=self.search
-        )
-        btn_teacher.place(x=100, y=400)
-
-        btn_subjects = Button(
-            self, text="Предметы", font=("Arial Bold", 10), width=10, command=self.search
-        )
-        btn_subjects.place(x=100, y=500)
-
-        btn_equipment = Button(
-            self, text="Оборудование", font=("Arial Bold", 10), width=10, command=self.search
-        )
-        btn_equipment.place(x=100, y=600)
-            
-
-    def place_tables(self) -> None:
-        """Создание и расположение таблиц"""
-
         if self.role == "Студент":
-            self.place_subjects()
-            self.place_teachers()
+            btn_teacher = Button(
+                self,
+                text="Преподаватели",
+                font=("Arial Bold", 10),
+                width=10,
+                command=self.place_teachers,
+            )
+            btn_teacher.place(x=100, y=300)
+
+            btn_subjects = Button(
+                self,
+                text="Предметы",
+                font=("Arial Bold", 10),
+                width=10,
+                command=self.place_subjects,
+            )
+            btn_subjects.place(x=100, y=400)
 
         elif self.role == "Преподаватель":
-            self.place_equipment()
-            self.place_subjects()
-            self.place_teachers()
-            self.place_students()
+            btn_student = Button(
+                self,
+                text="Студенты",
+                font=("Arial Bold", 10),
+                width=10,
+                command=self.place_students,
+            )
+            btn_student.place(x=100, y=300)
+
+            btn_teacher = Button(
+                self,
+                text="Преподаватели",
+                font=("Arial Bold", 10),
+                width=10,
+                command=self.place_teachers,
+            )
+            btn_teacher.place(x=100, y=400)
+
+            btn_subjects = Button(
+                self,
+                text="Предметы",
+                font=("Arial Bold", 10),
+                width=10,
+                command=self.place_subjects,
+            )
+            btn_subjects.place(x=100, y=500)
+
+            btn_equipment = Button(
+                self,
+                text="Оборудование",
+                font=("Arial Bold", 10),
+                width=10,
+                command=self.place_equipment,
+            )
+            btn_equipment.place(x=100, y=600)
 
         else:
-            self.place_subjects()
-            self.place_teachers()
-            self.place_students()
+            btn_student = Button(
+                self,
+                text="Студенты",
+                font=("Arial Bold", 10),
+                width=10,
+                command=self.place_students,
+            )
+            btn_student.place(x=100, y=300)
 
-    
+            btn_teacher = Button(
+                self,
+                text="Преподаватели",
+                font=("Arial Bold", 10),
+                width=10,
+                command=self.place_teachers,
+            )
+            btn_teacher.place(x=100, y=400)
+
+            btn_subjects = Button(
+                self,
+                text="Предметы",
+                font=("Arial Bold", 10),
+                width=10,
+                command=self.place_subjects,
+            )
+            btn_subjects.place(x=100, y=500)
 
     def place_subjects(self) -> None:
         """ Создание и расположение представления предметов """
@@ -110,7 +151,7 @@ class SearchWindow(Frame):
         self.place_search_label("предметы")
 
         tree = ttk.Treeview(
-            self.f_subject, column=("c1", "c2", "c3", "c4"), show="headings"
+            self.main_frame, column=("c1", "c2", "c3", "c4"), show="headings"
         )
         tree.pack(side="left", fill="y")
         tree.column("#1", anchor=CENTER)
@@ -131,7 +172,7 @@ class SearchWindow(Frame):
         self.place_search_label("студент")
 
         tree = ttk.Treeview(
-            self.f_student,
+            self.main_frame,
             column=("c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8"),
             show="headings",
         )
@@ -162,7 +203,7 @@ class SearchWindow(Frame):
         self.place_search_label("преподаватель")
 
         tree = ttk.Treeview(
-            self.f_teacher,
+            self.main_frame,
             column=("c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "c9", "c10"),
             show="headings",
         )
@@ -196,7 +237,7 @@ class SearchWindow(Frame):
         self.main_label.destroy()
         self.place_search_label("оборудование")
 
-        tree = ttk.Treeview(self.f_equipment, column=("c1", "c2"), show="headings")
+        tree = ttk.Treeview(self.main_frame, column=("c1", "c2"), show="headings")
         tree.pack(side="left", fill="y")
         tree.column("#1", anchor=CENTER)
         tree.heading("#1", text="ОБОРУДОВАНИЕ")
@@ -217,10 +258,8 @@ class SearchWindow(Frame):
         else:
             textt = "Название предмета"
 
-        print(textt)
-
-        self.main_label = Label(self,text=textt, font=("Arial Bold", 10))
-        self.main_label.place(x=700, y=300)
+        self.main_label = Label(self, text=textt, font=("Arial Bold", 10))
+        self.main_label.place(x=600, y=300)
 
     def back(self) -> None:
         """ Возвращает в меню выбора действия """
