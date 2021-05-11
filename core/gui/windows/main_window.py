@@ -11,8 +11,8 @@ class MainWindow(Frame):
     def initUI(self) -> None:
         """ Построение главного окна """
 
-        w = 1300
-        h = 700
+        w = 1200
+        h = 600
 
         sw = self.parent.winfo_screenwidth()
         sh = self.parent.winfo_screenheight()
@@ -62,7 +62,7 @@ class MainWindow(Frame):
             width=30,
             command=self.change_to_complex_view,
         )
-        btn_view.place(x=750, y=250)
+        btn_view.place(x=750, y=200)
 
         btn_filter = Button(
             self,
@@ -71,7 +71,7 @@ class MainWindow(Frame):
             width=30,
             command=self.change_to_search,
         )
-        btn_filter.place(x=750, y=400)
+        btn_filter.place(x=750, y=300)
 
         if self.user != "Студент":
             btn_add = Button(
@@ -81,7 +81,7 @@ class MainWindow(Frame):
                 width=30,
                 command=self.change_to_add_data,
             )
-            btn_add.place(x=750, y=550)
+            btn_add.place(x=750, y=400)
 
     def change_to_view(self) -> None:
         """ Переключает окно на окно просмотра таблиц """

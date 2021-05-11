@@ -13,8 +13,8 @@ class Connection_tk(Frame):
     def initUI(self) -> None:
         """ Постоение окна соединения с бд """
 
-        w = 1300
-        h = 700
+        w = 1200
+        h = 600
 
         sw = self.parent.winfo_screenwidth()
         sh = self.parent.winfo_screenheight()
@@ -39,7 +39,7 @@ class Connection_tk(Frame):
 
         choose_label = Label(
             self,
-            text="Введите данные для подключения к базе данных военной кафедры, или выберете иной способ подключения",
+            text="Введите данные для подключения к базе данных военной кафедры",
             font=("Arial Bold", 15),
         )
         choose_label.place(x=200, y=20)
@@ -51,7 +51,7 @@ class Connection_tk(Frame):
             width=30,
             command=lambda: self.env_connect(env=True),
         )
-        btn_env.place(x=650, y=600)
+        btn_env.place(x=650, y=380)
 
         btn_input = Button(
             self,
@@ -60,52 +60,52 @@ class Connection_tk(Frame):
             width=30,
             command=lambda: self.env_connect(env=False),
         )
-        btn_input.place(x=650, y=550)
+        btn_input.place(x=650, y=320)
 
         self.host = Entry(self, width=30, font=("Arial Bold", 10))
-        self.host.place(x=800, y=100)
+        self.host.place(x=800, y=60)
         host_label = Label(
             self,
             text="Host",
             font=("Arial Bold", 15),
         )
-        host_label.place(x=580, y=100)
+        host_label.place(x=580, y=60)
 
         self.port = Entry(self, width=30, font=("Arial Bold", 10))
-        self.port.place(x=800, y=200)
+        self.port.place(x=800, y=110)
         port_label = Label(
             self,
             text="Port",
             font=("Arial Bold", 15),
         )
-        port_label.place(x=580, y=200)
+        port_label.place(x=580, y=110)
 
         self.user = Entry(self, width=30, font=("Arial Bold", 10))
-        self.user.place(x=800, y=300)
+        self.user.place(x=800, y=160)
         user_label = Label(
             self,
             text="User",
             font=("Arial Bold", 15),
         )
-        user_label.place(x=580, y=300)
+        user_label.place(x=580, y=160)
 
         self.password = Entry(self, width=30, font=("Arial Bold", 10))
-        self.password.place(x=800, y=400)
+        self.password.place(x=800, y=210)
         password_label = Label(
             self,
             text="Password",
             font=("Arial Bold", 15),
         )
-        password_label.place(x=550, y=400)
+        password_label.place(x=550, y=210)
 
         self.db_name = Entry(self, width=30, font=("Arial Bold", 10))
-        self.db_name.place(x=800, y=500)
+        self.db_name.place(x=800, y=260)
         db_name_label = Label(
             self,
             text="Database name",
             font=("Arial Bold", 15),
         )
-        db_name_label.place(x=500, y=500)
+        db_name_label.place(x=500, y=260)
 
     """Функции для изменения статуса, тк variable не робит с self
     Разбил на несколько функций из-за того что если делать одну с разными параметрами,

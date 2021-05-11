@@ -364,4 +364,6 @@ class SearchWindow(Frame):
     def remove_window(self) -> None:
         """ Удаляет все обьекты родительского окна """
 
+
         self.destroy()
+

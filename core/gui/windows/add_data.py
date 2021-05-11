@@ -11,6 +11,8 @@ from tkinter import (
 )
 
 
+
+
 class AddDataWindow(Frame):
     def __init__(self, parent) -> None:
         Frame.__init__(self, parent)
@@ -20,8 +22,8 @@ class AddDataWindow(Frame):
     def initUI(self) -> None:
         """ Постоение окна добавления информации """
 
-        w = 1300
-        h = 700
+        w = 1200
+        h = 600
 
         sw = self.parent.winfo_screenwidth()
         sh = self.parent.winfo_screenheight()
@@ -40,7 +42,7 @@ class AddDataWindow(Frame):
 
     def place_add_frame(self) -> None:
         """Создание фрейма для добавления"""
-        self.add_frame = Frame(self, width=600, height=500)
+        self.add_frame = Frame(self, width=600, height=400)
         self.add_frame.place(x=500, y=50)
 
     def place_add_subjects_forms(self) -> None:
@@ -374,7 +376,7 @@ class AddDataWindow(Frame):
         btn_filter = Button(
             self, text="Назад", font=("Arial Bold", 10), width=10, command=self.back
         )
-        btn_filter.place(x=100, y=600)
+        btn_filter.place(x=100, y=500)
 
     def back(self) -> None:
         """ Возвращает в меню выбора действия """
@@ -391,10 +393,12 @@ class AddDataWindow(Frame):
         add_student_button = Button(
             self, text="Добавить", font=("Arial Bold", 12), width=12, command=self.add
         )
-        add_student_button.place(x=750, y=570)
+        add_student_button.place(x=750, y=500)
 
     def add(self) -> None:
         """Добавление студента в бд при нажатии кнопки"""
+        from db.post import post_student
+
         if self.add_status == "Добавление предмета":
             print(self.subject_name.get())
             print(self.subject_year.get())
@@ -404,10 +408,17 @@ class AddDataWindow(Frame):
             print("Преподаватель добавлен")
 
         elif self.add_status == "Добавление студента":
-            print(self.student_full_name.get())
+            print(self.student_name.get())
+            print(self.student_surname.get())
             print(self.student_date_of_birth.get())
-            print(self.student_adres.get())
-            print(self.student_phone.get())
+            print(self.student_passport_num.get())
+            print(self.student_passport_date.get())
+            print(self.student_passport_given.get())
+            print(self.student_passport_inn.get())
+            print(self.student_platoon.get())
+            post_student(self.student_name.get(), self.student_surname.get(), self.student_date_of_birth.get(),
+                         self.student_passport_num.get(), self.student_passport_date.get(), self.student_passport_given.get(),
+                         self.student_passport_inn.get(), self.student_platoon.get())
 
         elif self.add_status == "Добавление оборудования":
             print("Оборудование добавлено")
