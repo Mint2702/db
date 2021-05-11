@@ -98,11 +98,6 @@ class ComplexViewWindow(Frame):
             self.f_subject, column=("c1", "c2", "c3", "c4"), show="headings"
         )
 
-        subject_scroll = ttk.Scrollbar(self.f_subject,
-                                       orient="horizontal",
-                                       command=tree.xview)
-        subject_scroll.pack(side='bottom', fill='x')
-
         tree.pack(side="left", fill="y")
         tree.column("#1", anchor=CENTER, minwidth=0, width=110, stretch=False)
         tree.heading("#1", text="ПРЕДМЕТ")
