@@ -537,7 +537,6 @@ class ViewWindow(Frame):
     def back(self) -> None:
         """ Возвращает в меню выбора действия """
 
-        from tkinter import Tk
         from .main_window import MainWindow
 
         self.remove_window()

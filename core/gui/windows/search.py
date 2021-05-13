@@ -160,6 +160,8 @@ class SearchWindow(Frame):
         self.tree.column("#4", minwidth=0, width=90, anchor=CENTER)
         self.tree.heading("#4", text="РОД ВОЙСК")
 
+        self.tree.bind("<<TreeviewSelect>>", self.print_selection)
+
         self.tree.pack(fill=BOTH, expand=1)
 
         self.fill_table_subject()
@@ -344,19 +346,18 @@ class SearchWindow(Frame):
         for record in records:
             self.tree.insert("", END, values=record)
 
+    def print_selection(self, event):
+        from tkinter import Tk
+        from .update import UpdateWindow
+
+        new_window = Tk()
+        UpdateWindow(new_window)
+
+    
     def back(self) -> None:
         """ Возвращает в меню выбора действия """
 
-        from tkinter import Tk
         from .main_window import MainWindow
-
-        import sys
-
-        sys.path.append("..")
-
-        from db.complex_get import get_teachers
-
-        get_teachers()
 
         self.remove_window()
         MainWindow(self.parent)
