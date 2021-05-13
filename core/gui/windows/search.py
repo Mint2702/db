@@ -12,7 +12,7 @@ class SearchWindow(Frame):
     def initUI(self) -> None:
         """ Постоение окна поиска """
 
-        w = 1200
+        w = 1500
         h = 500
 
         sw = self.parent.winfo_screenwidth()
@@ -151,13 +151,13 @@ class SearchWindow(Frame):
             self.main_frame, column=("c1", "c2", "c3", "c4"), show="headings"
         )
         self.tree.pack(side="left", fill="y")
-        self.tree.column("#1", minwidth=0, width=90,anchor=CENTER)
+        self.tree.column("#1", minwidth=0, width=90, anchor=CENTER)
         self.tree.heading("#1", text="ПРЕДМЕТ")
-        self.tree.column("#2",minwidth=0, width=90, anchor=CENTER)
+        self.tree.column("#2", minwidth=0, width=90, anchor=CENTER)
         self.tree.heading("#2", text="ГОД ОБУЧЕНИЯ")
-        self.tree.column("#3", minwidth=0, width=90,anchor=CENTER)
+        self.tree.column("#3", minwidth=0, width=90, anchor=CENTER)
         self.tree.heading("#3", text="СЕМЕСТР ОБУЧЕНИЯ")
-        self.tree.column("#4", minwidth=0, width=90,anchor=CENTER)
+        self.tree.column("#4", minwidth=0, width=90, anchor=CENTER)
         self.tree.heading("#4", text="РОД ВОЙСК")
 
         self.tree.pack(fill=BOTH, expand=1)
@@ -178,21 +178,21 @@ class SearchWindow(Frame):
             show="headings",
         )
         self.tree.pack(side="left", fill="y")
-        self.tree.column("#1", minwidth=0, width=90,anchor=CENTER)
+        self.tree.column("#1", minwidth=0, width=90, anchor=CENTER)
         self.tree.heading("#1", text="ИМЯ")
-        self.tree.column("#2", minwidth=0, width=90,anchor=CENTER)
+        self.tree.column("#2", minwidth=0, width=90, anchor=CENTER)
         self.tree.heading("#2", text="ФАМИЛИЯ")
-        self.tree.column("#3", minwidth=0, width=90,anchor=CENTER)
+        self.tree.column("#3", minwidth=0, width=90, anchor=CENTER)
         self.tree.heading("#3", text="ДАТА РОЖДЕНИЯ")
-        self.tree.column("#4", minwidth=0, width=90,anchor=CENTER)
+        self.tree.column("#4", minwidth=0, width=90, anchor=CENTER)
         self.tree.heading("#4", text="НОМЕР ПАССПОРТА")
-        self.tree.column("#5", minwidth=0, width=90,anchor=CENTER)
+        self.tree.column("#5", minwidth=0, width=90, anchor=CENTER)
         self.tree.heading("#5", text="ДАТА ВЫДАЧИ")
-        self.tree.column("#6", minwidth=0, width=90,anchor=CENTER)
+        self.tree.column("#6", minwidth=0, width=90, anchor=CENTER)
         self.tree.heading("#6", text="КЕМ ВЫДАН")
-        self.tree.column("#7", minwidth=0, width=90,anchor=CENTER)
+        self.tree.column("#7", minwidth=0, width=90, anchor=CENTER)
         self.tree.heading("#7", text="ИНН")
-        self.tree.column("#8", minwidth=0, width=90,anchor=CENTER)
+        self.tree.column("#8", minwidth=0, width=90, anchor=CENTER)
         self.tree.heading("#8", text="ВЗВОД")
 
         self.tree.pack(fill=BOTH, expand=1)
@@ -213,25 +213,25 @@ class SearchWindow(Frame):
             show="headings",
         )
         self.tree.pack(side="left", fill="y")
-        self.tree.column("#1", minwidth=0, width=80,anchor=CENTER)
+        self.tree.column("#1", minwidth=0, width=80, anchor=CENTER)
         self.tree.heading("#1", text="ИМЯ")
-        self.tree.column("#2", minwidth=0, width=120,anchor=CENTER)
+        self.tree.column("#2", minwidth=0, width=120, anchor=CENTER)
         self.tree.heading("#2", text="ФАМИЛИЯ")
-        self.tree.column("#3", minwidth=0, width=130,anchor=CENTER)
+        self.tree.column("#3", minwidth=0, width=130, anchor=CENTER)
         self.tree.heading("#3", text="ДАТА РОЖДЕНИЯ")
-        self.tree.column("#4", minwidth=0, width=130,anchor=CENTER)
+        self.tree.column("#4", minwidth=0, width=130, anchor=CENTER)
         self.tree.heading("#4", text="НАЧАЛО ОБУЧЕНИЯ")
-        self.tree.column("#5",minwidth=0, width=90, anchor=CENTER)
+        self.tree.column("#5", minwidth=0, width=90, anchor=CENTER)
         self.tree.heading("#5", text="НОМЕР ПАССПОРТА")
-        self.tree.column("#6", minwidth=0, width=110,anchor=CENTER)
+        self.tree.column("#6", minwidth=0, width=110, anchor=CENTER)
         self.tree.heading("#6", text="ДАТА ВЫДАЧИ")
-        self.tree.column("#7", minwidth=0, width=90,anchor=CENTER)
+        self.tree.column("#7", minwidth=0, width=90, anchor=CENTER)
         self.tree.heading("#7", text="КЕМ ВЫДАН")
-        self.tree.column("#8",minwidth=0, width=70, anchor=CENTER)
+        self.tree.column("#8", minwidth=0, width=70, anchor=CENTER)
         self.tree.heading("#8", text="ИНН")
-        self.tree.column("#9", minwidth=0, width=90,anchor=CENTER)
+        self.tree.column("#9", minwidth=0, width=90, anchor=CENTER)
         self.tree.heading("#9", text="ЗВАНИЕ")
-        self.tree.column("#10", minwidth=0, width=140,anchor=CENTER)
+        self.tree.column("#10", minwidth=0, width=140, anchor=CENTER)
         self.tree.heading("#10", text="ОСНОВНОЙ ПРЕДМЕТ")
 
         self.tree.pack(fill=BOTH, expand=1)
@@ -248,9 +248,9 @@ class SearchWindow(Frame):
 
         self.tree = ttk.Treeview(self.main_frame, column=("c1", "c2"), show="headings")
         self.tree.pack(side="left", fill="y")
-        self.tree.column("#1", minwidth=0, width=90,anchor=CENTER)
+        self.tree.column("#1", minwidth=0, width=90, anchor=CENTER)
         self.tree.heading("#1", text="ОБОРУДОВАНИЕ")
-        self.tree.column("#2", minwidth=0, width=90,anchor=CENTER)
+        self.tree.column("#2", minwidth=0, width=90, anchor=CENTER)
         self.tree.heading("#2", text="ПРЕДМЕТ")
 
         self.tree.pack(fill=BOTH, expand=1)
@@ -364,6 +364,4 @@ class SearchWindow(Frame):
     def remove_window(self) -> None:
         """ Удаляет все обьекты родительского окна """
 
-
         self.destroy()
-

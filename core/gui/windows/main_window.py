@@ -11,7 +11,7 @@ class MainWindow(Frame):
     def initUI(self) -> None:
         """ Построение главного окна """
 
-        w = 1200
+        w = 1500
         h = 600
 
         sw = self.parent.winfo_screenwidth()

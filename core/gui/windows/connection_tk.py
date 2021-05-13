@@ -13,7 +13,7 @@ class Connection_tk(Frame):
     def initUI(self) -> None:
         """ Постоение окна соединения с бд """
 
-        w = 1200
+        w = 1500
         h = 600
 
         sw = self.parent.winfo_screenwidth()

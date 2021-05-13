@@ -11,8 +11,6 @@ from tkinter import (
 )
 
 
-
-
 class AddDataWindow(Frame):
     def __init__(self, parent) -> None:
         Frame.__init__(self, parent)
@@ -22,7 +20,7 @@ class AddDataWindow(Frame):
     def initUI(self) -> None:
         """ Постоение окна добавления информации """
 
-        w = 1200
+        w = 1500
         h = 600
 
         sw = self.parent.winfo_screenwidth()
@@ -408,9 +406,16 @@ class AddDataWindow(Frame):
             print("Преподаватель добавлен")
 
         elif self.add_status == "Добавление студента":
-            post_student(self.student_name.get(), self.student_surname.get(), self.student_date_of_birth.get(),
-                         self.student_passport_num.get(), self.student_passport_date.get(), self.student_passport_given.get(),
-                         self.student_passport_inn.get(), self.student_platoon.get())
+            post_student(
+                self.student_name.get(),
+                self.student_surname.get(),
+                self.student_date_of_birth.get(),
+                self.student_passport_num.get(),
+                self.student_passport_date.get(),
+                self.student_passport_given.get(),
+                self.student_passport_inn.get(),
+                self.student_platoon.get(),
+            )
 
         elif self.add_status == "Добавление оборудования":
             print("Оборудование добавлено")

@@ -12,7 +12,7 @@ class ComplexViewWindow(Frame):
     def initUI(self) -> None:
         """ Постоение окна просмотра """
 
-        w = 1200
+        w = 1500
         h = 600
 
         sw = self.parent.winfo_screenwidth()
@@ -108,7 +108,6 @@ class ComplexViewWindow(Frame):
         tree.column("#4", anchor=CENTER, minwidth=0, width=110, stretch=False)
         tree.heading("#4", text="РОД ВОЙСК")
 
-
         self.fill_subjects(tree)
 
         tree.pack(fill=BOTH, expand=1)
@@ -118,27 +117,31 @@ class ComplexViewWindow(Frame):
 
         tree = ttk.Treeview(
             self.f_student,
-            column=("c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8"),
+            column=("c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "c9", "c10"),
             show="headings",
         )
 
         tree.pack(side="left", fill="y")
-        tree.column("#1",minwidth=0, width=90, anchor=CENTER)
+        tree.column("#1", minwidth=0, width=90, anchor=CENTER)
         tree.heading("#1", text="ИМЯ")
-        tree.column("#2", minwidth=0, width=90,anchor=CENTER)
+        tree.column("#2", minwidth=0, width=90, anchor=CENTER)
         tree.heading("#2", text="ФАМИЛИЯ")
-        tree.column("#3", minwidth=0, width=90,anchor=CENTER)
+        tree.column("#3", minwidth=0, width=90, anchor=CENTER)
         tree.heading("#3", text="ДАТА РОЖДЕНИЯ")
-        tree.column("#4", minwidth=0, width=100,anchor=CENTER)
+        tree.column("#4", minwidth=0, width=100, anchor=CENTER)
         tree.heading("#4", text="НОМЕР ПАССПОРТА")
-        tree.column("#5",minwidth=0, width=90, anchor=CENTER)
+        tree.column("#5", minwidth=0, width=90, anchor=CENTER)
         tree.heading("#5", text="ДАТА ВЫДАЧИ")
-        tree.column("#6", minwidth=0, width=90,anchor=CENTER)
+        tree.column("#6", minwidth=0, width=90, anchor=CENTER)
         tree.heading("#6", text="КЕМ ВЫДАН")
-        tree.column("#7",minwidth=0, width=90, anchor=CENTER)
+        tree.column("#7", minwidth=0, width=90, anchor=CENTER)
         tree.heading("#7", text="ИНН")
-        tree.column("#8", minwidth=0, width=160,anchor=CENTER)
-        tree.heading("#8", text="ВЗВОД")
+        tree.column("#8", minwidth=0, width=210, anchor=CENTER)
+        tree.heading("#8", text="РОД ВОЙСК")
+        tree.column("#9", minwidth=0, width=250, anchor=CENTER)
+        tree.heading("#9", text="АДРЕС")
+        tree.column("#10", minwidth=0, width=120, anchor=CENTER)
+        tree.heading("#10", text="НОМЕР ТЕЛЕФОНА")
 
         self.fill_students(tree)
 
@@ -149,30 +152,47 @@ class ComplexViewWindow(Frame):
 
         tree = ttk.Treeview(
             self.f_teacher,
-            column=("c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "c9", "c10"),
+            column=(
+                "c1",
+                "c2",
+                "c3",
+                "c4",
+                "c5",
+                "c6",
+                "c7",
+                "c8",
+                "c9",
+                "c10",
+                "c11",
+                "c12",
+            ),
             show="headings",
         )
         tree.pack(side="left", fill="y")
-        tree.column("#1", minwidth=0, width=90,anchor=CENTER)
+        tree.column("#1", minwidth=0, width=90, anchor=CENTER)
         tree.heading("#1", text="ИМЯ")
-        tree.column("#2", minwidth=0, width=120,anchor=CENTER)
+        tree.column("#2", minwidth=0, width=120, anchor=CENTER)
         tree.heading("#2", text="ФАМИЛИЯ")
-        tree.column("#3", minwidth=0, width=110,anchor=CENTER)
+        tree.column("#3", minwidth=0, width=110, anchor=CENTER)
         tree.heading("#3", text="ДАТА РОЖДЕНИЯ")
-        tree.column("#4", minwidth=0, width=130,anchor=CENTER)
+        tree.column("#4", minwidth=0, width=130, anchor=CENTER)
         tree.heading("#4", text="НАЧАЛО ОБУЧЕНИЯ")
-        tree.column("#5", minwidth=0, width=120,anchor=CENTER)
+        tree.column("#5", minwidth=0, width=120, anchor=CENTER)
         tree.heading("#5", text="НОМЕР ПАССПОРТА")
-        tree.column("#6",minwidth=0, width=120, anchor=CENTER)
+        tree.column("#6", minwidth=0, width=120, anchor=CENTER)
         tree.heading("#6", text="ДАТА ВЫДАЧИ")
-        tree.column("#7", minwidth=0, width=90,anchor=CENTER)
+        tree.column("#7", minwidth=0, width=90, anchor=CENTER)
         tree.heading("#7", text="КЕМ ВЫДАН")
-        tree.column("#8", minwidth=0, width=90,anchor=CENTER)
+        tree.column("#8", minwidth=0, width=90, anchor=CENTER)
         tree.heading("#8", text="ИНН")
-        tree.column("#9", minwidth=0, width=80,anchor=CENTER)
+        tree.column("#9", minwidth=0, width=80, anchor=CENTER)
         tree.heading("#9", text="ЗВАНИЕ")
-        tree.column("#10", minwidth=0, width=140,anchor=CENTER)
+        tree.column("#10", minwidth=0, width=140, anchor=CENTER)
         tree.heading("#10", text="ОСНОВНОЙ ПРЕДМЕТ")
+        tree.column("#11", minwidth=0, width=250, anchor=CENTER)
+        tree.heading("#11", text="АДРЕС")
+        tree.column("#12", minwidth=0, width=120, anchor=CENTER)
+        tree.heading("#12", text="НОМЕР ТЕЛЕФОНА")
 
         self.fill_teachers(tree)
 
@@ -183,9 +203,9 @@ class ComplexViewWindow(Frame):
 
         tree = ttk.Treeview(self.f_equipment, column=("c1", "c2"), show="headings")
         tree.pack(side="left", fill="y")
-        tree.column("#1", minwidth=0, width=90,anchor=CENTER)
+        tree.column("#1", minwidth=0, width=90, anchor=CENTER)
         tree.heading("#1", text="ОБОРУДОВАНИЕ")
-        tree.column("#2", minwidth=0, width=90,anchor=CENTER)
+        tree.column("#2", minwidth=0, width=90, anchor=CENTER)
         tree.heading("#2", text="ПРЕДМЕТ")
 
         self.fill_equipment(tree)
