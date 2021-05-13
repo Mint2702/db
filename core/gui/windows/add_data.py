@@ -102,6 +102,7 @@ class AddDataWindow(Frame):
 
     def place_add_teachers_forms(self) -> None:
         """Создание форм для добавления преподавателя"""
+        from db.get import get_rank
         self.add_frame.destroy()
         self.place_add_frame()
         self.add_status = "Добавление преподавателя"
@@ -175,6 +176,27 @@ class AddDataWindow(Frame):
         )
         teacher_label_9.place(x=5, y=340)
 
+        teacher_label_10 = Label(
+            self.add_frame,
+            text="Специализация: ",
+            font=("Arial Bold", 14),
+        )
+        teacher_label_10.place(x=400, y=100)
+
+        teacher_label_11 = Label(
+            self.add_frame,
+            text="Адрес: ",
+            font=("Arial Bold", 14),
+        )
+        teacher_label_11.place(x=400, y=130)
+
+        teacher_label_12 = Label(
+            self.add_frame,
+            text="Телефон: ",
+            font=("Arial Bold", 14),
+        )
+        teacher_label_12.place(x=400, y=160)
+
         self.teacher_name = StringVar()
         self.teacher_surname = StringVar()
         self.teacher_date_of_birth = StringVar()
@@ -183,36 +205,58 @@ class AddDataWindow(Frame):
         self.teacher_passport_date = StringVar()
         self.teacher_passport_given = StringVar()
         self.teacher_passport_inn = StringVar()
-        self.teacher_rank = StringVar()
+        self.teacher_specialisation = StringVar()
+        self.teacher_address = StringVar()
+        self.teacher_phone = StringVar()
 
         teacher_name_entry = Entry(self.add_frame, textvariable=self.teacher_name)
         teacher_name_entry.place(x=230, y=100)
+
         teacher_surname_entry = Entry(self.add_frame, textvariable=self.teacher_surname)
         teacher_surname_entry.place(x=230, y=130)
+
         teacher_date_entry = Entry(
             self.add_frame, textvariable=self.teacher_date_of_birth
         )
         teacher_date_entry.place(x=230, y=160)
+
         teacher_begin_entry = Entry(self.add_frame, textvariable=self.teacher_begin)
         teacher_begin_entry.place(x=230, y=190)
+
         teacher_passport_num_entry = Entry(
             self.add_frame, textvariable=self.teacher_passport_num
         )
         teacher_passport_num_entry.place(x=230, y=220)
+
         teacher_passport_date_entry = Entry(
             self.add_frame, textvariable=self.teacher_passport_date
         )
         teacher_passport_date_entry.place(x=230, y=250)
+
         teacher_passport_given_entry = Entry(
             self.add_frame, textvariable=self.teacher_passport_given
         )
         teacher_passport_given_entry.place(x=230, y=280)
+
         teacher_passport_inn_entry = Entry(
             self.add_frame, textvariable=self.teacher_passport_inn
         )
         teacher_passport_inn_entry.place(x=230, y=310)
-        teacher_platoon_entry = Entry(self.add_frame, textvariable=self.teacher_rank)
-        teacher_platoon_entry.place(x=230, y=340)
+
+        ranks = get_rank()
+        self.teacher_rank = ttk.Combobox(self.add_frame, values=ranks, width=15)
+        self.teacher_rank.place(x=230, y=340)
+
+        teacher_specialisation_entry = Entry(self.add_frame, textvariable=self.teacher_specialisation)
+        teacher_specialisation_entry.place(x=580, y=100)
+
+        teacher_address_entry = Entry(self.add_frame, textvariable=self.teacher_address)
+        teacher_address_entry.place(x=580, y=130)
+
+        teacher_phone_entry = Entry(self.add_frame, textvariable=self.teacher_phone)
+        teacher_phone_entry.place(x=580, y=160)
+
+
 
     def place_add_students_forms(self) -> None:
         """Создание форм для добавления студента"""
@@ -284,7 +328,7 @@ class AddDataWindow(Frame):
 
         student_label_9 = Label(
             self.add_frame,
-            text="" "Адрес: ",
+            text="Адрес: ",
             font=("Arial Bold", 14),
         )
         student_label_9.place(x=400, y=100)

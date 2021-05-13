@@ -208,3 +208,16 @@ def get_subjects(
     result = [str(record[0]) for record in records]
 
     return result
+
+
+@sql_command
+def get_rank(
+    cursor,
+) -> list:
+    """ Достает все звания """
+    command = "SELECT title FROM rank"
+    cursor.execute(command)
+    records = cursor.fetchall()
+    result = [str(record[0]) for record in records]
+
+    return result
