@@ -102,7 +102,7 @@ class AddDataWindow(Frame):
 
     def place_add_teachers_forms(self) -> None:
         """Создание форм для добавления преподавателя"""
-        from db.get import get_rank
+        from db.get import get_rank, get_subjects
         self.add_frame.destroy()
         self.place_add_frame()
         self.add_status = "Добавление преподавателя"
@@ -205,7 +205,6 @@ class AddDataWindow(Frame):
         self.teacher_passport_date = StringVar()
         self.teacher_passport_given = StringVar()
         self.teacher_passport_inn = StringVar()
-        self.teacher_specialisation = StringVar()
         self.teacher_address = StringVar()
         self.teacher_phone = StringVar()
 
@@ -247,8 +246,9 @@ class AddDataWindow(Frame):
         self.teacher_rank = ttk.Combobox(self.add_frame, values=ranks, width=15)
         self.teacher_rank.place(x=230, y=340)
 
-        teacher_specialisation_entry = Entry(self.add_frame, textvariable=self.teacher_specialisation)
-        teacher_specialisation_entry.place(x=580, y=100)
+        subjects = get_subjects()
+        self.teacher_specialisation = ttk.Combobox(self.add_frame, values=subjects, width=20)
+        self.teacher_specialisation.place(x=580, y=100)
 
         teacher_address_entry = Entry(self.add_frame, textvariable=self.teacher_address)
         teacher_address_entry.place(x=580, y=130)
@@ -499,7 +499,20 @@ class AddDataWindow(Frame):
             )
 
         elif self.add_status == "Добавление преподавателя":
-            print("Преподаватель добавлен")
+            print(self.teacher_name)
+            print(self.teacher_surname)
+            print(self.teacher_date_of_birth)
+            print(self.teacher_begin)
+            print(self.teacher_passport_num)
+            print(self.teacher_passport_date)
+            print(self.teacher_passport_given)
+            print(self.teacher_passport_inn)
+            print(self.teacher_rank)
+
+            print(self.teacher_specialisation)
+
+            print(self.teacher_address)
+            print(self.teacher_phone)
 
         elif self.add_status == "Добавление студента":
             post_student(
