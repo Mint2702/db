@@ -42,6 +42,7 @@ def sql_command(func):
 
         result = func(cursor, *args, **kwargs)
 
+        conn.commit()
         cursor.close()
         conn.close()
 

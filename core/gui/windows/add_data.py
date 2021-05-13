@@ -277,7 +277,6 @@ class AddDataWindow(Frame):
         self.student_passport_date = StringVar()
         self.student_passport_given = StringVar()
         self.student_passport_inn = StringVar()
-        self.student_platoon = StringVar()
 
         student_name_entry = Entry(self.add_frame, textvariable=self.student_name)
         student_name_entry.place(x=230, y=100)
@@ -303,8 +302,9 @@ class AddDataWindow(Frame):
             self.add_frame, textvariable=self.student_passport_inn
         )
         student_passport_inn_entry.place(x=230, y=280)
-        student_platoon_entry = Entry(self.add_frame, textvariable=self.student_platoon)
-        student_platoon_entry.place(x=230, y=310)
+
+        self.student_platoon = ttk.Combobox(self.add_frame, values=[1, 2, 3], width=2)
+        self.student_platoon.place(x=230, y=310)
 
     def place_add_equipment_forms(self) -> None:
         """Создание форм для добавления оборудования"""
@@ -408,14 +408,6 @@ class AddDataWindow(Frame):
             print("Преподаватель добавлен")
 
         elif self.add_status == "Добавление студента":
-            print(self.student_name.get())
-            print(self.student_surname.get())
-            print(self.student_date_of_birth.get())
-            print(self.student_passport_num.get())
-            print(self.student_passport_date.get())
-            print(self.student_passport_given.get())
-            print(self.student_passport_inn.get())
-            print(self.student_platoon.get())
             post_student(self.student_name.get(), self.student_surname.get(), self.student_date_of_birth.get(),
                          self.student_passport_num.get(), self.student_passport_date.get(), self.student_passport_given.get(),
                          self.student_passport_inn.get(), self.student_platoon.get())
