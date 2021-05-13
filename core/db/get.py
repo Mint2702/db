@@ -196,3 +196,16 @@ def get_roda(
     result = [str(record[0]) for record in records]
 
     return result
+
+
+@sql_command
+def get_subjects(
+        cursor,
+) -> list:
+    """ Достает все предметы """
+    command = "SELECT name FROM subject"
+    cursor.execute(command)
+    records = cursor.fetchall()
+    result = [str(record[0]) for record in records]
+
+    return result

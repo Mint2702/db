@@ -347,6 +347,7 @@ class AddDataWindow(Frame):
 
     def place_add_equipment_forms(self) -> None:
         """Создание форм для добавления оборудования"""
+        from db.get import get_subjects
         self.add_frame.destroy()
         self.place_add_frame()
         self.add_status = "Добавление оборудования"
@@ -364,9 +365,21 @@ class AddDataWindow(Frame):
         )
         equipment_label_1.place(x=5, y=100)
 
+        equipment_label_2 = Label(
+            self.add_frame,
+            text="Предмет: ",
+            font=("Arial Bold", 14),
+        )
+        equipment_label_2.place(x=5, y=130)
+
         self.equipment_name = StringVar()
         equipment_name_entry = Entry(self.add_frame, textvariable=self.equipment_name)
         equipment_name_entry.place(x=190, y=100)
+
+
+        subjects = get_subjects()
+        self.equipment_subject = ttk.Combobox(self.add_frame, values=subjects, width=30)
+        self.equipment_subject.place(x=190, y=130)
 
     def place_radiobuttons(self) -> None:
         """ Создание и размещение кнопочек выбора роли"""
@@ -436,7 +449,7 @@ class AddDataWindow(Frame):
 
     def add(self) -> None:
         """Добавление студента в бд при нажатии кнопки"""
-        from db.post import post_student, post_subject
+        from db.post import post_student, post_subject, post_equipment
 
         if self.add_status == "Добавление предмета":
             post_subject(self.subject_name.get(), self.subject_year.get(), self.subject_semestr.get(), self.subject_rod.get())
@@ -459,4 +472,6 @@ class AddDataWindow(Frame):
             )
 
         elif self.add_status == "Добавление оборудования":
-            print("Оборудование добавлено")
+            post_equipment(self.equipment_name.get(), self.equipment_subject.get())
+
+

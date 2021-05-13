@@ -30,8 +30,8 @@ def get_rod_id(cursor, rod) -> int:
     return result[0]
 
 
-def get_subject_id(cursor, name, year, semestr) -> int:
-    command = f"SELECT id FROM subject WHERE name='{name}' AND year_of_study='{year}' AND semester_of_study='{semestr}'"
+def get_subject_id(cursor, name) -> int:
+    command = f"SELECT id FROM subject WHERE name='{name}'"
     cursor.execute(command)
     records = cursor.fetchall()
     result = [int(record[0]) for record in records]
@@ -46,9 +46,29 @@ def post_subject(cursor, name, year, semestr, rod) -> None:
         "INSERT INTO subject (name, year_of_study, semester_of_study) VALUES(%s, %s, %s)",
         (name, year, semestr))
 
-    subject_id = get_subject_id(cursor, name, year, semestr)
+    subject_id = get_subject_id(cursor, name)
     cursor.execute(
         "INSERT INTO subject_of_platoon (id_platoon, id_subject) VALUES(%s, %s)",
         (rod_id, subject_id))
+
+
+def get_equipment_id(cursor, name) -> int:
+    command = f"SELECT id FROM equipment WHERE denomination='{name}'"
+    cursor.execute(command)
+    records = cursor.fetchall()
+    result = [int(record[0]) for record in records]
+    return result[0]
+
+
+@sql_command
+def post_equipment(cursor, name, subject) -> None:
+    """Добавление оборудования"""
+    subject_id = get_subject_id(cursor, subject)
+    cursor.execute(
+        f"INSERT INTO equipment (denomination) VALUES('{name}')")
+    equipment_id = get_equipment_id(cursor, name)
+    cursor.execute(
+        "INSERT INTO equipment_for_subject (id_equipment, id_subject) VALUES(%s, %s)",
+        (equipment_id, subject_id))
 
 
