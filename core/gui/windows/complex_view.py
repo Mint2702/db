@@ -1,4 +1,4 @@
-from tkinter import BOTH, Button, Frame, ttk, END, CENTER
+from tkinter import BOTH, Button, Frame, ttk, END, CENTER, BOTTOM, TOP
 from ..utils import get_role
 
 
@@ -47,14 +47,14 @@ class ComplexViewWindow(Frame):
         self.role = get_role()
 
         if self.role == "Студент":
-            self.f_subject = Frame(note_tree, height=300, width=10)
+            self.f_subject = Frame(note_tree, height=300)
             self.f_teacher = Frame(note_tree, height=300)
 
             note_tree.add(self.f_subject, text="Предметы")
             note_tree.add(self.f_teacher, text="Преподаватели")
 
         elif self.role == "Преподаватель":
-            self.f_subject = Frame(note_tree, height=300, width=10)
+            self.f_subject = Frame(note_tree, height=300)
             self.f_teacher = Frame(note_tree, height=300)
             self.f_student = Frame(note_tree, height=300)
             self.f_equipment = Frame(note_tree, height=300)
@@ -65,7 +65,7 @@ class ComplexViewWindow(Frame):
             note_tree.add(self.f_equipment, text="Оборудование")
 
         else:
-            self.f_subject = Frame(note_tree, height=300, width=10)
+            self.f_subject = Frame(note_tree, height=300)
             self.f_teacher = Frame(note_tree, height=300)
             self.f_student = Frame(note_tree, height=300)
 
@@ -99,18 +99,27 @@ class ComplexViewWindow(Frame):
         )
 
         tree.pack(side="left", fill="y")
-        tree.column("#1", anchor=CENTER, minwidth=0, width=110, stretch=False)
+        tree.column("#1", anchor=CENTER, minwidth=0, width=110)
         tree.heading("#1", text="ПРЕДМЕТ")
-        tree.column("#2", anchor=CENTER, minwidth=0, width=100, stretch=False)
+        tree.column("#2", anchor=CENTER, minwidth=0, width=100)
         tree.heading("#2", text="ГОД ОБУЧЕНИЯ")
-        tree.column("#3", anchor=CENTER, minwidth=0, width=130, stretch=False)
+        tree.column("#3", anchor=CENTER, minwidth=0, width=130)
         tree.heading("#3", text="СЕМЕСТР ОБУЧЕНИЯ")
-        tree.column("#4", anchor=CENTER, minwidth=0, width=110, stretch=False)
+        tree.column("#4", anchor=CENTER, minwidth=0, width=110)
         tree.heading("#4", text="РОД ВОЙСК")
 
         self.fill_subjects(tree)
 
-        tree.pack(fill=BOTH, expand=1)
+        tree.pack(fill=BOTH, expand=True, side=TOP)
+
+        btn_del = Button(
+            self.f_subject,
+            text="Удалить",
+            font=("Arial Bold", 10),
+            width=10,
+            command=lambda: self.delete_subject(tree),
+        )
+        btn_del.pack(fill=BOTH, expand=True, side=BOTTOM)
 
     def place_students(self) -> None:
         """ Создание и расположение представления студентов """
@@ -145,7 +154,16 @@ class ComplexViewWindow(Frame):
 
         self.fill_students(tree)
 
-        tree.pack(fill=BOTH, expand=1)
+        tree.pack(fill=BOTH, expand=True, side=TOP)
+
+        btn_del = Button(
+            self.f_student,
+            text="Удалить",
+            font=("Arial Bold", 10),
+            width=10,
+            command=lambda: self.delete_student(tree),
+        )
+        btn_del.pack(fill=BOTH, expand=True, side=BOTTOM)
 
     def place_teachers(self) -> None:
         """ Создание и расположение представления преподавателей """
@@ -196,7 +214,16 @@ class ComplexViewWindow(Frame):
 
         self.fill_teachers(tree)
 
-        tree.pack(fill=BOTH, expand=1)
+        tree.pack(fill=BOTH, expand=True, side=TOP)
+
+        btn_del = Button(
+            self.f_teacher,
+            text="Удалить",
+            font=("Arial Bold", 10),
+            width=10,
+            command=lambda: self.delete_teacher(tree),
+        )
+        btn_del.pack(fill=BOTH, expand=True, side=BOTTOM)
 
     def place_equipment(self) -> None:
         """ Создание и расположение представления оборудования """
@@ -210,7 +237,16 @@ class ComplexViewWindow(Frame):
 
         self.fill_equipment(tree)
 
-        tree.pack(fill=BOTH, expand=1)
+        tree.pack(fill=BOTH, expand=True, side=TOP)
+
+        btn_del = Button(
+            self.f_equipment,
+            text="Удалить",
+            font=("Arial Bold", 10),
+            width=10,
+            command=lambda: self.delete_equipment(tree),
+        )
+        btn_del.pack(fill=BOTH, expand=True, side=BOTTOM)
 
     def fill_equipment(self, tree: ttk.Treeview) -> None:
         """ Заполнение таблицы представления оборудования """
@@ -267,6 +303,71 @@ class ComplexViewWindow(Frame):
 
         for record in records:
             tree.insert("", END, values=record)
+
+    def delete_equipment(self, tree) -> None:
+        for selection in tree.selection():
+            item = tree.item(selection)
+            values = item["values"]
+
+            params = {"name": values[0]}
+            import sys
+
+            sys.path.append("..")
+
+            from db.delete import delete_equipment
+
+            delete_equipment(params)
+
+    def delete_student(self, tree) -> None:
+        for selection in tree.selection():
+            item = tree.item(selection)
+            values = item["values"]
+
+            params = {
+                "first_name": values[0],
+                "last_name": values[1],
+                "passport": values[3],
+            }
+            import sys
+
+            sys.path.append("..")
+
+            from db.delete import delete_student
+
+            delete_student(params)
+
+    def delete_subject(self, tree) -> None:
+        for selection in tree.selection():
+            item = tree.item(selection)
+            values = item["values"]
+            print(values)
+
+            params = {"name": values[0]}
+            import sys
+
+            sys.path.append("..")
+
+            from db.delete import delete_subject
+
+            delete_subject(params)
+
+    def delete_teacher(self, tree) -> None:
+        for selection in tree.selection():
+            item = tree.item(selection)
+            values = item["values"]
+
+            params = {
+                "first_name": values[0],
+                "last_name": values[1],
+                "passport": values[4],
+            }
+            import sys
+
+            sys.path.append("..")
+
+            from db.delete import delete_teacher
+
+            delete_teacher(params)
 
     def back(self) -> None:
         """ Возвращает в меню выбора действия """

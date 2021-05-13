@@ -184,10 +184,9 @@ def get_table_teacher_subject_area(
     return result
 
 
-
 @sql_command
 def get_roda(
-        cursor,
+    cursor,
 ) -> list:
     """ Достает все рода войск """
     command = "SELECT direction FROM platoon"
