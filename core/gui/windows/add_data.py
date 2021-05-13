@@ -488,7 +488,7 @@ class AddDataWindow(Frame):
 
     def add(self) -> None:
         """Добавление студента в бд при нажатии кнопки"""
-        from db.post import post_student, post_subject, post_equipment
+        from db.post import post_student, post_subject, post_equipment, post_teacher
 
         if self.add_status == "Добавление предмета":
             post_subject(
@@ -499,20 +499,20 @@ class AddDataWindow(Frame):
             )
 
         elif self.add_status == "Добавление преподавателя":
-            print(self.teacher_name)
-            print(self.teacher_surname)
-            print(self.teacher_date_of_birth)
-            print(self.teacher_begin)
-            print(self.teacher_passport_num)
-            print(self.teacher_passport_date)
-            print(self.teacher_passport_given)
-            print(self.teacher_passport_inn)
-            print(self.teacher_rank)
-
-            print(self.teacher_specialisation)
-
-            print(self.teacher_address)
-            print(self.teacher_phone)
+            post_teacher(
+                self.teacher_name.get(),
+                self.teacher_surname.get(),
+                self.teacher_date_of_birth.get(),
+                self.teacher_begin.get(),
+                self.teacher_passport_num.get(),
+                self.teacher_passport_date.get(),
+                self.teacher_passport_given.get(),
+                self.teacher_passport_inn.get(),
+                self.teacher_rank.get(),
+                self.teacher_specialisation.get(),
+                self.teacher_address.get(),
+                self.teacher_phone.get()
+            )
 
         elif self.add_status == "Добавление студента":
             post_student(

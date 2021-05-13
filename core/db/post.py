@@ -95,3 +95,41 @@ def post_equipment(cursor, name, subject) -> None:
         "INSERT INTO equipment_for_subject (id_equipment, id_subject) VALUES(%s, %s)",
         (equipment_id, subject_id),
     )
+
+
+def get_rank_id(cursor, rank_name) -> int:
+    command = f"SELECT id FROM rank WHERE title='{rank_name}'"
+    cursor.execute(command)
+    records = cursor.fetchall()
+    result = [int(record[0]) for record in records]
+    return result[0]
+
+
+def get_teacher_id(cursor, name, surname, passport_num, passport_inn) -> int:
+    command = f"SELECT id FROM teacher WHERE first_name='{name}' AND last_name='{surname}' AND passport_num='{passport_num}' AND inn='{passport_inn}'"
+    cursor.execute(command)
+    records = cursor.fetchall()
+    result = [int(record[0]) for record in records]
+    return result[0]
+
+
+@sql_command
+def post_teacher(cursor, name, surname, birth, begin, passport_num, passport_date, passport_given, passport_inn, rank, specialisation, address, phone) -> None:
+    rank_id = get_rank_id(cursor, rank)
+    subject_id = get_subject_id(cursor, specialisation)
+    cursor.execute(
+        "INSERT INTO teacher (first_name, last_name, date_of_birth, teaching_begin, passport_num, passport_date, passport_given, inn, rank) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)",
+        (name, surname, birth, begin, passport_num, passport_date, passport_given, passport_inn, rank_id),
+    )
+    teacher_id = get_teacher_id(cursor, name, surname, passport_num, passport_inn)
+
+    cursor.execute(
+        "INSERT INTO teacher_subject_area (id_subject, id_teacher) VALUES(%s, %s)",
+        (subject_id, teacher_id),
+    )
+
+    cursor.execute(
+        "INSERT INTO teacher_contacts (id_teacher, address, phone_number) VALUES(%s, %s, %s)",
+        (teacher_id, address, phone),
+    )
+
