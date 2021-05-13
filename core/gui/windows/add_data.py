@@ -47,6 +47,8 @@ class AddDataWindow(Frame):
 
     def place_add_subjects_forms(self) -> None:
         """Создание форм для добавления предметов"""
+        from db.get import get_roda
+
         self.add_frame.destroy()
         self.place_add_frame()
         self.add_status = "Добавление предмета"
@@ -78,15 +80,27 @@ class AddDataWindow(Frame):
         )
         subject_label_3.place(x=5, y=160)
 
+        subject_label_4 = Label(
+            self.add_frame,
+            text="Род войск: ",
+            font=("Arial Bold", 14),
+        )
+        subject_label_4.place(x=5, y=190)
+
         self.subject_name = StringVar()
         subject_name_entry = Entry(self.add_frame, textvariable=self.subject_name)
         subject_name_entry.place(x=220, y=100)
 
-        self.subject_year = ttk.Combobox(self.add_frame, values=[1, 2, 3], width=2)
-        self.subject_year.place(x=220, y=130)
+        self.subject_year = StringVar()
+        subject_year_entry = Entry(self.add_frame, textvariable=self.subject_year)
+        subject_year_entry.place(x=220, y=130)
 
         self.subject_semestr = ttk.Combobox(self.add_frame, values=[1, 2], width=2)
         self.subject_semestr.place(x=220, y=160)
+
+        roda = get_roda()
+        self.subject_rod = ttk.Combobox(self.add_frame, values=roda, width=30)
+        self.subject_rod.place(x=220, y=190)
 
     def place_add_teachers_forms(self) -> None:
         """Создание форм для добавления преподавателя"""
@@ -397,12 +411,13 @@ class AddDataWindow(Frame):
 
     def add(self) -> None:
         """Добавление студента в бд при нажатии кнопки"""
-        from db.post import post_student
+        from db.post import post_student, post_subject
 
         if self.add_status == "Добавление предмета":
             print(self.subject_name.get())
             print(self.subject_year.get())
             print(self.subject_semestr.get())
+            print(self.subject_rod.get())
 
         elif self.add_status == "Добавление преподавателя":
             print("Преподаватель добавлен")

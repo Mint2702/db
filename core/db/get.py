@@ -182,3 +182,17 @@ def get_table_teacher_subject_area(
     result = [[int(record[0]), int(record[1])] for record in records]
 
     return result
+
+
+
+@sql_command
+def get_roda(
+        cursor,
+) -> list:
+    """ Достает все рода войск """
+    command = "SELECT direction FROM platoon"
+    cursor.execute(command)
+    records = cursor.fetchall()
+    result = [str(record[0]) for record in records]
+
+    return result
