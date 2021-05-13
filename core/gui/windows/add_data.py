@@ -40,7 +40,7 @@ class AddDataWindow(Frame):
 
     def place_add_frame(self) -> None:
         """Создание фрейма для добавления"""
-        self.add_frame = Frame(self, width=600, height=400)
+        self.add_frame = Frame(self, width=800, height=400)
         self.add_frame.place(x=500, y=50)
 
     def place_add_subjects_forms(self) -> None:
@@ -282,6 +282,21 @@ class AddDataWindow(Frame):
         )
         student_label_8.place(x=5, y=310)
 
+        student_label_9 = Label(
+            self.add_frame,
+            text=""
+                 "Адрес: ",
+            font=("Arial Bold", 14),
+        )
+        student_label_9.place(x=400, y=100)
+
+        student_label_10 = Label(
+            self.add_frame,
+            text="Номер телефона: ",
+            font=("Arial Bold", 14),
+        )
+        student_label_10.place(x=400, y=130)
+
         self.student_name = StringVar()
         self.student_surname = StringVar()
         self.student_date_of_birth = StringVar()
@@ -289,6 +304,8 @@ class AddDataWindow(Frame):
         self.student_passport_date = StringVar()
         self.student_passport_given = StringVar()
         self.student_passport_inn = StringVar()
+        self.student_address = StringVar()
+        self.student_phone = StringVar()
 
         student_name_entry = Entry(self.add_frame, textvariable=self.student_name)
         student_name_entry.place(x=230, y=100)
@@ -317,6 +334,16 @@ class AddDataWindow(Frame):
 
         self.student_platoon = ttk.Combobox(self.add_frame, values=[1, 2, 3], width=2)
         self.student_platoon.place(x=230, y=310)
+
+        student_address_entry = Entry(
+            self.add_frame, textvariable=self.student_address
+        )
+        student_address_entry.place(x=580, y=100)
+
+        student_phone_entry = Entry(
+            self.add_frame, textvariable=self.student_phone
+        )
+        student_phone_entry.place(x=580, y=130)
 
     def place_add_equipment_forms(self) -> None:
         """Создание форм для добавления оборудования"""
@@ -412,10 +439,7 @@ class AddDataWindow(Frame):
         from db.post import post_student, post_subject
 
         if self.add_status == "Добавление предмета":
-            print(self.subject_name.get())
-            print(self.subject_year.get())
-            print(self.subject_semestr.get())
-            print(self.subject_rod.get())
+            post_subject(self.subject_name.get(), self.subject_year.get(), self.subject_semestr.get(), self.subject_rod.get())
 
         elif self.add_status == "Добавление преподавателя":
             print("Преподаватель добавлен")
@@ -430,6 +454,8 @@ class AddDataWindow(Frame):
                 self.student_passport_given.get(),
                 self.student_passport_inn.get(),
                 self.student_platoon.get(),
+                self.student_address.get(),
+                self.student_phone.get()
             )
 
         elif self.add_status == "Добавление оборудования":
