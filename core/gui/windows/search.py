@@ -54,17 +54,7 @@ class SearchWindow(Frame):
         )
 
     def place_choose_buttons(self) -> None:
-
         if self.role == "Студент":
-            btn_teacher = Button(
-                self,
-                text="Преподаватели",
-                font=("Arial Bold", 10),
-                width=10,
-                command=self.place_teachers,
-            )
-            btn_teacher.place(x=100, y=250)
-
             btn_subjects = Button(
                 self,
                 text="Предметы",
@@ -158,7 +148,7 @@ class SearchWindow(Frame):
         self.tree.column("#3", anchor=CENTER, minwidth=0, width=140)
         self.tree.heading("#3", text="СЕМЕСТР ОБУЧЕНИЯ")
         self.tree.column("#4", anchor=CENTER, minwidth=0, width=150)
-        self.tree.heading("#4", text="РОД ВОЙСК")
+        self.tree.heading("#4", text="ВЗВОД")
 
         self.tree.bind("<<TreeviewSelect>>", self.update_subject)
 
@@ -195,7 +185,7 @@ class SearchWindow(Frame):
         self.tree.column("#7", minwidth=0, width=90, anchor=CENTER)
         self.tree.heading("#7", text="ИНН")
         self.tree.column("#8", minwidth=0, width=210, anchor=CENTER)
-        self.tree.heading("#8", text="РОД ВОЙСК")
+        self.tree.heading("#8", text="ВЗВОД")
         self.tree.column("#9", minwidth=0, width=250, anchor=CENTER)
         self.tree.heading("#9", text="АДРЕС")
         self.tree.column("#10", minwidth=0, width=130, anchor=CENTER)
