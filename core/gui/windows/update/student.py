@@ -41,7 +41,7 @@ class UpdateWindow(Frame):
             width=10,
             command=self.update,
         )
-        btn_update.place(x=300, y=700)
+        btn_update.place(x=300, y=750)
 
     def place_labels(self) -> None:
         name_label = Label(
@@ -99,6 +99,20 @@ class UpdateWindow(Frame):
             font=("Arial Bold", 11),
         )
         platoon_label.place(x=25, y=580)
+
+        adres_label = Label(
+            self,
+            text="Адрес",
+            font=("Arial Bold", 11),
+        )
+        adres_label.place(x=25, y=620)
+
+        number_label = Label(
+            self,
+            text="Номер телефона",
+            font=("Arial Bold", 11),
+        )
+        number_label.place(x=25, y=680)
 
     def place_entries(self) -> None:
         self.name_entry = Entry(
@@ -165,6 +179,22 @@ class UpdateWindow(Frame):
         self.platoon_entry.insert(0, self.values[7])
         self.platoon_entry.place(x=140, y=580)
 
+        self.adres_entry = Entry(
+            self,
+            font=("Arial Bold", 11),
+            width=30,
+        )
+        self.adres_entry.insert(0, self.values[8])
+        self.adres_entry.place(x=350, y=620)
+
+        self.number_entry = Entry(
+            self,
+            font=("Arial Bold", 11),
+            width=30,
+        )
+        self.number_entry.insert(0, self.values[9])
+        self.number_entry.place(x=350, y=680)
+
     def update(self) -> None:
         values = {
             "name": self.name_entry.get(),
@@ -175,5 +205,7 @@ class UpdateWindow(Frame):
             "pas_given": self.pas_given_entry.get(),
             "inn": self.inn_entry.get(),
             "platoon": self.platoon_entry.get(),
+            "number": self.number_entry.get(),
+            "adres": self.adres_entry.get(),
         }
         print(values)
