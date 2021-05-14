@@ -151,13 +151,13 @@ class SearchWindow(Frame):
             self.main_frame, column=("c1", "c2", "c3", "c4"), show="headings"
         )
         self.tree.pack(side="left", fill="y")
-        self.tree.column("#1", anchor=CENTER, minwidth=0, width=110)
+        self.tree.column("#1", anchor=CENTER, minwidth=0, width=130)
         self.tree.heading("#1", text="ПРЕДМЕТ")
-        self.tree.column("#2", anchor=CENTER, minwidth=0, width=100)
+        self.tree.column("#2", anchor=CENTER, minwidth=0, width=150)
         self.tree.heading("#2", text="ГОД ОБУЧЕНИЯ")
-        self.tree.column("#3", anchor=CENTER, minwidth=0, width=130)
+        self.tree.column("#3", anchor=CENTER, minwidth=0, width=140)
         self.tree.heading("#3", text="СЕМЕСТР ОБУЧЕНИЯ")
-        self.tree.column("#4", anchor=CENTER, minwidth=0, width=110)
+        self.tree.column("#4", anchor=CENTER, minwidth=0, width=150)
         self.tree.heading("#4", text="РОД ВОЙСК")
 
         self.tree.bind("<<TreeviewSelect>>", self.update_subject)
@@ -182,13 +182,13 @@ class SearchWindow(Frame):
         self.tree.pack(side="left", fill="y")
         self.tree.column("#1", minwidth=0, width=90, anchor=CENTER)
         self.tree.heading("#1", text="ИМЯ")
-        self.tree.column("#2", minwidth=0, width=90, anchor=CENTER)
+        self.tree.column("#2", minwidth=0, width=120, anchor=CENTER)
         self.tree.heading("#2", text="ФАМИЛИЯ")
-        self.tree.column("#3", minwidth=0, width=90, anchor=CENTER)
+        self.tree.column("#3", minwidth=0, width=200, anchor=CENTER)
         self.tree.heading("#3", text="ДАТА РОЖДЕНИЯ")
-        self.tree.column("#4", minwidth=0, width=100, anchor=CENTER)
+        self.tree.column("#4", minwidth=0, width=200, anchor=CENTER)
         self.tree.heading("#4", text="НОМЕР ПАССПОРТА")
-        self.tree.column("#5", minwidth=0, width=90, anchor=CENTER)
+        self.tree.column("#5", minwidth=0, width=150, anchor=CENTER)
         self.tree.heading("#5", text="ДАТА ВЫДАЧИ")
         self.tree.column("#6", minwidth=0, width=90, anchor=CENTER)
         self.tree.heading("#6", text="КЕМ ВЫДАН")
@@ -198,7 +198,7 @@ class SearchWindow(Frame):
         self.tree.heading("#8", text="РОД ВОЙСК")
         self.tree.column("#9", minwidth=0, width=250, anchor=CENTER)
         self.tree.heading("#9", text="АДРЕС")
-        self.tree.column("#10", minwidth=0, width=120, anchor=CENTER)
+        self.tree.column("#10", minwidth=0, width=130, anchor=CENTER)
         self.tree.heading("#10", text="НОМЕР ТЕЛЕФОНА")
 
         self.tree.bind("<<TreeviewSelect>>", self.update_student)
@@ -240,7 +240,7 @@ class SearchWindow(Frame):
         self.tree.heading("#2", text="ФАМИЛИЯ")
         self.tree.column("#3", minwidth=0, width=110, anchor=CENTER)
         self.tree.heading("#3", text="ДАТА РОЖДЕНИЯ")
-        self.tree.column("#4", minwidth=0, width=130, anchor=CENTER)
+        self.tree.column("#4", minwidth=0, width=170, anchor=CENTER)
         self.tree.heading("#4", text="НАЧАЛО ПРЕПОДАВАНИЯ")
         self.tree.column("#5", minwidth=0, width=120, anchor=CENTER)
         self.tree.heading("#5", text="НОМЕР ПАССПОРТА")
@@ -275,10 +275,12 @@ class SearchWindow(Frame):
 
         self.tree = ttk.Treeview(self.main_frame, column=("c1", "c2"), show="headings")
         self.tree.pack(side="left", fill="y")
-        self.tree.column("#1", minwidth=0, width=90, anchor=CENTER)
+        self.tree.column("#1", minwidth=0, width=200, anchor=CENTER)
         self.tree.heading("#1", text="ОБОРУДОВАНИЕ")
-        self.tree.column("#2", minwidth=0, width=90, anchor=CENTER)
+        self.tree.column("#2", minwidth=0, width=200, anchor=CENTER)
         self.tree.heading("#2", text="ПРЕДМЕТ")
+
+        self.tree.bind("<<TreeviewSelect>>", self.update_equipment)
 
         self.tree.pack(fill=BOTH, expand=1)
 
@@ -388,6 +390,13 @@ class SearchWindow(Frame):
     def update_teacher(self, event):
         from tkinter import Tk
         from .update.teacher import UpdateWindow
+
+        new_window = Tk()
+        UpdateWindow(new_window, self.tree)
+
+    def update_equipment(self, event):
+        from tkinter import Tk
+        from .update.equipment import UpdateWindow
 
         new_window = Tk()
         UpdateWindow(new_window, self.tree)

@@ -103,6 +103,7 @@ class AddDataWindow(Frame):
     def place_add_teachers_forms(self) -> None:
         """Создание форм для добавления преподавателя"""
         from db.get import get_rank, get_subjects
+
         self.add_frame.destroy()
         self.place_add_frame()
         self.add_status = "Добавление преподавателя"
@@ -247,7 +248,9 @@ class AddDataWindow(Frame):
         self.teacher_rank.place(x=230, y=340)
 
         subjects = get_subjects()
-        self.teacher_specialisation = ttk.Combobox(self.add_frame, values=subjects, width=20)
+        self.teacher_specialisation = ttk.Combobox(
+            self.add_frame, values=subjects, width=20
+        )
         self.teacher_specialisation.place(x=580, y=100)
 
         teacher_address_entry = Entry(self.add_frame, textvariable=self.teacher_address)
@@ -255,8 +258,6 @@ class AddDataWindow(Frame):
 
         teacher_phone_entry = Entry(self.add_frame, textvariable=self.teacher_phone)
         teacher_phone_entry.place(x=580, y=160)
-
-
 
     def place_add_students_forms(self) -> None:
         """Создание форм для добавления студента"""
@@ -511,7 +512,7 @@ class AddDataWindow(Frame):
                 self.teacher_rank.get(),
                 self.teacher_specialisation.get(),
                 self.teacher_address.get(),
-                self.teacher_phone.get()
+                self.teacher_phone.get(),
             )
 
         elif self.add_status == "Добавление студента":

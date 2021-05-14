@@ -114,12 +114,36 @@ def get_teacher_id(cursor, name, surname, passport_num, passport_inn) -> int:
 
 
 @sql_command
-def post_teacher(cursor, name, surname, birth, begin, passport_num, passport_date, passport_given, passport_inn, rank, specialisation, address, phone) -> None:
+def post_teacher(
+    cursor,
+    name,
+    surname,
+    birth,
+    begin,
+    passport_num,
+    passport_date,
+    passport_given,
+    passport_inn,
+    rank,
+    specialisation,
+    address,
+    phone,
+) -> None:
     rank_id = get_rank_id(cursor, rank)
     subject_id = get_subject_id(cursor, specialisation)
     cursor.execute(
         "INSERT INTO teacher (first_name, last_name, date_of_birth, teaching_begin, passport_num, passport_date, passport_given, inn, rank) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)",
-        (name, surname, birth, begin, passport_num, passport_date, passport_given, passport_inn, rank_id),
+        (
+            name,
+            surname,
+            birth,
+            begin,
+            passport_num,
+            passport_date,
+            passport_given,
+            passport_inn,
+            rank_id,
+        ),
     )
     teacher_id = get_teacher_id(cursor, name, surname, passport_num, passport_inn)
 
@@ -132,4 +156,3 @@ def post_teacher(cursor, name, surname, birth, begin, passport_num, passport_dat
         "INSERT INTO teacher_contacts (id_teacher, address, phone_number) VALUES(%s, %s, %s)",
         (teacher_id, address, phone),
     )
-
