@@ -7,6 +7,7 @@ class UpdateWindow(Frame):
         self.parent = parent
 
         self.values = tree.item(tree.selection())["values"]
+        self.old = tree.item(tree.selection())["values"]
 
         self.initUI()
 
@@ -226,6 +227,7 @@ class UpdateWindow(Frame):
         self.number_entry.place(x=350, y=680)
 
     def update(self) -> None:
+        from db.update import update_teacher
         values = {
             "name": self.name_entry.get(),
             "last_name": self.last_entry.get(),
@@ -237,7 +239,7 @@ class UpdateWindow(Frame):
             "inn": self.inn_entry.get(),
             "rank": self.rank_entry.get(),
             "subject": self.subject_entry.get(),
-            "adres": self.adres_entry.get(),
+            "address": self.adres_entry.get(),
             "number": self.number_entry.get(),
         }
-        print(values)
+        update_teacher(values, self.old)
