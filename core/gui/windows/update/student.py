@@ -1,0 +1,179 @@
+from tkinter import BOTH, Button, Frame, ttk, END, CENTER, BOTTOM, TOP, Label, Entry
+
+
+class UpdateWindow(Frame):
+    def __init__(self, parent, tree: ttk.Treeview) -> None:
+        Frame.__init__(self, parent)
+        self.parent = parent
+
+        self.values = tree.item(tree.selection())["values"]
+
+        self.initUI()
+
+    def initUI(self) -> None:
+        """ Постоение окна редактирования """
+
+        w = 800
+        h = 800
+
+        sw = self.parent.winfo_screenwidth()
+        sh = self.parent.winfo_screenheight()
+
+        x = (sw - w) / 2
+        y = (sh - h) / 2
+
+        self.parent.geometry("%dx%d+%d+%d" % (w, h, x, y))
+        self.parent.title("Редактирование информации о студенте")
+
+        self.place_update_button()
+        self.place_labels()
+        self.place_entries()
+
+        self.pack(fill=BOTH, expand=1)
+
+    def place_update_button(self) -> None:
+        """ Создание и расположение кнопки "Редактировать" """
+
+        btn_update = Button(
+            self,
+            text="Редактировать",
+            font=("Arial Bold", 10),
+            width=10,
+            command=self.update,
+        )
+        btn_update.place(x=300, y=700)
+
+    def place_labels(self) -> None:
+        name_label = Label(
+            self,
+            text="Имя",
+            font=("Arial Bold", 11),
+        )
+        name_label.place(x=25, y=20)
+
+        last_label = Label(
+            self,
+            text="Фамилия",
+            font=("Arial Bold", 11),
+        )
+        last_label.place(x=25, y=100)
+
+        born_label = Label(
+            self,
+            text="Дата рождения",
+            font=("Arial Bold", 11),
+        )
+        born_label.place(x=25, y=180)
+
+        pas_num_label = Label(
+            self,
+            text="Номер пасспорта",
+            font=("Arial Bold", 11),
+        )
+        pas_num_label.place(x=25, y=260)
+
+        pas_date_label = Label(
+            self,
+            text="Дата выдачи пасспорта",
+            font=("Arial Bold", 11),
+        )
+        pas_date_label.place(x=25, y=340)
+
+        pas_given_label = Label(
+            self,
+            text="Кем выдан",
+            font=("Arial Bold", 11),
+        )
+        pas_given_label.place(x=25, y=420)
+
+        inn_label = Label(
+            self,
+            text="ИНН",
+            font=("Arial Bold", 11),
+        )
+        inn_label.place(x=25, y=500)
+
+        platoon_label = Label(
+            self,
+            text="Взвод",
+            font=("Arial Bold", 11),
+        )
+        platoon_label.place(x=25, y=580)
+
+    def place_entries(self) -> None:
+        self.name_entry = Entry(
+            self,
+            font=("Arial Bold", 11),
+            width=40,
+        )
+        self.name_entry.insert(0, self.values[0])
+        self.name_entry.place(x=140, y=20)
+
+        self.last_entry = Entry(
+            self,
+            font=("Arial Bold", 11),
+            width=40,
+        )
+        self.last_entry.insert(0, self.values[1])
+        self.last_entry.place(x=140, y=100)
+
+        self.born_entry = Entry(
+            self,
+            font=("Arial Bold", 11),
+            width=40,
+        )
+        self.born_entry.insert(0, self.values[2])
+        self.born_entry.place(x=140, y=180)
+
+        self.pas_num_entry = Entry(
+            self,
+            font=("Arial Bold", 11),
+            width=40,
+        )
+        self.pas_num_entry.insert(0, self.values[3])
+        self.pas_num_entry.place(x=140, y=260)
+
+        self.pas_date_entry = Entry(
+            self,
+            font=("Arial Bold", 11),
+            width=40,
+        )
+        self.pas_date_entry.insert(0, self.values[4])
+        self.pas_date_entry.place(x=140, y=340)
+
+        self.pas_given_entry = Entry(
+            self,
+            font=("Arial Bold", 11),
+            width=40,
+        )
+        self.pas_given_entry.insert(0, self.values[5])
+        self.pas_given_entry.place(x=140, y=420)
+
+        self.inn_entry = Entry(
+            self,
+            font=("Arial Bold", 11),
+            width=40,
+        )
+        self.inn_entry.insert(0, self.values[6])
+        self.inn_entry.place(x=140, y=500)
+
+        self.platoon_entry = Entry(
+            self,
+            font=("Arial Bold", 11),
+            width=40,
+        )
+        self.platoon_entry.insert(0, self.values[7])
+        self.platoon_entry.place(x=140, y=580)
+
+    def update(self) -> None:
+        values = {
+            "name": self.name_entry.get(),
+            "last_name": self.last_entry.get(),
+            "born": self.born_entry.get(),
+            "pas_num": self.pas_num_entry.get(),
+            "pas_date": self.pas_date_entry.get(),
+            "pas_given": self.pas_given_entry.get(),
+            "inn": self.inn_entry.get(),
+            "platoon": self.platoon_entry.get(),
+        }
+        print(values)
