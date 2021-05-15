@@ -1,5 +1,5 @@
 from tkinter import BOTH, Button, Frame, ttk, END, CENTER, BOTTOM, TOP
-from ..utils import get_role
+from ..utils import get_role, show_error
 
 
 class ComplexViewWindow(Frame):
@@ -187,26 +187,26 @@ class ComplexViewWindow(Frame):
             show="headings",
         )
         tree.pack(side="left", fill="y")
-        tree.column("#1", minwidth=0, width=90, anchor=CENTER)
-        tree.heading("#1", text="ИМЯ")
-        tree.column("#2", minwidth=0, width=120, anchor=CENTER)
-        tree.heading("#2", text="ФАМИЛИЯ")
-        tree.column("#3", minwidth=0, width=110, anchor=CENTER)
-        tree.heading("#3", text="ДАТА РОЖДЕНИЯ")
-        tree.column("#4", minwidth=0, width=130, anchor=CENTER)
-        tree.heading("#4", text="НАЧАЛО ОБУЧЕНИЯ")
-        tree.column("#5", minwidth=0, width=120, anchor=CENTER)
-        tree.heading("#5", text="НОМЕР ПАССПОРТА")
+        tree.column("#1", minwidth=0, width=140, anchor=CENTER)
+        tree.heading("#1", text="ОСНОВНОЙ ПРЕДМЕТ")
+        tree.column("#2", minwidth=0, width=90, anchor=CENTER)
+        tree.heading("#2", text="ИМЯ")
+        tree.column("#3", minwidth=0, width=120, anchor=CENTER)
+        tree.heading("#3", text="ФАМИЛИЯ")
+        tree.column("#4", minwidth=0, width=110, anchor=CENTER)
+        tree.heading("#4", text="ДАТА РОЖДЕНИЯ")
+        tree.column("#5", minwidth=0, width=130, anchor=CENTER)
+        tree.heading("#5", text="НАЧАЛО ОБУЧЕНИЯ")
         tree.column("#6", minwidth=0, width=120, anchor=CENTER)
-        tree.heading("#6", text="ДАТА ВЫДАЧИ")
-        tree.column("#7", minwidth=0, width=90, anchor=CENTER)
-        tree.heading("#7", text="КЕМ ВЫДАН")
+        tree.heading("#6", text="НОМЕР ПАССПОРТА")
+        tree.column("#7", minwidth=0, width=120, anchor=CENTER)
+        tree.heading("#7", text="ДАТА ВЫДАЧИ")
         tree.column("#8", minwidth=0, width=90, anchor=CENTER)
-        tree.heading("#8", text="ИНН")
-        tree.column("#9", minwidth=0, width=80, anchor=CENTER)
-        tree.heading("#9", text="ЗВАНИЕ")
-        tree.column("#10", minwidth=0, width=140, anchor=CENTER)
-        tree.heading("#10", text="ОСНОВНОЙ ПРЕДМЕТ")
+        tree.heading("#8", text="КЕМ ВЫДАН")
+        tree.column("#9", minwidth=0, width=90, anchor=CENTER)
+        tree.heading("#9", text="ИНН")
+        tree.column("#10", minwidth=0, width=80, anchor=CENTER)
+        tree.heading("#10", text="ЗВАНИЕ")
         tree.column("#11", minwidth=0, width=250, anchor=CENTER)
         tree.heading("#11", text="АДРЕС")
         tree.column("#12", minwidth=0, width=120, anchor=CENTER)
@@ -357,9 +357,9 @@ class ComplexViewWindow(Frame):
             values = item["values"]
 
             params = {
-                "first_name": values[0],
-                "last_name": values[1],
-                "passport": values[4],
+                "first_name": values[1],
+                "last_name": values[2],
+                "passport": values[5],
             }
             import sys
 
@@ -367,7 +367,12 @@ class ComplexViewWindow(Frame):
 
             from db.delete import delete_teacher
 
-            delete_teacher(params)
+            flag = delete_teacher(params)
+            if not flag:
+                show_error(
+                    "Ошибка удаления",
+                    "У данного преподавателя ессть привязанный взвод. Пожалуйста, удалите или перезапишите взвод на другого преподавателя.",
+                )
 
     def back(self) -> None:
         """ Возвращает в меню выбора действия """

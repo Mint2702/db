@@ -50,7 +50,7 @@ def get_subjects(
 ) -> list:
     """ Достает данные о предметах """
 
-    command = "SELECT sb.name, sb.year_of_study, sb.semester_of_study, pl.direction FROM platoon as pl, subject as sb, subject_of_platoon as sb_pl WHERE sb_pl.id_platoon = pl.id AND sb_pl.id_subject = sb.id"
+    command = "SELECT DISTINCT sb.name, sb.year_of_study, sb.semester_of_study, pl.direction FROM platoon as pl, subject as sb, subject_of_platoon as sb_pl WHERE sb_pl.id_platoon = pl.id AND sb_pl.id_subject = sb.id"
     cursor.execute(command)
     records = cursor.fetchall()
     result = [
@@ -67,7 +67,7 @@ def get_teachers(
 ) -> list:
     """ Достает данные о преподавателях """
 
-    command = "SELECT t.first_name, t.last_name, t.date_of_birth, t.teaching_begin, t.passport_num, t.passport_date, t.passport_given, t.inn, r.title, s.name, tc.address, tc.phone_number FROM teacher as t, rank as r, teacher_subject_area as ts, subject as s, teacher_contacts as tc WHERE ts.id_subject = s.id AND ts.id_teacher = t.id AND r.id = t.rank AND tc.id_teacher = t.id"
+    command = "SELECT s.name, t.first_name, t.last_name, t.date_of_birth, t.teaching_begin, t.passport_num, t.passport_date, t.passport_given, t.inn, r.title, tc.address, tc.phone_number FROM teacher as t, rank as r, teacher_subject_area as ts, subject as s, teacher_contacts as tc WHERE ts.id_subject = s.id AND ts.id_teacher = t.id AND r.id = t.rank AND tc.id_teacher = t.id"
     cursor.execute(command)
     records = cursor.fetchall()
     result = [
