@@ -9,6 +9,7 @@ from tkinter import (
     IntVar,
     ttk,
 )
+from ..utils import get_role
 
 
 class AddDataWindow(Frame):
@@ -29,10 +30,16 @@ class AddDataWindow(Frame):
         x = (sw - w) / 2
         y = (sh - h) / 2
         self.add_status = "0"
+        self.user = get_role()
         self.parent.geometry("%dx%d+%d+%d" % (w, h, x, y))
         self.parent.title("Военная кафедра - добавление информации")
         self.place_add_frame()
+
+
         self.place_radiobuttons()
+
+
+
         self.place_add_button()
         self.place_back_button()
 
@@ -424,43 +431,113 @@ class AddDataWindow(Frame):
     def place_radiobuttons(self) -> None:
         """ Создание и размещение кнопочек выбора роли"""
         self.var = IntVar()
-        self.status = "Студент"
-        rad0 = Radiobutton(
-            self,
-            text="Предметы",
-            variable=self.var,
-            value=1,
-            font=("Arial Bold", 15),
-            command=self.place_add_subjects_forms,
-        )
-        rad1 = Radiobutton(
-            self,
-            text="Преподаватели",
-            variable=self.var,
-            value=2,
-            font=("Arial Bold", 15),
-            command=self.place_add_teachers_forms,
-        )
-        rad2 = Radiobutton(
-            self,
-            text="Студенты",
-            variable=self.var,
-            value=3,
-            font=("Arial Bold", 15),
-            command=self.place_add_students_forms,
-        )
-        rad3 = Radiobutton(
-            self,
-            text="Оборудование",
-            variable=self.var,
-            value=4,
-            font=("Arial Bold", 15),
-            command=self.place_add_equipment_forms,
-        )
-        rad0.place(x=30, y=40)
-        rad1.place(x=30, y=70)
-        rad2.place(x=30, y=100)
-        rad3.place(x=30, y=130)
+
+        if self.user == "Преподаватель":
+            self.status = "Преподаватели"
+            rad1 = Radiobutton(
+                self,
+                text="Преподаватели",
+                variable=self.var,
+                value=2,
+                font=("Arial Bold", 15),
+                command=self.place_add_teachers_forms,
+            )
+            rad1.place(x=30, y=40)
+            rad3 = Radiobutton(
+                self,
+                text="Оборудование",
+                variable=self.var,
+                value=4,
+                font=("Arial Bold", 15),
+                command=self.place_add_equipment_forms,
+            )
+            rad3.place(x=30, y=70)
+
+        elif self.user == "Начальник цикла":
+            self.status = "Студент"
+            rad0 = Radiobutton(
+                self,
+                text="Предметы",
+                variable=self.var,
+                value=1,
+                font=("Arial Bold", 15),
+                command=self.place_add_subjects_forms,
+            )
+            rad0.place(x=30, y=40)
+            rad2 = Radiobutton(
+                self,
+                text="Студенты",
+                variable=self.var,
+                value=3,
+                font=("Arial Bold", 15),
+                command=self.place_add_students_forms,
+            )
+            rad2.place(x=30, y=70)
+        elif self.user == "Начальник ВУЦ":
+            self.status = "Студент"
+            rad1 = Radiobutton(
+                self,
+                text="Преподаватели",
+                variable=self.var,
+                value=2,
+                font=("Arial Bold", 15),
+                command=self.place_add_teachers_forms,
+            )
+            rad2 = Radiobutton(
+                self,
+                text="Студенты",
+                variable=self.var,
+                value=3,
+                font=("Arial Bold", 15),
+                command=self.place_add_students_forms,
+            )
+            rad1.place(x=30, y=40)
+            rad2.place(x=30, y=70)
+
+
+
+
+        '''
+
+            self.status = "Студент"
+            rad0 = Radiobutton(
+                self,
+                text="Предметы",
+                variable=self.var,
+                value=1,
+                font=("Arial Bold", 15),
+                command=self.place_add_subjects_forms,
+            )
+            rad1 = Radiobutton(
+                self,
+                text="Преподаватели",
+                variable=self.var,
+                value=2,
+                font=("Arial Bold", 15),
+                command=self.place_add_teachers_forms,
+            )
+            rad2 = Radiobutton(
+                self,
+                text="Студенты",
+                variable=self.var,
+                value=3,
+                font=("Arial Bold", 15),
+                command=self.place_add_students_forms,
+            )
+            rad3 = Radiobutton(
+                self,
+                text="Оборудование",
+                variable=self.var,
+                value=4,
+                font=("Arial Bold", 15),
+                command=self.place_add_equipment_forms,
+            )
+            rad0.place(x=30, y=40)
+            rad1.place(x=30, y=70)
+            rad2.place(x=30, y=100)
+            rad3.place(x=30, y=130)
+            
+        '''
 
     def place_back_button(self) -> None:
         """ Создание и расположение кнопки "назад" """
