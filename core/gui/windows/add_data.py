@@ -434,15 +434,6 @@ class AddDataWindow(Frame):
 
         if self.user == "Преподаватель":
             self.status = "Преподаватели"
-            rad1 = Radiobutton(
-                self,
-                text="Преподаватели",
-                variable=self.var,
-                value=2,
-                font=("Arial Bold", 15),
-                command=self.place_add_teachers_forms,
-            )
-            rad1.place(x=30, y=40)
             rad3 = Radiobutton(
                 self,
                 text="Оборудование",
@@ -483,6 +474,8 @@ class AddDataWindow(Frame):
                 font=("Arial Bold", 15),
                 command=self.place_add_teachers_forms,
             )
+            rad1.place(x=30, y=40)
+            '''
             rad2 = Radiobutton(
                 self,
                 text="Студенты",
@@ -491,8 +484,8 @@ class AddDataWindow(Frame):
                 font=("Arial Bold", 15),
                 command=self.place_add_students_forms,
             )
-            rad1.place(x=30, y=40)
             rad2.place(x=30, y=70)
+            '''
 
 
 

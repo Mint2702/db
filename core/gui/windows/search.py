@@ -150,7 +150,8 @@ class SearchWindow(Frame):
         self.tree.column("#4", anchor=CENTER, minwidth=0, width=150)
         self.tree.heading("#4", text="ВЗВОД")
 
-        self.tree.bind("<<TreeviewSelect>>", self.update_subject)
+        if self.role != "Студент" and self.role != "Преподаватель" and self.role != "Начальник ВУЦ":
+            self.tree.bind("<<TreeviewSelect>>", self.update_subject)
 
         self.tree.pack(fill=BOTH, expand=1)
 
@@ -174,9 +175,9 @@ class SearchWindow(Frame):
         self.tree.heading("#1", text="ИМЯ")
         self.tree.column("#2", minwidth=0, width=120, anchor=CENTER)
         self.tree.heading("#2", text="ФАМИЛИЯ")
-        self.tree.column("#3", minwidth=0, width=200, anchor=CENTER)
+        self.tree.column("#3", minwidth=0, width=150, anchor=CENTER)
         self.tree.heading("#3", text="ДАТА РОЖДЕНИЯ")
-        self.tree.column("#4", minwidth=0, width=200, anchor=CENTER)
+        self.tree.column("#4", minwidth=0, width=150, anchor=CENTER)
         self.tree.heading("#4", text="НОМЕР ПАССПОРТА")
         self.tree.column("#5", minwidth=0, width=150, anchor=CENTER)
         self.tree.heading("#5", text="ДАТА ВЫДАЧИ")
@@ -191,7 +192,8 @@ class SearchWindow(Frame):
         self.tree.column("#10", minwidth=0, width=130, anchor=CENTER)
         self.tree.heading("#10", text="НОМЕР ТЕЛЕФОНА")
 
-        self.tree.bind("<<TreeviewSelect>>", self.update_student)
+        if self.role != "Студент" and self.role != "Преподаватель" and self.role != "Начальник ВУЦ":
+            self.tree.bind("<<TreeviewSelect>>", self.update_student)
 
         self.tree.pack(fill=BOTH, expand=1)
 
@@ -249,7 +251,8 @@ class SearchWindow(Frame):
         self.tree.column("#12", minwidth=0, width=120, anchor=CENTER)
         self.tree.heading("#12", text="НОМЕР ТЕЛЕФОНА")
 
-        self.tree.bind("<<TreeviewSelect>>", self.update_teacher)
+        if self.role != "Студент" and self.role != "Преподаватель":
+            self.tree.bind("<<TreeviewSelect>>", self.update_teacher)
 
         self.tree.pack(fill=BOTH, expand=1)
 
@@ -270,7 +273,8 @@ class SearchWindow(Frame):
         self.tree.column("#2", minwidth=0, width=200, anchor=CENTER)
         self.tree.heading("#2", text="ПРЕДМЕТ")
 
-        self.tree.bind("<<TreeviewSelect>>", self.update_equipment)
+        if self.role != "Студент":
+            self.tree.bind("<<TreeviewSelect>>", self.update_equipment)
 
         self.tree.pack(fill=BOTH, expand=1)
 

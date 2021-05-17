@@ -26,6 +26,7 @@ class ComplexViewWindow(Frame):
 
         self.place_table_frames()
         self.place_back_button()
+
         self.place_tables()
 
         self.pack(fill=BOTH, expand=1)
@@ -112,14 +113,15 @@ class ComplexViewWindow(Frame):
 
         tree.pack(fill=BOTH, expand=True, side=TOP)
 
-        btn_del = Button(
-            self.f_subject,
-            text="Удалить",
-            font=("Arial Bold", 10),
-            width=10,
-            command=lambda: self.delete_subject(tree),
-        )
-        btn_del.pack(fill=BOTH, expand=True, side=BOTTOM)
+        if self.role != "Студент" and self.role != "Преподаватель" and self.role != "Начальник ВУЦ":
+            btn_del = Button(
+                self.f_subject,
+                text="Удалить",
+                font=("Arial Bold", 10),
+                width=10,
+                command=lambda: self.delete_subject(tree),
+            )
+            btn_del.pack(fill=BOTH, expand=True, side=BOTTOM)
 
     def place_students(self) -> None:
         """ Создание и расположение представления студентов """
@@ -155,15 +157,15 @@ class ComplexViewWindow(Frame):
         self.fill_students(tree)
 
         tree.pack(fill=BOTH, expand=True, side=TOP)
-
-        btn_del = Button(
-            self.f_student,
-            text="Удалить",
-            font=("Arial Bold", 10),
-            width=10,
-            command=lambda: self.delete_student(tree),
-        )
-        btn_del.pack(fill=BOTH, expand=True, side=BOTTOM)
+        if self.role != "Студент" and self.role != "Преподаватель" and self.role != "Начальник ВУЦ":
+            btn_del = Button(
+                self.f_student,
+                text="Удалить",
+                font=("Arial Bold", 10),
+                width=10,
+                command=lambda: self.delete_student(tree),
+            )
+            btn_del.pack(fill=BOTH, expand=True, side=BOTTOM)
 
     def place_teachers(self) -> None:
         """ Создание и расположение представления преподавателей """
@@ -215,15 +217,15 @@ class ComplexViewWindow(Frame):
         self.fill_teachers(tree)
 
         tree.pack(fill=BOTH, expand=True, side=TOP)
-
-        btn_del = Button(
-            self.f_teacher,
-            text="Удалить",
-            font=("Arial Bold", 10),
-            width=10,
-            command=lambda: self.delete_teacher(tree),
-        )
-        btn_del.pack(fill=BOTH, expand=True, side=BOTTOM)
+        if self.role != "Студент" and self.role != "Преподаватель" and self.role != "Начальник цикла":
+            btn_del = Button(
+                self.f_teacher,
+                text="Удалить",
+                font=("Arial Bold", 10),
+                width=10,
+                command=lambda: self.delete_teacher(tree),
+            )
+            btn_del.pack(fill=BOTH, expand=True, side=BOTTOM)
 
     def place_equipment(self) -> None:
         """ Создание и расположение представления оборудования """
