@@ -9,7 +9,7 @@ class MainWindow(Frame):
         self.initUI()
 
     def initUI(self) -> None:
-        """ Построение главного окна """
+        """Построение главного окна"""
 
         w = 1500
         h = 600
@@ -17,8 +17,8 @@ class MainWindow(Frame):
         sw = self.parent.winfo_screenwidth()
         sh = self.parent.winfo_screenheight()
 
-        x = (sw - w) / 2
-        y = (sh - h) / 2
+        x = (sw - w) / 2 + 100
+        y = (sh - h) / 2 - 50
 
         self.parent.geometry("%dx%d+%d+%d" % (w, h, x, y))
         self.parent.title("Военная кафедра")
@@ -30,7 +30,7 @@ class MainWindow(Frame):
         self.pack(fill=BOTH, expand=1)
 
     def place_buttons(self) -> None:
-        """ Создание и расположение кнопок выбора раздела """
+        """Создание и расположение кнопок выбора раздела"""
 
         roll_label = Label(
             self,
@@ -84,7 +84,7 @@ class MainWindow(Frame):
             btn_add.place(x=750, y=400)
 
     def change_to_view(self) -> None:
-        """ Переключает окно на окно просмотра таблиц """
+        """Переключает окно на окно просмотра таблиц"""
 
         from tkinter import Tk
         from .view import ViewWindow
@@ -93,7 +93,7 @@ class MainWindow(Frame):
         ViewWindow(self.parent)
 
     def change_to_complex_view(self) -> None:
-        """ Переключает окно на окно просмотра таблиц """
+        """Переключает окно на окно просмотра таблиц"""
 
         from tkinter import Tk
         from .complex_view import ComplexViewWindow
@@ -102,7 +102,7 @@ class MainWindow(Frame):
         ComplexViewWindow(self.parent)
 
     def change_to_add_data(self) -> None:
-        """ Переключает окно на окно добавления данных """
+        """Переключает окно на окно добавления данных"""
 
         from tkinter import Tk
         from .add_data import AddDataWindow
@@ -111,7 +111,7 @@ class MainWindow(Frame):
         AddDataWindow(self.parent)
 
     def change_to_search(self) -> None:
-        """ Переключает окно на окно поиска данных """
+        """Переключает окно на окно поиска данных"""
 
         from tkinter import Tk
         from .search import SearchWindow
@@ -120,6 +120,6 @@ class MainWindow(Frame):
         SearchWindow(self.parent)
 
     def remove_window(self) -> None:
-        """ Удаляет все обьекты родительского окна """
+        """Удаляет все обьекты родительского окна"""
 
         self.destroy()

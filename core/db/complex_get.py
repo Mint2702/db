@@ -6,7 +6,7 @@ import datetime
 def get_equipment(
     cursor,
 ) -> list:
-    """ Достает данные для оборудования в удобном виде """
+    """Достает данные для оборудования в удобном виде"""
 
     command = "SELECT eq.denomination, sb.name FROM equipment as eq, subject as sb, equipment_for_subject as eq_sb WHERE eq_sb.id_equipment = eq.id AND eq_sb.id_subject = sb.id"
     cursor.execute(command)
@@ -20,7 +20,7 @@ def get_equipment(
 def get_students(
     cursor,
 ) -> list:
-    """ Достает данные о студентах """
+    """Достает данные о студентах"""
 
     command = "SELECT first_name, last_name, date_of_birth, passport_num, passport_date, passport_given, inn, direction, sc.address, sc.phone_number FROM student, platoon, student_contacts as sc WHERE student.platoon_id = platoon.id AND sc.id_student = student.id"
     cursor.execute(command)
@@ -48,7 +48,7 @@ def get_students(
 def get_subjects(
     cursor,
 ) -> list:
-    """ Достает данные о предметах """
+    """Достает данные о предметах"""
 
     command = "SELECT DISTINCT sb.name, sb.year_of_study, sb.semester_of_study, pl.direction FROM platoon as pl, subject as sb, subject_of_platoon as sb_pl WHERE sb_pl.id_platoon = pl.id AND sb_pl.id_subject = sb.id"
     cursor.execute(command)
@@ -65,7 +65,7 @@ def get_subjects(
 def get_teachers(
     cursor,
 ) -> list:
-    """ Достает данные о преподавателях """
+    """Достает данные о преподавателях"""
 
     command = "SELECT s.name, t.first_name, t.last_name, t.date_of_birth, t.teaching_begin, t.passport_num, t.passport_date, t.passport_given, t.inn, r.title, tc.address, tc.phone_number FROM teacher as t, rank as r, teacher_subject_area as ts, subject as s, teacher_contacts as tc WHERE ts.id_subject = s.id AND ts.id_teacher = t.id AND r.id = t.rank AND tc.id_teacher = t.id"
     cursor.execute(command)

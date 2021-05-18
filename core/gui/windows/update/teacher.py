@@ -12,7 +12,7 @@ class UpdateWindow(Frame):
         self.initUI()
 
     def initUI(self) -> None:
-        """ Постоение окна редактирования """
+        """Постоение окна редактирования"""
 
         w = 800
         h = 800
@@ -33,7 +33,7 @@ class UpdateWindow(Frame):
         self.pack(fill=BOTH, expand=1)
 
     def place_update_button(self) -> None:
-        """ Создание и расположение кнопки "Редактировать" """
+        """Создание и расположение кнопки "Редактировать" """
 
         btn_update = Button(
             self,
@@ -228,6 +228,7 @@ class UpdateWindow(Frame):
 
     def update(self) -> None:
         from db.update import update_teacher
+
         values = {
             "name": self.name_entry.get(),
             "last_name": self.last_entry.get(),

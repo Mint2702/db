@@ -10,7 +10,7 @@ class SearchWindow(Frame):
         self.initUI()
 
     def initUI(self) -> None:
-        """ Постоение окна поиска """
+        """Постоение окна поиска"""
 
         w = 1500
         h = 500
@@ -18,8 +18,8 @@ class SearchWindow(Frame):
         sw = self.parent.winfo_screenwidth()
         sh = self.parent.winfo_screenheight()
 
-        x = (sw - w) / 2
-        y = (sh - h) / 2
+        x = (sw - w) / 2 + 100
+        y = (sh - h) / 2 - 50
 
         self.parent.geometry("%dx%d+%d+%d" % (w, h, x, y))
         self.parent.title("Военная кафедра - поиск по представлениям")
@@ -34,7 +34,7 @@ class SearchWindow(Frame):
         self.pack(fill=BOTH, expand=1)
 
     def place_back_button(self) -> None:
-        """ Создание и расположение кнопки "назад" """
+        """Создание и расположение кнопки "назад" """
 
         btn_filter = Button(
             self, text="Назад", font=("Arial Bold", 10), width=10, command=self.back
@@ -42,7 +42,7 @@ class SearchWindow(Frame):
         btn_filter.place(x=500, y=400)
 
     def place_main_frame(self) -> None:
-        """" Создание фреймов для размещения таблиц"""
+        """ " Создание фреймов для размещения таблиц"""
 
         self.role = get_role()
 
@@ -130,7 +130,7 @@ class SearchWindow(Frame):
             btn_subjects.place(x=100, y=390)
 
     def place_subjects(self) -> None:
-        """ Создание и расположение представления предметов """
+        """Создание и расположение представления предметов"""
 
         self.main_label.destroy()
         self.place_search_label("предметы")
@@ -150,7 +150,11 @@ class SearchWindow(Frame):
         self.tree.column("#4", anchor=CENTER, minwidth=0, width=150)
         self.tree.heading("#4", text="ВЗВОД")
 
-        if self.role != "Студент" and self.role != "Преподаватель" and self.role != "Начальник ВУЦ":
+        if (
+            self.role != "Студент"
+            and self.role != "Преподаватель"
+            and self.role != "Начальник ВУЦ"
+        ):
             self.tree.bind("<<TreeviewSelect>>", self.update_subject)
 
         self.tree.pack(fill=BOTH, expand=1)
@@ -158,7 +162,7 @@ class SearchWindow(Frame):
         self.fill_table_subject()
 
     def place_students(self) -> None:
-        """ Создание и расположение представления студентов """
+        """Создание и расположение представления студентов"""
 
         self.main_label.destroy()
         self.place_search_label("студент")
@@ -192,7 +196,11 @@ class SearchWindow(Frame):
         self.tree.column("#10", minwidth=0, width=130, anchor=CENTER)
         self.tree.heading("#10", text="НОМЕР ТЕЛЕФОНА")
 
-        if self.role != "Студент" and self.role != "Преподаватель" and self.role != "Начальник ВУЦ":
+        if (
+            self.role != "Студент"
+            and self.role != "Преподаватель"
+            and self.role != "Начальник ВУЦ"
+        ):
             self.tree.bind("<<TreeviewSelect>>", self.update_student)
 
         self.tree.pack(fill=BOTH, expand=1)
@@ -200,7 +208,7 @@ class SearchWindow(Frame):
         self.fill_table_student()
 
     def place_teachers(self) -> None:
-        """ Создание и расположение представления преподавателей """
+        """Создание и расположение представления преподавателей"""
 
         self.main_label.destroy()
         self.place_search_label("преподаватель")
@@ -259,7 +267,7 @@ class SearchWindow(Frame):
         self.fill_table_teacher()
 
     def place_equipment(self) -> None:
-        """ Создание и расположение представления оборудования """
+        """Создание и расположение представления оборудования"""
 
         self.main_label.destroy()
         self.place_search_label("оборудование")
@@ -296,7 +304,7 @@ class SearchWindow(Frame):
         self.main_label.place(x=300, y=300)
 
     def fill_table_student(self) -> None:
-        """ Заполнение таблицы "student" """
+        """Заполнение таблицы "student" """
 
         import sys
 
@@ -314,7 +322,7 @@ class SearchWindow(Frame):
             self.tree.insert("", END, values=record)
 
     def fill_table_subject(self) -> None:
-        """ Заполнение таблицы "subject" """
+        """Заполнение таблицы "subject" """
 
         import sys
 
@@ -332,7 +340,7 @@ class SearchWindow(Frame):
             self.tree.insert("", END, values=record)
 
     def fill_table_equipment(self) -> None:
-        """ Заполнение таблицы "equipment" """
+        """Заполнение таблицы "equipment" """
 
         import sys
 
@@ -350,7 +358,7 @@ class SearchWindow(Frame):
             self.tree.insert("", END, values=record)
 
     def fill_table_teacher(self) -> None:
-        """ Заполнение таблицы "teacher" """
+        """Заполнение таблицы "teacher" """
 
         import sys
 
@@ -396,7 +404,7 @@ class SearchWindow(Frame):
         UpdateWindow(new_window, self.tree)
 
     def back(self) -> None:
-        """ Возвращает в меню выбора действия """
+        """Возвращает в меню выбора действия"""
 
         from .main_window import MainWindow
 
@@ -404,6 +412,6 @@ class SearchWindow(Frame):
         MainWindow(self.parent)
 
     def remove_window(self) -> None:
-        """ Удаляет все обьекты родительского окна """
+        """Удаляет все обьекты родительского окна"""
 
         self.destroy()

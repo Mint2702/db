@@ -5,7 +5,7 @@ from .windows.main_window import MainWindow
 
 
 def start_graphics() -> None:
-    """ Стартовая точка в графике """
+    """Стартовая точка в графике"""
 
     root = Tk()
     Connection_tk(root)

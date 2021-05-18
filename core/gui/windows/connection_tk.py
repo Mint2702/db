@@ -11,7 +11,7 @@ class Connection_tk(Frame):
         self.initUI()
 
     def initUI(self) -> None:
-        """ Постоение окна соединения с бд """
+        """Постоение окна соединения с бд"""
 
         w = 1500
         h = 600
@@ -19,8 +19,8 @@ class Connection_tk(Frame):
         sw = self.parent.winfo_screenwidth()
         sh = self.parent.winfo_screenheight()
 
-        x = (sw - w) / 2
-        y = (sh - h) / 2
+        x = (sw - w) / 2 + 100
+        y = (sh - h) / 2 - 50
         self.parent.geometry("%dx%d+%d+%d" % (w, h, x, y))
 
         self.parent.title("Военная кафедра")
@@ -35,7 +35,7 @@ class Connection_tk(Frame):
             file.write(str(1))
 
     def place_connection_labels(self) -> None:
-        """ Создание и расположение виджетов окна подключения к бд"""
+        """Создание и расположение виджетов окна подключения к бд"""
 
         choose_label = Label(
             self,
@@ -124,7 +124,7 @@ class Connection_tk(Frame):
         self.status = "Начальник ВУЦ"
 
     def place_radiobuttons(self) -> None:
-        """ Создание и размещение кнопочек выбора роли"""
+        """Создание и размещение кнопочек выбора роли"""
         self.var = IntVar()
         self.status = "Студент"
         rad0 = Radiobutton(
@@ -165,7 +165,7 @@ class Connection_tk(Frame):
         rad3.place(x=20, y=300)
 
     def env_connect(self, env: bool) -> None:
-        """ Вызывает функцию подключения к бд c """
+        """Вызывает функцию подключения к бд c"""
 
         sys.path.append("..")
 
@@ -209,7 +209,7 @@ class Connection_tk(Frame):
             )
 
     def main_window(self) -> None:
-        """ Переходит в меню выбора действия """
+        """Переходит в меню выбора действия"""
 
         from tkinter import Tk
         from .main_window import MainWindow
@@ -218,6 +218,6 @@ class Connection_tk(Frame):
         MainWindow(self.parent)
 
     def remove_window(self) -> None:
-        """ Удаляет все обьекты родительского окна """
+        """Удаляет все обьекты родительского окна"""
 
         self.destroy()

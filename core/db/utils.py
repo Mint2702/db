@@ -4,7 +4,7 @@ from loguru import logger
 
 
 def db_connect(host: str, port: str, user: str, password: str, database: str) -> bool:
-    """ Соединение с БД """
+    """Соединение с БД"""
 
     global cursor
     global conn
@@ -52,7 +52,7 @@ def sql_command(func):
 
 
 def save_db_data(data: list) -> None:
-    """ Сохраняет данные о бд в текстовом файле для дальнейшего использования """
+    """Сохраняет данные о бд в текстовом файле для дальнейшего использования"""
 
     f = open("db_data.txt", "w+")
     for info in data:
@@ -61,7 +61,7 @@ def save_db_data(data: list) -> None:
 
 
 def get_db_data() -> list:
-    """ Возвращает данные о бд из файла """
+    """Возвращает данные о бд из файла"""
 
     f = open("db_data.txt", "r")
     rows = f.readlines()

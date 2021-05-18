@@ -19,7 +19,7 @@ class AddDataWindow(Frame):
         self.initUI()
 
     def initUI(self) -> None:
-        """ Постоение окна добавления информации """
+        """Постоение окна добавления информации"""
 
         w = 1500
         h = 600
@@ -27,18 +27,16 @@ class AddDataWindow(Frame):
         sw = self.parent.winfo_screenwidth()
         sh = self.parent.winfo_screenheight()
 
-        x = (sw - w) / 2
-        y = (sh - h) / 2
+        x = (sw - w) / 2 + 100
+        y = (sh - h) / 2 - 50
+
         self.add_status = "0"
         self.user = get_role()
         self.parent.geometry("%dx%d+%d+%d" % (w, h, x, y))
         self.parent.title("Военная кафедра - добавление информации")
         self.place_add_frame()
 
-
         self.place_radiobuttons()
-
-
 
         self.place_add_button()
         self.place_back_button()
@@ -429,7 +427,7 @@ class AddDataWindow(Frame):
         self.equipment_subject.place(x=190, y=130)
 
     def place_radiobuttons(self) -> None:
-        """ Создание и размещение кнопочек выбора роли"""
+        """Создание и размещение кнопочек выбора роли"""
         self.var = IntVar()
 
         if self.user == "Преподаватель":
@@ -475,7 +473,7 @@ class AddDataWindow(Frame):
                 command=self.place_add_teachers_forms,
             )
             rad1.place(x=30, y=40)
-            '''
+            """
             rad2 = Radiobutton(
                 self,
                 text="Студенты",
@@ -485,12 +483,9 @@ class AddDataWindow(Frame):
                 command=self.place_add_students_forms,
             )
             rad2.place(x=30, y=70)
-            '''
+            """
 
-
-
-
-        '''
+        """
 
             self.status = "Студент"
             rad0 = Radiobutton(
@@ -530,10 +525,10 @@ class AddDataWindow(Frame):
             rad2.place(x=30, y=100)
             rad3.place(x=30, y=130)
             
-        '''
+        """
 
     def place_back_button(self) -> None:
-        """ Создание и расположение кнопки "назад" """
+        """Создание и расположение кнопки "назад" """
 
         btn_filter = Button(
             self, text="Назад", font=("Arial Bold", 10), width=10, command=self.back
@@ -541,14 +536,14 @@ class AddDataWindow(Frame):
         btn_filter.place(x=100, y=500)
 
     def back(self) -> None:
-        """ Возвращает в меню выбора действия """
+        """Возвращает в меню выбора действия"""
         from .main_window import MainWindow
 
         self.remove_window()
         MainWindow(self.parent)
 
     def remove_window(self) -> None:
-        """ Удаляет все обьекты родительского окна """
+        """Удаляет все обьекты родительского окна"""
         self.destroy()
 
     def place_add_button(self) -> None:

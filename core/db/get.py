@@ -5,7 +5,7 @@ from .utils import sql_command
 def get_table_equipment(
     cursor,
 ) -> list:
-    """ Достает все данные из указанной таблицы """
+    """Достает все данные из указанной таблицы"""
 
     command = "SELECT * FROM equipment"
     cursor.execute(command)
@@ -19,7 +19,7 @@ def get_table_equipment(
 def get_table_equipment_for_subject(
     cursor,
 ) -> list:
-    """ Достает все данные из указанной таблицы """
+    """Достает все данные из указанной таблицы"""
 
     command = "SELECT * FROM equipment_for_subject"
     cursor.execute(command)
@@ -33,7 +33,7 @@ def get_table_equipment_for_subject(
 def get_table_platoon(
     cursor,
 ) -> list:
-    """ Достает все данные из указанной таблицы """
+    """Достает все данные из указанной таблицы"""
 
     command = "SELECT * FROM platoon"
     cursor.execute(command)
@@ -47,7 +47,7 @@ def get_table_platoon(
 def get_table_rank(
     cursor,
 ) -> list:
-    """ Достает все данные из указанной таблицы """
+    """Достает все данные из указанной таблицы"""
 
     command = "SELECT * FROM rank"
     cursor.execute(command)
@@ -61,7 +61,7 @@ def get_table_rank(
 def get_table_student(
     cursor,
 ) -> list:
-    """ Достает все данные из указанной таблицы """
+    """Достает все данные из указанной таблицы"""
 
     command = "SELECT * FROM student"
     cursor.execute(command)
@@ -88,7 +88,7 @@ def get_table_student(
 def get_table_student_contacts(
     cursor,
 ) -> list:
-    """ Достает все данные из указанной таблицы """
+    """Достает все данные из указанной таблицы"""
 
     command = "SELECT * FROM student_contacts"
     cursor.execute(command)
@@ -102,7 +102,7 @@ def get_table_student_contacts(
 def get_table_subject(
     cursor,
 ) -> list:
-    """ Достает все данные из указанной таблицы """
+    """Достает все данные из указанной таблицы"""
 
     command = "SELECT * FROM subject"
     cursor.execute(command)
@@ -118,7 +118,7 @@ def get_table_subject(
 def get_table_subject_of_platoon(
     cursor,
 ) -> list:
-    """ Достает все данные из указанной таблицы """
+    """Достает все данные из указанной таблицы"""
 
     command = "SELECT * FROM subject_of_platoon"
     cursor.execute(command)
@@ -132,7 +132,7 @@ def get_table_subject_of_platoon(
 def get_table_teacher(
     cursor,
 ) -> list:
-    """ Достает все данные из указанной таблицы """
+    """Достает все данные из указанной таблицы"""
 
     command = "SELECT * FROM teacher"
     cursor.execute(command)
@@ -160,7 +160,7 @@ def get_table_teacher(
 def get_table_teacher_contacts(
     cursor,
 ) -> list:
-    """ Достает все данные из указанной таблицы """
+    """Достает все данные из указанной таблицы"""
 
     command = "SELECT * FROM teacher_contacts"
     cursor.execute(command)
@@ -174,7 +174,7 @@ def get_table_teacher_contacts(
 def get_table_teacher_subject_area(
     cursor,
 ) -> list:
-    """ Достает все данные из указанной таблицы """
+    """Достает все данные из указанной таблицы"""
 
     command = "SELECT * FROM teacher_subject_area"
     cursor.execute(command)
@@ -188,7 +188,7 @@ def get_table_teacher_subject_area(
 def get_roda(
     cursor,
 ) -> list:
-    """ Достает все рода войск """
+    """Достает все рода войск"""
     command = "SELECT direction FROM platoon"
     cursor.execute(command)
     records = cursor.fetchall()
@@ -201,7 +201,7 @@ def get_roda(
 def get_subjects(
     cursor,
 ) -> list:
-    """ Достает все предметы """
+    """Достает все предметы"""
     command = "SELECT name FROM subject"
     cursor.execute(command)
     records = cursor.fetchall()
@@ -214,7 +214,7 @@ def get_subjects(
 def get_rank(
     cursor,
 ) -> list:
-    """ Достает все звания """
+    """Достает все звания"""
     command = "SELECT title FROM rank"
     cursor.execute(command)
     records = cursor.fetchall()

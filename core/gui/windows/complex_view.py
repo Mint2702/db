@@ -10,7 +10,7 @@ class ComplexViewWindow(Frame):
         self.initUI()
 
     def initUI(self) -> None:
-        """ Постоение окна просмотра """
+        """Постоение окна просмотра"""
 
         w = 1500
         h = 600
@@ -18,8 +18,8 @@ class ComplexViewWindow(Frame):
         sw = self.parent.winfo_screenwidth()
         sh = self.parent.winfo_screenheight()
 
-        x = (sw - w) / 2
-        y = (sh - h) / 2
+        x = (sw - w) / 2 + 100
+        y = (sh - h) / 2 - 50
 
         self.parent.geometry("%dx%d+%d+%d" % (w, h, x, y))
         self.parent.title("Военная кафедра - просмотр готовых представлений")
@@ -32,7 +32,7 @@ class ComplexViewWindow(Frame):
         self.pack(fill=BOTH, expand=1)
 
     def place_back_button(self) -> None:
-        """ Создание и расположение кнопки "назад" """
+        """Создание и расположение кнопки "назад" """
 
         btn_filter = Button(
             self, text="Назад", font=("Arial Bold", 10), width=10, command=self.back
@@ -40,7 +40,7 @@ class ComplexViewWindow(Frame):
         btn_filter.place(x=550, y=500)
 
     def place_table_frames(self) -> None:
-        """" Создание фреймов для размещения таблиц"""
+        """ " Создание фреймов для размещения таблиц"""
 
         note_tree = ttk.Notebook(self, style="style.TNotebook")
         note_tree.place(x=20, y=50)
@@ -93,7 +93,7 @@ class ComplexViewWindow(Frame):
             self.place_students()
 
     def place_subjects(self) -> None:
-        """ Создание и расположение представления предметов """
+        """Создание и расположение представления предметов"""
 
         tree = ttk.Treeview(
             self.f_subject, column=("c1", "c2", "c3", "c4"), show="headings"
@@ -113,7 +113,11 @@ class ComplexViewWindow(Frame):
 
         tree.pack(fill=BOTH, expand=True, side=TOP)
 
-        if self.role != "Студент" and self.role != "Преподаватель" and self.role != "Начальник ВУЦ":
+        if (
+            self.role != "Студент"
+            and self.role != "Преподаватель"
+            and self.role != "Начальник ВУЦ"
+        ):
             btn_del = Button(
                 self.f_subject,
                 text="Удалить",
@@ -124,7 +128,7 @@ class ComplexViewWindow(Frame):
             btn_del.pack(fill=BOTH, expand=True, side=BOTTOM)
 
     def place_students(self) -> None:
-        """ Создание и расположение представления студентов """
+        """Создание и расположение представления студентов"""
 
         tree = ttk.Treeview(
             self.f_student,
@@ -157,7 +161,11 @@ class ComplexViewWindow(Frame):
         self.fill_students(tree)
 
         tree.pack(fill=BOTH, expand=True, side=TOP)
-        if self.role != "Студент" and self.role != "Преподаватель" and self.role != "Начальник ВУЦ":
+        if (
+            self.role != "Студент"
+            and self.role != "Преподаватель"
+            and self.role != "Начальник ВУЦ"
+        ):
             btn_del = Button(
                 self.f_student,
                 text="Удалить",
@@ -168,7 +176,7 @@ class ComplexViewWindow(Frame):
             btn_del.pack(fill=BOTH, expand=True, side=BOTTOM)
 
     def place_teachers(self) -> None:
-        """ Создание и расположение представления преподавателей """
+        """Создание и расположение представления преподавателей"""
 
         tree = ttk.Treeview(
             self.f_teacher,
@@ -217,7 +225,11 @@ class ComplexViewWindow(Frame):
         self.fill_teachers(tree)
 
         tree.pack(fill=BOTH, expand=True, side=TOP)
-        if self.role != "Студент" and self.role != "Преподаватель" and self.role != "Начальник цикла":
+        if (
+            self.role != "Студент"
+            and self.role != "Преподаватель"
+            and self.role != "Начальник цикла"
+        ):
             btn_del = Button(
                 self.f_teacher,
                 text="Удалить",
@@ -228,7 +240,7 @@ class ComplexViewWindow(Frame):
             btn_del.pack(fill=BOTH, expand=True, side=BOTTOM)
 
     def place_equipment(self) -> None:
-        """ Создание и расположение представления оборудования """
+        """Создание и расположение представления оборудования"""
 
         tree = ttk.Treeview(self.f_equipment, column=("c1", "c2"), show="headings")
         tree.pack(side="left", fill="y")
@@ -251,7 +263,7 @@ class ComplexViewWindow(Frame):
         btn_del.pack(fill=BOTH, expand=True, side=BOTTOM)
 
     def fill_equipment(self, tree: ttk.Treeview) -> None:
-        """ Заполнение таблицы представления оборудования """
+        """Заполнение таблицы представления оборудования"""
 
         import sys
 
@@ -265,7 +277,7 @@ class ComplexViewWindow(Frame):
             tree.insert("", END, values=record)
 
     def fill_teachers(self, tree: ttk.Treeview) -> None:
-        """ Заполнение таблицы представления преподавателей """
+        """Заполнение таблицы представления преподавателей"""
 
         import sys
 
@@ -279,7 +291,7 @@ class ComplexViewWindow(Frame):
             tree.insert("", END, values=record)
 
     def fill_students(self, tree: ttk.Treeview) -> None:
-        """ Заполнение таблицы представления студентов """
+        """Заполнение таблицы представления студентов"""
 
         import sys
 
@@ -293,7 +305,7 @@ class ComplexViewWindow(Frame):
             tree.insert("", END, values=record)
 
     def fill_subjects(self, tree: ttk.Treeview) -> None:
-        """ Заполнение таблицы представления предметов """
+        """Заполнение таблицы представления предметов"""
 
         import sys
 
@@ -377,7 +389,7 @@ class ComplexViewWindow(Frame):
                 )
 
     def back(self) -> None:
-        """ Возвращает в меню выбора действия """
+        """Возвращает в меню выбора действия"""
 
         from .main_window import MainWindow
 
@@ -385,6 +397,6 @@ class ComplexViewWindow(Frame):
         MainWindow(self.parent)
 
     def remove_window(self) -> None:
-        """ Удаляет все обьекты родительского окна """
+        """Удаляет все обьекты родительского окна"""
 
         self.destroy()

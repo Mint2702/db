@@ -2,7 +2,7 @@ from .utils import sql_command
 
 
 def get_student_id(cursor, name, surname, passport_num, passport_inn) -> int:
-    """ Возвращаетс id студента """
+    """Возвращаетс id студента"""
     command = f"SELECT id FROM student WHERE first_name='{name}' AND last_name='{surname}' AND passport_num='{passport_num}' AND inn='{passport_inn}'"
     cursor.execute(command)
     records = cursor.fetchall()
@@ -24,7 +24,7 @@ def post_student(
     address,
     phone,
 ) -> None:
-    """ Добавление студентов в таблицу """
+    """Добавление студентов в таблицу"""
     cursor.execute(
         "INSERT INTO student (first_name, last_name, date_of_birth, passport_num,  passport_date,  passport_given, inn, platoon_id) VALUES(%s, %s, %s, %s, %s, %s, %s, %s)",
         (
@@ -63,7 +63,7 @@ def get_subject_id(cursor, name) -> int:
 
 @sql_command
 def post_subject(cursor, name, year, semestr, rod) -> None:
-    """ Добавление предметов """
+    """Добавление предметов"""
     rod_id = get_rod_id(cursor, rod)
     cursor.execute(
         "INSERT INTO subject (name, year_of_study, semester_of_study) VALUES(%s, %s, %s)",

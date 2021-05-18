@@ -10,7 +10,7 @@ class ViewWindow(Frame):
         self.initUI()
 
     def initUI(self) -> None:
-        """ Постоение окна просмотра """
+        """Постоение окна просмотра"""
 
         w = 1500
         h = 600
@@ -18,8 +18,8 @@ class ViewWindow(Frame):
         sw = self.parent.winfo_screenwidth()
         sh = self.parent.winfo_screenheight()
 
-        x = (sw - w) / 2
-        y = (sh - h) / 2
+        x = (sw - w) / 2 + 100
+        y = (sh - h) / 2 - 50
 
         self.parent.geometry("%dx%d+%d+%d" % (w, h, x, y))
         self.parent.title("Военная кафедра - просмотр таблиц")
@@ -31,7 +31,7 @@ class ViewWindow(Frame):
         self.pack(fill=BOTH, expand=1)
 
     def place_table_frames(self) -> None:
-        """" Создание фреймов для размещения таблиц"""
+        """ " Создание фреймов для размещения таблиц"""
 
         note_tree = ttk.Notebook(self, style="style.TNotebook")
         note_tree.place(x=20, y=50)
@@ -119,7 +119,7 @@ class ViewWindow(Frame):
             )
 
     def place_back_button(self) -> None:
-        """ Создание и расположение кнопки "назад" """
+        """Создание и расположение кнопки "назад" """
 
         btn_filter = Button(
             self, text="Назад", font=("Arial Bold", 10), width=10, command=self.back
@@ -169,7 +169,7 @@ class ViewWindow(Frame):
             self.place_table_teacher_subject_area()
 
     def place_table_equipment(self) -> None:
-        """ Создание и расположение таблицы "equipment" """
+        """Создание и расположение таблицы "equipment" """
 
         tree = ttk.Treeview(self.f_equipment, column=("c1", "c2"), show="headings")
         tree.pack(side="left", fill="y")
@@ -183,7 +183,7 @@ class ViewWindow(Frame):
         tree.pack(fill=BOTH, expand=1)
 
     def place_table_equipment_for_subject(self) -> None:
-        """ Создание и расположение таблицы "equipment_for_subject" """
+        """Создание и расположение таблицы "equipment_for_subject" """
 
         tree = ttk.Treeview(
             self.f_equipment_for_subject, column=("c1", "c2"), show="headings"
@@ -199,7 +199,7 @@ class ViewWindow(Frame):
         tree.pack(fill=BOTH, expand=1)
 
     def place_table_platoon(self) -> None:
-        """ Создание и расположение таблицы "platoon" """
+        """Создание и расположение таблицы "platoon" """
 
         tree = ttk.Treeview(self.f_platoon, column=("c1", "c2"), show="headings")
         tree.pack(side="left", fill="y")
@@ -213,7 +213,7 @@ class ViewWindow(Frame):
         tree.pack(fill=BOTH, expand=1)
 
     def place_table_rank(self) -> None:
-        """ Создание и расположение таблицы "rank" """
+        """Создание и расположение таблицы "rank" """
 
         tree = ttk.Treeview(self.f_rank, column=("c1", "c2"), show="headings")
         tree.pack(side="left", fill="y")
@@ -227,7 +227,7 @@ class ViewWindow(Frame):
         tree.pack(fill=BOTH, expand=1)
 
     def place_table_student(self) -> None:
-        """ Создание и расположение таблицы "student" """
+        """Создание и расположение таблицы "student" """
 
         tree = ttk.Treeview(
             self.f_student,
@@ -259,7 +259,7 @@ class ViewWindow(Frame):
         tree.pack(fill=BOTH, expand=1)
 
     def place_table_student_contacts(self) -> None:
-        """ Создание и расположение таблицы "student_contacts" """
+        """Создание и расположение таблицы "student_contacts" """
 
         tree = ttk.Treeview(
             self.f_student_contacts, column=("c1", "c2", "c3"), show="headings"
@@ -277,7 +277,7 @@ class ViewWindow(Frame):
         tree.pack(fill=BOTH, expand=1)
 
     def place_table_subject(self) -> None:
-        """ Создание и расположение таблицы "subject" """
+        """Создание и расположение таблицы "subject" """
 
         tree = ttk.Treeview(
             self.f_subject, column=("c1", "c2", "c3", "c4"), show="headings"
@@ -297,7 +297,7 @@ class ViewWindow(Frame):
         tree.pack(fill=BOTH, expand=1)
 
     def place_table_subject_of_platoon(self) -> None:
-        """ Создание и расположение таблицы "subject_of_platoon" """
+        """Создание и расположение таблицы "subject_of_platoon" """
 
         tree = ttk.Treeview(
             self.f_subject_of_platoon, column=("c1", "c2"), show="headings"
@@ -313,7 +313,7 @@ class ViewWindow(Frame):
         tree.pack(fill=BOTH, expand=1)
 
     def place_table_teacher(self) -> None:
-        """ Создание и расположение таблицы "teacher" """
+        """Создание и расположение таблицы "teacher" """
 
         tree = ttk.Treeview(
             self.f_teacher,
@@ -347,7 +347,7 @@ class ViewWindow(Frame):
         tree.pack(fill=BOTH, expand=1)
 
     def place_table_teacher_contacts(self) -> None:
-        """ Создание и расположение таблицы "teacher_contacts" """
+        """Создание и расположение таблицы "teacher_contacts" """
 
         tree = ttk.Treeview(
             self.f_teacher_contacts, column=("c1", "c2", "c3"), show="headings"
@@ -365,7 +365,7 @@ class ViewWindow(Frame):
         tree.pack(fill=BOTH, expand=1)
 
     def place_table_teacher_subject_area(self) -> None:
-        """ Создание и расположение таблицы "teacher_subject_area" """
+        """Создание и расположение таблицы "teacher_subject_area" """
 
         tree = ttk.Treeview(
             self.f_teacher_subject_area, column=("c1", "c2"), show="headings"
@@ -381,7 +381,7 @@ class ViewWindow(Frame):
         tree.pack(fill=BOTH, expand=1)
 
     def fill_table_equipment(self, tree: ttk.Treeview) -> None:
-        """ Заполнение таблицы "equipment" """
+        """Заполнение таблицы "equipment" """
 
         import sys
 
@@ -395,7 +395,7 @@ class ViewWindow(Frame):
             tree.insert("", END, values=record)
 
     def fill_table_equipment_for_subject(self, tree: ttk.Treeview) -> None:
-        """ Заполнение таблицы "equipment_for_subject" """
+        """Заполнение таблицы "equipment_for_subject" """
 
         import sys
 
@@ -409,7 +409,7 @@ class ViewWindow(Frame):
             tree.insert("", END, values=record)
 
     def fill_table_platoon(self, tree: ttk.Treeview) -> None:
-        """ Заполнение таблицы "platoon" """
+        """Заполнение таблицы "platoon" """
 
         import sys
 
@@ -423,7 +423,7 @@ class ViewWindow(Frame):
             tree.insert("", END, values=record)
 
     def fill_table_rank(self, tree: ttk.Treeview) -> None:
-        """ Заполнение таблицы "rank" """
+        """Заполнение таблицы "rank" """
 
         import sys
 
@@ -437,7 +437,7 @@ class ViewWindow(Frame):
             tree.insert("", END, values=record)
 
     def fill_table_student(self, tree: ttk.Treeview) -> None:
-        """ Заполнение таблицы "student" """
+        """Заполнение таблицы "student" """
 
         import sys
 
@@ -451,7 +451,7 @@ class ViewWindow(Frame):
             tree.insert("", END, values=record)
 
     def fill_table_student_contacts(self, tree: ttk.Treeview) -> None:
-        """ Заполнение таблицы "student_contacts" """
+        """Заполнение таблицы "student_contacts" """
 
         import sys
 
@@ -465,7 +465,7 @@ class ViewWindow(Frame):
             tree.insert("", END, values=record)
 
     def fill_table_subject(self, tree: ttk.Treeview) -> None:
-        """ Заполнение таблицы "subject" """
+        """Заполнение таблицы "subject" """
 
         import sys
 
@@ -479,7 +479,7 @@ class ViewWindow(Frame):
             tree.insert("", END, values=record)
 
     def fill_table_subject_of_platoon(self, tree: ttk.Treeview) -> None:
-        """ Заполнение таблицы "subject_of_platoon" """
+        """Заполнение таблицы "subject_of_platoon" """
 
         import sys
 
@@ -493,7 +493,7 @@ class ViewWindow(Frame):
             tree.insert("", END, values=record)
 
     def fill_table_teacher(self, tree: ttk.Treeview) -> None:
-        """ Заполнение таблицы "teacher" """
+        """Заполнение таблицы "teacher" """
 
         import sys
 
@@ -507,7 +507,7 @@ class ViewWindow(Frame):
             tree.insert("", END, values=record)
 
     def fill_table_teacher_contacts(self, tree: ttk.Treeview) -> None:
-        """ Заполнение таблицы "teacher_contacts" """
+        """Заполнение таблицы "teacher_contacts" """
 
         import sys
 
@@ -521,7 +521,7 @@ class ViewWindow(Frame):
             tree.insert("", END, values=record)
 
     def fill_table_teacher_subject_area(self, tree: ttk.Treeview) -> None:
-        """ Заполнение таблицы "teacher_subject_area" """
+        """Заполнение таблицы "teacher_subject_area" """
 
         import sys
 
@@ -535,7 +535,7 @@ class ViewWindow(Frame):
             tree.insert("", END, values=record)
 
     def back(self) -> None:
-        """ Возвращает в меню выбора действия """
+        """Возвращает в меню выбора действия"""
 
         from .main_window import MainWindow
 
@@ -543,6 +543,6 @@ class ViewWindow(Frame):
         MainWindow(self.parent)
 
     def remove_window(self) -> None:
-        """ Удаляет все обьекты родительского окна """
+        """Удаляет все обьекты родительского окна"""
 
         self.destroy()
