@@ -1,4 +1,5 @@
-from tkinter import BOTH, Button, Frame, ttk, END, CENTER, Entry, Label
+from tkinter import BOTH, Button, Frame, ttk, END, CENTER, Entry, Label, BOTTOM, X
+from tkinter.constants import TOP
 from ..utils import get_role
 
 
@@ -46,11 +47,20 @@ class SearchWindow(Frame):
 
         self.role = get_role()
 
-        self.main_frame = Frame(self, height=200)
+        self.main_frame = Frame(self, height=200, width=900)
+        self.main_frame.configure(
+            height=self.main_frame["height"], width=self.main_frame["width"]
+        )
+        self.main_frame.grid_propagate(0)
+
         self.main_frame.place(x=20, y=20)
 
         self.tree = ttk.Treeview(
             self.main_frame, column=("c1", "c2", "c3", "c4"), show="headings"
+        )
+
+        self.scroll = ttk.Scrollbar(
+            self.main_frame, orient="horizontal", command=self.tree.xview
         )
 
     def place_choose_buttons(self) -> None:
@@ -136,6 +146,7 @@ class SearchWindow(Frame):
         self.place_search_label("предметы")
 
         self.tree.destroy()
+        self.scroll.destroy()
 
         self.tree = ttk.Treeview(
             self.main_frame, column=("c1", "c2", "c3", "c4"), show="headings"
@@ -168,13 +179,18 @@ class SearchWindow(Frame):
         self.place_search_label("студент")
 
         self.tree.destroy()
+        self.scroll.destroy()
 
         self.tree = ttk.Treeview(
             self.main_frame,
             column=("c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "c9", "c10"),
             show="headings",
         )
-        self.tree.pack(side="left", fill="y")
+
+        self.scroll = ttk.Scrollbar(
+            self.main_frame, orient="horizontal", command=self.tree.xview
+        )
+
         self.tree.column("#1", minwidth=0, width=90, anchor=CENTER)
         self.tree.heading("#1", text="ИМЯ")
         self.tree.column("#2", minwidth=0, width=120, anchor=CENTER)
@@ -203,7 +219,10 @@ class SearchWindow(Frame):
         ):
             self.tree.bind("<<TreeviewSelect>>", self.update_student)
 
-        self.tree.pack(fill=BOTH, expand=1)
+        self.tree.pack(fill=BOTH, expand=True, side=TOP)
+
+        self.scroll.pack(side=BOTTOM, fill=X)
+        self.tree.configure(xscrollcommand=self.scroll.set)
 
         self.fill_table_student()
 
@@ -214,6 +233,7 @@ class SearchWindow(Frame):
         self.place_search_label("преподаватель")
 
         self.tree.destroy()
+        self.scroll.destroy()
 
         self.tree = ttk.Treeview(
             self.main_frame,
@@ -233,7 +253,11 @@ class SearchWindow(Frame):
             ),
             show="headings",
         )
-        self.tree.pack(side="left", fill="y")
+
+        self.scroll = ttk.Scrollbar(
+            self.main_frame, orient="horizontal", command=self.tree.xview
+        )
+
         self.tree.column("#1", minwidth=0, width=90, anchor=CENTER)
         self.tree.heading("#1", text="ИМЯ")
         self.tree.column("#2", minwidth=0, width=120, anchor=CENTER)
@@ -262,7 +286,10 @@ class SearchWindow(Frame):
         if self.role != "Студент" and self.role != "Преподаватель":
             self.tree.bind("<<TreeviewSelect>>", self.update_teacher)
 
-        self.tree.pack(fill=BOTH, expand=1)
+        self.tree.pack(fill=BOTH, expand=True, side=TOP)
+
+        self.scroll.pack(side=BOTTOM, fill=X)
+        self.tree.configure(xscrollcommand=self.scroll.set)
 
         self.fill_table_teacher()
 
@@ -273,9 +300,9 @@ class SearchWindow(Frame):
         self.place_search_label("оборудование")
 
         self.tree.destroy()
+        self.scroll.destroy()
 
         self.tree = ttk.Treeview(self.main_frame, column=("c1", "c2"), show="headings")
-        self.tree.pack(side="left", fill="y")
         self.tree.column("#1", minwidth=0, width=200, anchor=CENTER)
         self.tree.heading("#1", text="ОБОРУДОВАНИЕ")
         self.tree.column("#2", minwidth=0, width=200, anchor=CENTER)

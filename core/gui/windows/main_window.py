@@ -57,7 +57,7 @@ class MainWindow(Frame):
 
         btn_view = Button(
             self,
-            text="Просмотр готовых представлений",
+            text="Работа с готовыми представлениями",
             font=("Arial Bold", 10),
             width=30,
             command=self.change_to_complex_view,
@@ -66,7 +66,7 @@ class MainWindow(Frame):
 
         btn_filter = Button(
             self,
-            text="Поиск",
+            text="Поиск и редактирование",
             font=("Arial Bold", 10),
             width=30,
             command=self.change_to_search,

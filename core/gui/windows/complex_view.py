@@ -1,4 +1,4 @@
-from tkinter import BOTH, Button, Frame, ttk, END, CENTER, BOTTOM, TOP
+from tkinter import BOTH, Button, Frame, ttk, END, CENTER, BOTTOM, TOP, X
 from ..utils import get_role, show_error
 
 
@@ -22,7 +22,7 @@ class ComplexViewWindow(Frame):
         y = (sh - h) / 2 - 50
 
         self.parent.geometry("%dx%d+%d+%d" % (w, h, x, y))
-        self.parent.title("Военная кафедра - просмотр готовых представлений")
+        self.parent.title("Военная кафедра - работа с готовыми представлениями")
 
         self.place_table_frames()
         self.place_back_button()
@@ -42,7 +42,7 @@ class ComplexViewWindow(Frame):
     def place_table_frames(self) -> None:
         """ " Создание фреймов для размещения таблиц"""
 
-        note_tree = ttk.Notebook(self, style="style.TNotebook")
+        note_tree = ttk.Notebook(self, style="style.TNotebook", width=1250)
         note_tree.place(x=20, y=50)
 
         self.role = get_role()
@@ -136,6 +136,8 @@ class ComplexViewWindow(Frame):
             show="headings",
         )
 
+        scroll = ttk.Scrollbar(self.f_student, orient="horizontal", command=tree.xview)
+
         tree.pack(side="left", fill="y")
         tree.column("#1", minwidth=0, width=90, anchor=CENTER)
         tree.heading("#1", text="ИМЯ")
@@ -161,6 +163,10 @@ class ComplexViewWindow(Frame):
         self.fill_students(tree)
 
         tree.pack(fill=BOTH, expand=True, side=TOP)
+
+        scroll.pack(side=BOTTOM, fill=X)
+        tree.configure(xscrollcommand=scroll.set)
+
         if (
             self.role != "Студент"
             and self.role != "Преподаватель"
@@ -196,6 +202,9 @@ class ComplexViewWindow(Frame):
             ),
             show="headings",
         )
+
+        scroll = ttk.Scrollbar(self.f_teacher, orient="horizontal", command=tree.xview)
+
         tree.pack(side="left", fill="y")
         tree.column("#1", minwidth=0, width=140, anchor=CENTER)
         tree.heading("#1", text="ОСНОВНОЙ ПРЕДМЕТ")
@@ -225,6 +234,10 @@ class ComplexViewWindow(Frame):
         self.fill_teachers(tree)
 
         tree.pack(fill=BOTH, expand=True, side=TOP)
+
+        scroll.pack(side=BOTTOM, fill=X)
+        tree.configure(xscrollcommand=scroll.set)
+
         if (
             self.role != "Студент"
             and self.role != "Преподаватель"
